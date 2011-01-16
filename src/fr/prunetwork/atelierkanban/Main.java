@@ -40,7 +40,6 @@ public class Main {
 
 		JFrame frame = new JFrame();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frame.setLocationRelativeTo(null);
 
 		ChronometerPanel cp = new ChronometerPanel();
 		frame.add(cp);
@@ -53,6 +52,7 @@ public class Main {
 		}
 
 		splashScreen.masquer();
+		frame.setLocationRelativeTo(frame.getParent());
 		frame.setVisible(true);
 	}
 }

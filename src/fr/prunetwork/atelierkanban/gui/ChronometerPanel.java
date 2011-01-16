@@ -47,9 +47,9 @@ public class ChronometerPanel extends javax.swing.JPanel {
 			public void run() {
 				int elapsedTime = c.read();
 
-				int hour = (int) Math.floor(elapsedTime / 3600);
-				int min = (int) Math.floor(elapsedTime / 60);
-				int sec = (int) Math.floor(elapsedTime) - min * 60 - hour * 60 * 60;
+				int hour = elapsedTime / 3600;
+				int min = elapsedTime / 60 - hour * 60;
+				int sec = elapsedTime - min * 60 - hour * 60 * 60;
 
 				timeLabel.setText(hour + ":" + min + ":" + sec);
 			}
@@ -107,9 +107,13 @@ public class ChronometerPanel extends javax.swing.JPanel {
 		}
 
 		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
 		ChronometerPanel cp = new ChronometerPanel();
 		frame.add(cp);
 		frame.pack();
+
+		frame.setLocationRelativeTo(frame.getParent());
 		frame.setVisible(true);
 	}
 

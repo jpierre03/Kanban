@@ -26,7 +26,7 @@ import javax.swing.UIManager;
  *
  * @author Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
  */
-public class SplashScreenWindows
+public final class SplashScreenWindows
 		extends JWindow {
 
 	/**
