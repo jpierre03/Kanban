@@ -18,7 +18,6 @@ package fr.prunetwork.atelierkanban.gui;
 
 import fr.prunetwork.atelierkanban.KanbanPlanning;
 import javax.swing.JFrame;
-import javax.swing.JSplitPane;
 import javax.swing.UIManager;
 
 /**
@@ -34,6 +33,9 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
         initComponents();
         kp = new KanbanPlanning(7, 2, 15, 4);
 
+        redSpinner.setValue(kp.getUpperLevel_red());
+        greenSpinner.setValue(kp.getLowerLevel_green());
+        totalKanbanSpinner.setValue(kp.getMaxKanban());
         refresh();
     }
 
@@ -73,6 +75,9 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
         kanbanEditorPane = new javax.swing.JEditorPane();
         addButton = new javax.swing.JButton();
         removeButton = new javax.swing.JButton();
+        greenSpinner = new javax.swing.JSpinner();
+        redSpinner = new javax.swing.JSpinner();
+        totalKanbanSpinner = new javax.swing.JSpinner();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -98,7 +103,6 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
-        gridBagConstraints.gridwidth = 2;
         add(addButton, gridBagConstraints);
 
         removeButton.setText("Remove");
@@ -107,7 +111,49 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
                 removeButtonActionPerformed(evt);
             }
         });
-        add(removeButton, new java.awt.GridBagConstraints());
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        add(removeButton, gridBagConstraints);
+
+        greenSpinner.setToolTipText("Green Index");
+        greenSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                greenSpinnerStateChanged(evt);
+            }
+        });
+        greenSpinner.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                greenSpinnerPropertyChange(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 13;
+        add(greenSpinner, gridBagConstraints);
+
+        redSpinner.setToolTipText("Red Index");
+        redSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                redSpinnerStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 13;
+        add(redSpinner, gridBagConstraints);
+
+        totalKanbanSpinner.setToolTipText("Total Kanban");
+        totalKanbanSpinner.addChangeListener(new javax.swing.event.ChangeListener() {
+            public void stateChanged(javax.swing.event.ChangeEvent evt) {
+                totalKanbanSpinnerStateChanged(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 13;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
+        add(totalKanbanSpinner, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -119,10 +165,33 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
         kp.removeKanban();
         refresh();
     }//GEN-LAST:event_removeButtonActionPerformed
+
+    private void greenSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_greenSpinnerPropertyChange
+        kp.setLowerLevel_green((int) greenSpinner.getValue());
+        refresh();
+    }//GEN-LAST:event_greenSpinnerPropertyChange
+
+    private void greenSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_greenSpinnerStateChanged
+        kp.setLowerLevel_green((int) greenSpinner.getValue());
+        refresh();
+    }//GEN-LAST:event_greenSpinnerStateChanged
+
+    private void redSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_redSpinnerStateChanged
+        kp.setUpperLevel_red((int) redSpinner.getValue());
+        refresh();
+    }//GEN-LAST:event_redSpinnerStateChanged
+
+    private void totalKanbanSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_totalKanbanSpinnerStateChanged
+        kp.setMaxKanban((int) totalKanbanSpinner.getValue());
+        refresh();
+    }//GEN-LAST:event_totalKanbanSpinnerStateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
+    private javax.swing.JSpinner greenSpinner;
     private javax.swing.JEditorPane kanbanEditorPane;
     private javax.swing.JScrollPane kanbanScrollPane;
+    private javax.swing.JSpinner redSpinner;
     private javax.swing.JButton removeButton;
+    private javax.swing.JSpinner totalKanbanSpinner;
     // End of variables declaration//GEN-END:variables
 }
