@@ -193,7 +193,11 @@ public class ChronometerPanel
                 "Number", "Start", "End", "Duration", "(hh:mm:ss)"
             }
         ) {
-            boolean[] canEdit = new boolean [] {
+            /**
+			 * 
+			 */
+			private static final long serialVersionUID = -3112302369139891665L;
+			boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 

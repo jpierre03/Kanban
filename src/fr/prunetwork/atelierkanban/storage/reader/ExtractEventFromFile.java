@@ -16,6 +16,15 @@
  */
 package fr.prunetwork.atelierkanban.storage.reader;
 
+import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Date;
+import java.util.StringTokenizer;
+
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerReset;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
@@ -27,14 +36,6 @@ import fr.prunetwork.atelierkanban.event.kanban.KanbanNameWrapper;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
 import fr.prunetwork.atelierkanban.utilities.DateFormatter;
-import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Date;
-import java.util.StringTokenizer;
 
 /**
  *

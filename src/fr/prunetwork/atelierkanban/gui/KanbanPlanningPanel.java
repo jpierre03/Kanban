@@ -24,7 +24,6 @@ import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
 import org.lsis.haimes.patterns.observer.Observer;
-import fr.prunetwork.atelierkanban.storage.EventSaver;
 
 /**
  *
@@ -206,11 +205,13 @@ public final class KanbanPlanningPanel
     @Override
     public void notify(Event event) {
         if (event instanceof KanbanAdded) {
-            KanbanAdded ka = (KanbanAdded) event;
-            addButtonActionPerformed(null);
+        	KanbanAdded ka =(KanbanAdded) event;
+        	kp.setCurrentKanbanCount(ka.getKanbanCount());
+        	addButtonActionPerformed(null);
         }
         if (event instanceof KanbanRemoved) {
-            KanbanRemoved kr = (KanbanRemoved) event;
+        	KanbanRemoved kr =(KanbanRemoved) event;
+        	kp.setCurrentKanbanCount(kr.getKanbanCount());
             removeButtonActionPerformed(null);
         }
     }

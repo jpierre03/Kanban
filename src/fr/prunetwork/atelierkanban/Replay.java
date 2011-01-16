@@ -16,17 +16,18 @@
  */
 package fr.prunetwork.atelierkanban;
 
-import fr.prunetwork.atelierkanban.event.Event;
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-
-import fr.prunetwork.atelierkanban.gui.MainFrame;
-import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
-import fr.prunetwork.atelierkanban.storage.EventSaver;
-import fr.prunetwork.atelierkanban.storage.reader.ExtractEventFromFile;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+
+import fr.prunetwork.atelierkanban.event.Event;
+import fr.prunetwork.atelierkanban.gui.MainFrame;
+import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
+import fr.prunetwork.atelierkanban.storage.EventStore;
+import fr.prunetwork.atelierkanban.storage.reader.ExtractEventFromFile;
 
 /**
  * Start the Replay-Application
@@ -45,7 +46,7 @@ public class Replay {
 		SplashScreenWindows splashScreen = new SplashScreenWindows();
 
 		MainFrame frame = new MainFrame();
-		EventSaver es = new EventSaver();
+		EventStore es = new EventStore();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
 		frame.pack();

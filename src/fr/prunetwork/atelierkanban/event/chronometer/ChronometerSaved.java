@@ -19,7 +19,7 @@ package fr.prunetwork.atelierkanban.event.chronometer;
 import fr.prunetwork.atelierkanban.entities.Chronometer;
 import fr.prunetwork.atelierkanban.event.AbstractEvent;
 import fr.prunetwork.atelierkanban.event.Event;
-import fr.prunetwork.atelierkanban.storage.EventSaver;
+import fr.prunetwork.atelierkanban.storage.EventStore;
 import fr.prunetwork.atelierkanban.utilities.DateFormatter;
 import java.util.StringTokenizer;
 
@@ -43,7 +43,7 @@ public class ChronometerSaved extends AbstractEvent {
 	}
 
 	public StringBuilder toSave() {
-		StringBuilder sb = EventSaver.genericLine();
+		StringBuilder sb = EventStore.genericLine();
 
 		sb.append(this.getClass().getSimpleName());
 		sb.append("|");

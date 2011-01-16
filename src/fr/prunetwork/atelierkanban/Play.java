@@ -21,7 +21,7 @@ import javax.swing.UIManager;
 
 import fr.prunetwork.atelierkanban.gui.MainFrame;
 import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
-import fr.prunetwork.atelierkanban.storage.EventSaver;
+import fr.prunetwork.atelierkanban.storage.EventStore;
 
 /**
  * Start the Application
@@ -41,7 +41,7 @@ public class Play {
         SplashScreenWindows splashScreen = new SplashScreenWindows();
 
         JFrame frame = new MainFrame();
-        EventSaver es=new EventSaver();
+        EventStore es=new EventStore();
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
         frame.pack();

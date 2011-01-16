@@ -20,13 +20,8 @@ import java.util.Date;
 
 import org.lsis.haimes.patterns.observer.Observer;
 
-import fr.prunetwork.atelierkanban.entities.Chronometer;
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
-import fr.prunetwork.atelierkanban.event.control.Save;
-import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
-import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
-import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
 import fr.prunetwork.atelierkanban.storage.writer.StoreDataToFile;
 import fr.prunetwork.atelierkanban.utilities.DateFormatter;
 
@@ -34,9 +29,9 @@ import fr.prunetwork.atelierkanban.utilities.DateFormatter;
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public final class EventSaver implements Observer {
+public class EventStore implements Observer {
 
-	public EventSaver() {
+	public EventStore() {
 		EventDispatcher.getEventDispatcher().registerObserver(this);
 	}
 
@@ -62,20 +57,8 @@ public final class EventSaver implements Observer {
 	}
 
 	private void saveNotification(Event event) {
-		if(event!=null){
+		if (event != null) {
 			StoreDataToFile.getStoreToFile().add(event.toSave());
 		}
-//		if (event instanceof KanbanAdded) {
-//			KanbanAdded ka = (KanbanAdded) event;
-//			StoreDataToFile.getStoreToFile().add(ka.toSave());
-//		}
-//		if (event instanceof KanbanRemoved) {
-//			KanbanRemoved kr = (KanbanRemoved) event;
-//			StoreDataToFile.getStoreToFile().add(kr.toSave());
-//		}
-//		if (event instanceof ChronometerSaved) {
-//			ChronometerSaved cs = (ChronometerSaved) event;
-//			StoreDataToFile.getStoreToFile().add(cs.toSave());
-//		}
 	}
 }

@@ -16,16 +16,16 @@
  */
 package fr.prunetwork.atelierkanban.storage.reader;
 
-import fr.prunetwork.atelierkanban.Constants;
-import fr.prunetwork.atelierkanban.event.Event;
-import fr.prunetwork.atelierkanban.gui.MainFrame;
-import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
-import fr.prunetwork.atelierkanban.storage.EventSaver;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JFrame;
-import javax.swing.UIManager;
+
+import fr.prunetwork.atelierkanban.Constants;
+import fr.prunetwork.atelierkanban.event.Event;
+import fr.prunetwork.atelierkanban.gui.MainFrame;
+import fr.prunetwork.atelierkanban.storage.EventStore;
 
 /**
  *
@@ -37,29 +37,15 @@ public class ExtractEventFromFileTest {
 	public static void main(String[] args) {
 		String fichier = Constants.SHORT_FILE;
 
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception ex) {
-		}
-
-		SplashScreenWindows splashScreen = new SplashScreenWindows();
-
 		MainFrame frame = new MainFrame();
-		EventSaver es = new EventSaver();
+		EventStore es = new EventStore();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
 		frame.pack();
 
-		try {
-			Thread.sleep(250);
-		} catch (InterruptedException ex) {
-		}
 		Collection<Event> createEventCollection = ExtractEventFromFile.createEventCollection(fichier);
 
 		frame.setLocationRelativeTo(frame.getParent());
 		frame.setVisible(true);
-		splashScreen.masquer();
-
 
 		for (Event event : createEventCollection) {
 			frame.getKanbanPlanningPanel().notify(event);

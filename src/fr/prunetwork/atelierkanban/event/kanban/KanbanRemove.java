@@ -17,7 +17,7 @@
 package fr.prunetwork.atelierkanban.event.kanban;
 
 import fr.prunetwork.atelierkanban.event.Event;
-import fr.prunetwork.atelierkanban.storage.EventSaver;
+import fr.prunetwork.atelierkanban.storage.EventStore;
 import java.util.StringTokenizer;
 
 /**
@@ -27,7 +27,7 @@ import java.util.StringTokenizer;
 public class KanbanRemove extends AbstractKanbanEvent {
 
 	public StringBuilder toSave() {
-		StringBuilder sb = EventSaver.genericLine();
+		StringBuilder sb = EventStore.genericLine();
 
 		sb.append(this.getClass().getSimpleName());
 		sb.append("|");
