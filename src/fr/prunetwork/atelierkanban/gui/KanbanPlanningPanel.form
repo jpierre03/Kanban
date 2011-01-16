@@ -11,7 +11,7 @@
     <AuxValue name="FormSettings_listenerGenerationStyle" type="java.lang.Integer" value="0"/>
     <AuxValue name="FormSettings_variablesLocal" type="java.lang.Boolean" value="false"/>
     <AuxValue name="FormSettings_variablesModifier" type="java.lang.Integer" value="2"/>
-    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,0,-77,0,0,1,10"/>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,0,-28,0,0,1,1"/>
   </AuxValues>
 
   <Layout class="org.netbeans.modules.form.compat2.layouts.DesignCardLayout"/>
@@ -28,11 +28,11 @@
 
       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
       <SubComponents>
-        <Component class="javax.swing.JEditorPane" name="jEditorPane1">
+        <Component class="javax.swing.JEditorPane" name="kanbanEditorPane">
           <Properties>
             <Property name="contentType" type="java.lang.String" value="text/html"/>
             <Property name="editable" type="boolean" value="false"/>
-            <Property name="text" type="java.lang.String" value="&lt;table style=&quot;text-align: left; width: 174px; height: 144px;&quot; border=&quot;1&quot;&#xa;       cellpadding=&quot;2&quot; cellspacing=&quot;2&quot;&gt;&#xa;    &lt;tbody&gt;&#xa;        &lt;tr&gt;&#xa;            &lt;td style=&quot;vertical-align: top; width: 16px;&quot;&gt;&lt;br&gt;&#xa;            &lt;/td&gt;&#xa;            &lt;td style=&quot;vertical-align: top; width: 985px;&quot;&gt;&lt;br&gt;&#xa;            &lt;/td&gt;&#xa;        &lt;/tr&gt;&#xa;        &lt;tr&gt;&#xa;            &lt;td&#xa;                style=&quot;vertical-align: top; width: 16px; background-color: red;&quot;&gt;&lt;br&gt;&#xa;            &lt;/td&gt;&#xa;            &lt;td style=&quot;vertical-align: top; width: 985px;&quot;&gt;&lt;br&gt;&#xa;            &lt;/td&gt;&#xa;        &lt;/tr&gt;&#xa;        &lt;tr&gt;&#xa;            &lt;td style=&quot;vertical-align: top; width: 16px;&quot;&gt;&lt;br&gt;&#xa;            &lt;/td&gt;&#xa;            &lt;td style=&quot;vertical-align: top; width: 985px;&quot;&gt;&lt;br&gt;&#xa;            &lt;/td&gt;&#xa;        &lt;/tr&gt;&#xa;        &lt;tr&gt;&#xa;            &lt;td&#xa;                style=&quot;vertical-align: top; width: 16px; background-color: rgb(51, 204, 0);&quot;&gt;&lt;br&gt;&#xa;            &lt;/td&gt;&#xa;            &lt;td&#xa;                style=&quot;vertical-align: top; width: 985px; background-color: rgb(102, 102, 102);&quot;&gt;&lt;br&gt;&#xa;            &lt;/td&gt;&#xa;        &lt;/tr&gt;&#xa;        &lt;tr&gt;&#xa;            &lt;td style=&quot;vertical-align: top; width: 16px;&quot;&gt;&lt;br&gt;&#xa;            &lt;/td&gt;&#xa;            &lt;td&#xa;                style=&quot;vertical-align: top; width: 985px; background-color: rgb(102, 102, 102);&quot;&gt;&lt;br&gt;&#xa;            &lt;/td&gt;&#xa;        &lt;/tr&gt;&#xa;    &lt;/tbody&gt;&#xa;&lt;/table&gt;"/>
+            <Property name="text" type="java.lang.String" value=""/>
           </Properties>
         </Component>
       </SubComponents>

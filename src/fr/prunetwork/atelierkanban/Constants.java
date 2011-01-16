@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2010 Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
+ *  Copyright (C) 2010 Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by

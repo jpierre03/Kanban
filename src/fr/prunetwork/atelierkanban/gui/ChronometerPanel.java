@@ -25,7 +25,6 @@ import javax.swing.UIManager;
 
 import fr.prunetwork.atelierkanban.Chronometer;
 import fr.prunetwork.atelierkanban.utilities.DateFormater;
-import java.awt.CardLayout;
 import javax.swing.table.DefaultTableModel;
 
 /**

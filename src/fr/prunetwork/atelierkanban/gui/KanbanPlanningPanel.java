@@ -1,25 +1,56 @@
 /*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
-/*
- * KanbanPlanning.java
+ *  Copyright (C) 2010 Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  *
- * Created on 9 janv. 2011, 03:25:52
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-
 package fr.prunetwork.atelierkanban.gui;
+
+import fr.prunetwork.atelierkanban.KanbanPlanning;
+import javax.swing.JFrame;
+import javax.swing.JSplitPane;
+import javax.swing.UIManager;
 
 /**
  *
- * @author jpierre03
+ * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public class KanbanPlanningPanel extends javax.swing.JPanel {
 
     /** Creates new form KanbanPlanning */
     public KanbanPlanningPanel() {
         initComponents();
+        KanbanPlanning kp = new KanbanPlanning(5, 2, 8, 3);
+
+        kanbanEditorPane.setContentType("text/html");
+        kanbanEditorPane.setText(kp.toHtml());
+    }
+
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex) {
+        }
+
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+        KanbanPlanningPanel kpp = new KanbanPlanningPanel();
+        frame.add(kpp);
+        frame.pack();
+
+        frame.setLocationRelativeTo(frame.getParent());
+        frame.setVisible(true);
     }
 
     /** This method is called from within the constructor to
@@ -32,22 +63,19 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
     private void initComponents() {
 
         jScrollPane1 = new javax.swing.JScrollPane();
-        jEditorPane1 = new javax.swing.JEditorPane();
+        kanbanEditorPane = new javax.swing.JEditorPane();
 
         setLayout(new java.awt.CardLayout());
 
-        jEditorPane1.setContentType("text/html");
-        jEditorPane1.setEditable(false);
-        jEditorPane1.setText("<table style=\"text-align: left; width: 174px; height: 144px;\" border=\"1\"\n       cellpadding=\"2\" cellspacing=\"2\">\n    <tbody>\n        <tr>\n            <td style=\"vertical-align: top; width: 16px;\"><br>\n            </td>\n            <td style=\"vertical-align: top; width: 985px;\"><br>\n            </td>\n        </tr>\n        <tr>\n            <td\n                style=\"vertical-align: top; width: 16px; background-color: red;\"><br>\n            </td>\n            <td style=\"vertical-align: top; width: 985px;\"><br>\n            </td>\n        </tr>\n        <tr>\n            <td style=\"vertical-align: top; width: 16px;\"><br>\n            </td>\n            <td style=\"vertical-align: top; width: 985px;\"><br>\n            </td>\n        </tr>\n        <tr>\n            <td\n                style=\"vertical-align: top; width: 16px; background-color: rgb(51, 204, 0);\"><br>\n            </td>\n            <td\n                style=\"vertical-align: top; width: 985px; background-color: rgb(102, 102, 102);\"><br>\n            </td>\n        </tr>\n        <tr>\n            <td style=\"vertical-align: top; width: 16px;\"><br>\n            </td>\n            <td\n                style=\"vertical-align: top; width: 985px; background-color: rgb(102, 102, 102);\"><br>\n            </td>\n        </tr>\n    </tbody>\n</table>");
-        jScrollPane1.setViewportView(jEditorPane1);
+        kanbanEditorPane.setContentType("text/html");
+        kanbanEditorPane.setEditable(false);
+        kanbanEditorPane.setText("");
+        jScrollPane1.setViewportView(kanbanEditorPane);
 
         add(jScrollPane1, "card2");
     }// </editor-fold>//GEN-END:initComponents
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JEditorPane jEditorPane1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JEditorPane kanbanEditorPane;
     // End of variables declaration//GEN-END:variables
-
 }
