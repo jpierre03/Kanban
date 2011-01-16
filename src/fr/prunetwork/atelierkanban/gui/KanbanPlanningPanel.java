@@ -27,11 +27,17 @@ import javax.swing.UIManager;
  */
 public class KanbanPlanningPanel extends javax.swing.JPanel {
 
+    KanbanPlanning kp;
+
     /** Creates new form KanbanPlanning */
     public KanbanPlanningPanel() {
         initComponents();
-        KanbanPlanning kp = new KanbanPlanning(5, 2, 8, 3);
+        kp = new KanbanPlanning(7, 2, 15, 4);
 
+        refresh();
+    }
+
+    public void refresh() {
         kanbanEditorPane.setContentType("text/html");
         kanbanEditorPane.setText(kp.toHtml());
     }
@@ -61,21 +67,62 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
+        java.awt.GridBagConstraints gridBagConstraints;
 
-        jScrollPane1 = new javax.swing.JScrollPane();
+        kanbanScrollPane = new javax.swing.JScrollPane();
         kanbanEditorPane = new javax.swing.JEditorPane();
+        addButton = new javax.swing.JButton();
+        removeButton = new javax.swing.JButton();
 
-        setLayout(new java.awt.CardLayout());
+        setLayout(new java.awt.GridBagLayout());
 
         kanbanEditorPane.setContentType("text/html");
         kanbanEditorPane.setEditable(false);
         kanbanEditorPane.setText("");
-        jScrollPane1.setViewportView(kanbanEditorPane);
+        kanbanScrollPane.setViewportView(kanbanEditorPane);
 
-        add(jScrollPane1, "card2");
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridheight = 12;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        add(kanbanScrollPane, gridBagConstraints);
+
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.gridwidth = 2;
+        add(addButton, gridBagConstraints);
+
+        removeButton.setText("Remove");
+        removeButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                removeButtonActionPerformed(evt);
+            }
+        });
+        add(removeButton, new java.awt.GridBagConstraints());
     }// </editor-fold>//GEN-END:initComponents
+
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        kp.addKanban();
+        refresh();
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
+        kp.removeKanban();
+        refresh();
+    }//GEN-LAST:event_removeButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton addButton;
     private javax.swing.JEditorPane kanbanEditorPane;
+    private javax.swing.JScrollPane kanbanScrollPane;
+    private javax.swing.JButton removeButton;
     // End of variables declaration//GEN-END:variables
 }
