@@ -93,6 +93,8 @@ public class ChronometerPanel extends javax.swing.JPanel {
         startButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
+        timeScrollPane = new javax.swing.JScrollPane();
+        timeTable = new javax.swing.JTable();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -103,6 +105,7 @@ public class ChronometerPanel extends javax.swing.JPanel {
         timeLabel.setPreferredSize(new java.awt.Dimension(200, 50));
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridheight = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(timeLabel, gridBagConstraints);
 
         startButton.setText("Start");
@@ -138,7 +141,27 @@ public class ChronometerPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 2;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         add(resetButton, gridBagConstraints);
+
+        timeTable.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "Title 1", "Title 2", "Title 3", "Title 4"
+            }
+        ));
+        timeScrollPane.setViewportView(timeTable);
+
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 0;
+        gridBagConstraints.gridy = 3;
+        gridBagConstraints.gridwidth = 2;
+        add(timeScrollPane, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 	private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
@@ -157,5 +180,7 @@ public class ChronometerPanel extends javax.swing.JPanel {
     private javax.swing.JButton startButton;
     private javax.swing.JButton stopButton;
     private javax.swing.JLabel timeLabel;
+    private javax.swing.JScrollPane timeScrollPane;
+    private javax.swing.JTable timeTable;
     // End of variables declaration//GEN-END:variables
 }
