@@ -75,61 +75,6 @@ public class ExtractEventFromFile {
 		return events;
 	}
 
-	private static Event instanciateEventFromTokenizer2(StringTokenizer stringTokenizer) throws Exception {
-		Event event = null;
-		Date date;
-		//token1
-		if (stringTokenizer.hasMoreTokens()) {
-			String dateString = stringTokenizer.nextToken();
-			date = new DateFormatter(dateString);
-
-			//token2
-			if (stringTokenizer.hasMoreTokens()) {
-				String dateHumanString = stringTokenizer.nextToken();
-
-				//token3
-				if (stringTokenizer.hasMoreTokens()) {
-					String operationString = stringTokenizer.nextToken();
-
-					if (KanbanAdd.class.getSimpleName().equals(operationString)) {
-						event = new KanbanAdd();
-					}
-					if (KanbanAdded.class.getSimpleName().equals(operationString)) {
-						//token4
-						if (stringTokenizer.hasMoreTokens()) {
-							String count = stringTokenizer.nextToken();
-							event = new KanbanAdded(Integer.parseInt(count));
-						}
-					}
-					if (KanbanRemove.class.getSimpleName().equals(operationString)) {
-						event = new KanbanRemove();
-					}
-					if (KanbanRemoved.class.getSimpleName().equals(operationString)) {
-						//token4
-						if (stringTokenizer.hasMoreTokens()) {
-							String count = stringTokenizer.nextToken();
-							event = new KanbanRemoved(Integer.parseInt(count));
-						}
-					}
-
-//                    if (ChronometerReset.class.getSimpleName().equals(operationString)) {
-//                        event = new ChronometerReset();
-//                    }
-//                    if (ChronometerSaved.class.getSimpleName().equals(operationString)) {
-//                        event = new ChronometerSaved();
-//                    }
-//                    if (ChronometerStart.class.getSimpleName().equals(operationString)) {
-//                        event = new ChronometerStart();
-//                    }
-//                    if (ChronometerStop.class.getSimpleName().equals(operationString)) {
-//                        event = new ChronometerStop();
-//                    }
-				}
-			}
-		}
-		return event;
-	}
-
 	private static Event instanciateEventFromTokenizer(StringTokenizer stringTokenizer) throws Exception {
 		Event event = null;
 		Date date;
