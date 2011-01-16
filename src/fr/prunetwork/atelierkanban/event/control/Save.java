@@ -14,8 +14,9 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.prunetwork.atelierkanban.event;
+package fr.prunetwork.atelierkanban.event.control;
 
+import fr.prunetwork.atelierkanban.event.AbstractEvent;
 import fr.prunetwork.atelierkanban.storage.EventSaver;
 
 /**
