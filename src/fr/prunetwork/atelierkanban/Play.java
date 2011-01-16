@@ -27,7 +27,7 @@ import fr.prunetwork.atelierkanban.storage.EventSaver;
  * Start the Application
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class Main {
+public class Play {
 
     /**
      * @param args the command line arguments
