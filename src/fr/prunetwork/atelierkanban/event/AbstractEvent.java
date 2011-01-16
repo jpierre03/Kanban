@@ -16,20 +16,15 @@
  */
 package fr.prunetwork.atelierkanban.event;
 
-import fr.prunetwork.atelierkanban.storage.EventSaver;
-
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class Save extends AbstractEvent {
+public abstract class AbstractEvent implements Event {
 
-	public StringBuilder toSave() {
-		StringBuilder sb = EventSaver.genericLine();
-
-		sb.append(this.getClass().getSimpleName());
-		sb.append("\n");
-
-		return sb;
+	@Override
+	public String toString() {
+		return toSave().toString();
 	}
+
 }

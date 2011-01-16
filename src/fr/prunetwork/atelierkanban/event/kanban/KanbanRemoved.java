@@ -16,24 +16,36 @@
  */
 package fr.prunetwork.atelierkanban.event.kanban;
 
-import fr.prunetwork.atelierkanban.event.Event;
+import fr.prunetwork.atelierkanban.event.AbstractEvent;
+import fr.prunetwork.atelierkanban.storage.EventSaver;
 
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class KanbanRemoved implements Event {
+public class KanbanRemoved extends AbstractEvent {
 
-    private int kanbanCount;
+	private int kanbanCount;
 
-    public KanbanRemoved(int kanbanCount) {
-        this.kanbanCount = kanbanCount;
-    }
+	public KanbanRemoved(int kanbanCount) {
+		this.kanbanCount = kanbanCount;
+	}
 
-    /**
-     * @return the kanbanCount
-     */
-    public int getKanbanCount() {
-        return kanbanCount;
-    }
+	/**
+	 * @return the kanbanCount
+	 */
+	public int getKanbanCount() {
+		return kanbanCount;
+	}
+
+	public StringBuilder toSave() {
+		StringBuilder sb = EventSaver.genericLine();
+
+		sb.append(this.getClass().getSimpleName());
+		sb.append("|");
+		sb.append(kanbanCount);
+		sb.append("\n");
+
+		return sb;
+	}
 }

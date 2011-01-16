@@ -17,24 +17,41 @@
 package fr.prunetwork.atelierkanban.event.chronometer;
 
 import fr.prunetwork.atelierkanban.entities.Chronometer;
-import fr.prunetwork.atelierkanban.event.Event;
+import fr.prunetwork.atelierkanban.event.AbstractEvent;
+import fr.prunetwork.atelierkanban.storage.EventSaver;
+import fr.prunetwork.atelierkanban.utilities.DateFormatter;
 
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class ChronometerSaved implements Event {
+public class ChronometerSaved extends AbstractEvent {
 
-    private Chronometer chronometer;
+	private Chronometer chronometer;
 
-    public ChronometerSaved(Chronometer c) {
-        this.chronometer = c;
-    }
+	public ChronometerSaved(Chronometer c) {
+		this.chronometer = c;
+	}
 
-    /**
-     * @return the c
-     */
-    public Chronometer getChronometer() {
-        return chronometer;
-    }
+	/**
+	 * @return the c
+	 */
+	public Chronometer getChronometer() {
+		return chronometer;
+	}
+
+	public StringBuilder toSave() {
+		StringBuilder sb = EventSaver.genericLine();
+
+		sb.append(this.getClass().getSimpleName());
+		sb.append("|");
+		sb.append(new DateFormatter(getChronometer().getBeginDate()).toHHMMSS());
+		sb.append("|");
+		sb.append(getChronometer().read());
+		sb.append("|");
+		sb.append(getChronometer().toString());
+		sb.append("\n");
+
+		return sb;
+	}
 }

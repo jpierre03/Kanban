@@ -36,76 +36,46 @@ import fr.prunetwork.atelierkanban.utilities.DateFormatter;
  */
 public final class EventSaver implements Observer {
 
-    public EventSaver() {
-        EventDispatcher.getEventDispatcher().registerObserver(this);
-    }
+	public EventSaver() {
+		EventDispatcher.getEventDispatcher().registerObserver(this);
+	}
 
-    private static StringBuilder genericLine() {
-        StringBuilder sb = new StringBuilder();
+	public static StringBuilder genericLine() {
+		StringBuilder sb = new StringBuilder(30);
 
-        Date d = new Date();
-        sb.append(d.getTime());
-        sb.append("|");
-        sb.append(new DateFormatter(d).toHHMMSS());
-        sb.append("|");
+		Date d = new Date();
+		sb.append(d.getTime());
+		sb.append("|");
+		sb.append(new DateFormatter(d).toHHMMSS());
+		sb.append("|");
 
-        return sb;
-    }
+		return sb;
+	}
 
-    private static void kanbanAdded(int currentKanbanCount) {
-        StringBuilder sb = genericLine();
+	/**
+	 *
+	 * @param event
+	 */
+	@Override
+	public void notify(Event event) {
+		saveNotification(event);
+	}
 
-        sb.append(KanbanAdded.class.getSimpleName());
-        sb.append("|");
-        sb.append(currentKanbanCount);
-        sb.append("\n");
-
-        StoreDataToFile.getStoreToFile().add(sb.toString());
-    }
-
-    private static void kanbanRemoved(int currentKanbanCount) {
-        StringBuilder sb = genericLine();
-
-        sb.append(KanbanRemoved.class.getSimpleName());
-        sb.append("|");
-        sb.append(currentKanbanCount);
-        sb.append("\n");
-
-        StoreDataToFile.getStoreToFile().add(sb.toString());
-    }
-
-    private static void saveTime(Chronometer c) {
-        StringBuilder sb = genericLine();
-
-        sb.append(Save.class.getSimpleName());
-        sb.append("|");
-        sb.append(new DateFormatter(c.getBeginDate()).toHHMMSS());
-        sb.append("|");
-        sb.append(c.read());
-        sb.append("|");
-        sb.append(c.toString());
-        sb.append("\n");
-
-        StoreDataToFile.getStoreToFile().add(sb.toString());
-    }
-
-    /**
-     * 
-     * @param event
-     */
-    @Override
-    public void notify(Event event) {
-        if (event instanceof KanbanAdded) {
-            KanbanAdded ka = (KanbanAdded) event;
-            kanbanAdded(ka.getKanbanCount());
-        }
-        if (event instanceof KanbanRemoved) {
-            KanbanRemoved kr = (KanbanRemoved) event;
-            kanbanRemoved(kr.getKanbanCount());
-        }
-        if (event instanceof ChronometerSaved) {
-            ChronometerSaved cs = (ChronometerSaved) event;
-            saveTime(cs.getChronometer());
-        }
-    }
+	private void saveNotification(Event event) {
+		if(event!=null){
+			StoreDataToFile.getStoreToFile().add(event.toSave());
+		}
+//		if (event instanceof KanbanAdded) {
+//			KanbanAdded ka = (KanbanAdded) event;
+//			StoreDataToFile.getStoreToFile().add(ka.toSave());
+//		}
+//		if (event instanceof KanbanRemoved) {
+//			KanbanRemoved kr = (KanbanRemoved) event;
+//			StoreDataToFile.getStoreToFile().add(kr.toSave());
+//		}
+//		if (event instanceof ChronometerSaved) {
+//			ChronometerSaved cs = (ChronometerSaved) event;
+//			StoreDataToFile.getStoreToFile().add(cs.toSave());
+//		}
+	}
 }

@@ -21,4 +21,6 @@ package fr.prunetwork.atelierkanban.event;
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public interface Event {
+
+	StringBuilder toSave();
 }

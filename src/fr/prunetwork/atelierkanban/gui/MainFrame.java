@@ -16,20 +16,18 @@
  */
 package fr.prunetwork.atelierkanban.gui;
 
-import fr.prunetwork.atelierkanban.event.Event;
-import fr.prunetwork.atelierkanban.storage.reader.ExtractEventFromFile;
+import java.awt.EventQueue;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
+import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 import javax.swing.JFileChooser;
 
+import fr.prunetwork.atelierkanban.event.Event;
+import fr.prunetwork.atelierkanban.storage.reader.ExtractEventFromFile;
 import fr.prunetwork.atelierkanban.storage.writer.StoreDataToFile;
-import java.awt.EventQueue;
-import java.util.Collection;
-import java.util.Timer;
-import java.util.TimerTask;
 
 /**
  *
@@ -40,7 +38,6 @@ public class MainFrame extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 2010090927L;
 	private static final JFileChooser chooser = new JFileChooser();
-	private final Timer timer = new Timer();
 
 	/** Creates new form MainFrame */
 	public MainFrame() {
@@ -120,7 +117,6 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void saveAsMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveAsMenuItemActionPerformed
 		chooser.setDialogType(JFileChooser.SAVE_DIALOG);
-//		chooser.setDialogTitle("Save");
 
 		int returnVal = chooser.showOpenDialog(this);
 
@@ -140,7 +136,7 @@ public class MainFrame extends javax.swing.JFrame {
 		int returnVal = chooser.showOpenDialog(this);
 
 		if (returnVal == JFileChooser.APPROVE_OPTION) {
-
+// long work
 			Thread t = new Thread() {
 
 				@Override
@@ -151,9 +147,8 @@ public class MainFrame extends javax.swing.JFrame {
 							chooser.getSelectedFile().getAbsolutePath());
 
 					for (final Event event : createEventCollection) {
+						//notify UI component, have to be done in EDT
 						try {
-							// Is done in background
-							//				this.getKanbanPlanningPanel().notify(event);
 							EventQueue.invokeAndWait(new Runnable() {
 
 								public void run() {
@@ -166,7 +161,7 @@ public class MainFrame extends javax.swing.JFrame {
 							Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
 						}
 						try {
-							Thread.sleep(750);
+							Thread.sleep(150);
 						} catch (InterruptedException ex) {
 							Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
 						}
