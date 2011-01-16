@@ -16,18 +16,18 @@
  */
 package fr.prunetwork.atelierkanban.event.chronometer;
 
+import java.util.StringTokenizer;
+
 import fr.prunetwork.atelierkanban.entities.Chronometer;
-import fr.prunetwork.atelierkanban.event.AbstractEvent;
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.storage.EventStore;
 import fr.prunetwork.atelierkanban.utilities.DateFormatter;
-import java.util.StringTokenizer;
 
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class ChronometerSaved extends AbstractEvent {
+public class ChronometerSaved extends AbstractChronometerEvent {
 
 	private Chronometer chronometer;
 
@@ -42,6 +42,7 @@ public class ChronometerSaved extends AbstractEvent {
 		return chronometer;
 	}
 
+	@Override
 	public StringBuilder toSave() {
 		StringBuilder sb = EventStore.genericLine();
 
@@ -57,6 +58,7 @@ public class ChronometerSaved extends AbstractEvent {
 		return sb;
 	}
 
+	@Override
 	public Event toLoad(StringTokenizer stringTokenizer) {
 		ChronometerSaved event = null;
 

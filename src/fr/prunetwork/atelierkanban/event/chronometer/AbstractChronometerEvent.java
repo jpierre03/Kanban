@@ -16,33 +16,11 @@
  */
 package fr.prunetwork.atelierkanban.event.chronometer;
 
-import java.util.StringTokenizer;
-
-import fr.prunetwork.atelierkanban.event.Event;
-import fr.prunetwork.atelierkanban.storage.EventStore;
+import fr.prunetwork.atelierkanban.event.AbstractEvent;
 
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class ChronometerStart extends AbstractChronometerEvent {
-
-	@Override
-	public StringBuilder toSave() {
-		StringBuilder sb = EventStore.genericLine();
-
-		sb.append(this.getClass().getSimpleName());
-		sb.append("\n");
-
-		return sb;
-	}
-
-	@Override
-	public Event toLoad(StringTokenizer stringTokenizer) {
-		ChronometerStart event = null;
-
-		event = new ChronometerStart();
-
-		return event;
-	}
+public abstract class AbstractChronometerEvent extends AbstractEvent {
 }
