@@ -169,22 +169,22 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void greenSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_greenSpinnerPropertyChange
-        kp.setLowerLevel_green((int) greenSpinner.getValue());
+        kp.setLowerLevel_green((Integer) greenSpinner.getValue());
         refresh();
     }//GEN-LAST:event_greenSpinnerPropertyChange
 
     private void greenSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_greenSpinnerStateChanged
-        kp.setLowerLevel_green((int) greenSpinner.getValue());
+        kp.setLowerLevel_green((Integer) greenSpinner.getValue());
         refresh();
     }//GEN-LAST:event_greenSpinnerStateChanged
 
     private void redSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_redSpinnerStateChanged
-        kp.setUpperLevel_red((int) redSpinner.getValue());
+        kp.setUpperLevel_red((Integer) redSpinner.getValue());
         refresh();
     }//GEN-LAST:event_redSpinnerStateChanged
 
     private void totalKanbanSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_totalKanbanSpinnerStateChanged
-        kp.setMaxKanban((int) totalKanbanSpinner.getValue());
+        kp.setMaxKanban((Integer) totalKanbanSpinner.getValue());
         refresh();
     }//GEN-LAST:event_totalKanbanSpinnerStateChanged
     // Variables declaration - do not modify//GEN-BEGIN:variables
