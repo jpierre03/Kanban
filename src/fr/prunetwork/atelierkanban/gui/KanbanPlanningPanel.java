@@ -19,7 +19,9 @@ package fr.prunetwork.atelierkanban.gui;
 import fr.prunetwork.atelierkanban.entities.KanbanPlanning;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdd;
+import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
+import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
 import fr.prunetwork.atelierkanban.storage.EventSaver;
 
 /**
@@ -149,13 +151,14 @@ public final class KanbanPlanningPanel
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
         EventDispatcher.getEventDispatcher().notify(new KanbanAdd());
         refresh();
-        EventSaver.addKanban(getKp().getCurrentKanbanCount());
+        EventDispatcher.getEventDispatcher().notify(new KanbanAdded(getKp().getCurrentKanbanCount()));
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
         EventDispatcher.getEventDispatcher().notify(new KanbanRemove());
         refresh();
-        EventSaver.removeKanban(getKp().getCurrentKanbanCount());
+        EventDispatcher.getEventDispatcher().notify(new KanbanRemoved(getKp().getCurrentKanbanCount()));
+
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void greenSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_greenSpinnerPropertyChange

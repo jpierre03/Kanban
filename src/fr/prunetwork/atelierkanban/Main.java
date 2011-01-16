@@ -21,6 +21,7 @@ import javax.swing.UIManager;
 
 import fr.prunetwork.atelierkanban.gui.MainFrame;
 import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
+import fr.prunetwork.atelierkanban.storage.EventSaver;
 
 /**
  * Start the Application
@@ -28,30 +29,30 @@ import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
  */
 public class Main {
 
-		/**
-		 * @param args the command line arguments
-		 */
-		public static void main(String[] args) {
-				try {
-						UIManager.setLookAndFeel(UIManager.
-								getSystemLookAndFeelClassName());
-				} catch (Exception ex) {
-				}
+    /**
+     * @param args the command line arguments
+     */
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex) {
+        }
 
-				SplashScreenWindows splashScreen = new SplashScreenWindows();
+        SplashScreenWindows splashScreen = new SplashScreenWindows();
 
-				JFrame frame = new MainFrame();
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        JFrame frame = new MainFrame();
+        EventSaver es=new EventSaver();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-				frame.pack();
+        frame.pack();
 
-				try {
-						Thread.sleep(500);
-				} catch (InterruptedException ex) {
-				}
+        try {
+            Thread.sleep(500);
+        } catch (InterruptedException ex) {
+        }
 
-				splashScreen.masquer();
-				frame.setLocationRelativeTo(frame.getParent());
-				frame.setVisible(true);
-		}
+        splashScreen.masquer();
+        frame.setLocationRelativeTo(frame.getParent());
+        frame.setVisible(true);
+    }
 }

@@ -23,13 +23,12 @@ import java.util.TimerTask;
 import javax.swing.table.DefaultTableModel;
 
 import fr.prunetwork.atelierkanban.entities.Chronometer;
+import fr.prunetwork.atelierkanban.event.EventDispatcher;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerReset;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStart;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStop;
-import fr.prunetwork.atelierkanban.event.EventDispatcher;
-import fr.prunetwork.atelierkanban.storage.EventSaver;
 import fr.prunetwork.atelierkanban.utilities.DateFormater;
-import javax.naming.event.EventDirContext;
 
 /**
  *
@@ -93,7 +92,7 @@ public class ChronometerPanel
                                 c.toString()});
                     getTimeTable().repaint();
                 }
-                EventSaver.saveTime(c);
+                EventDispatcher.getEventDispatcher().notify(new ChronometerSaved(c));
                 EventDispatcher.getEventDispatcher().notify(new ChronometerReset());
 
             }

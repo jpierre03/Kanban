@@ -17,6 +17,7 @@
 package fr.prunetwork.atelierkanban.entities;
 
 import fr.prunetwork.atelierkanban.event.Event;
+import fr.prunetwork.atelierkanban.event.EventDispatcher;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdd;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
 import org.lsis.haimes.patterns.observer.Observer;
@@ -40,6 +41,8 @@ public class KanbanPlanning implements Observer {
         this.lowerLevel_green = lowerLevel_green;
         this.maxKanban = maxKanban;
         this.currentKanbanCount = initialKanbanCount;
+
+        EventDispatcher.getEventDispatcher().registerObserver(this);
     }
 
     private void addKanban() {
