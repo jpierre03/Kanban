@@ -16,14 +16,13 @@
  */
 package fr.prunetwork.atelierkanban.event.kanban;
 
-import fr.prunetwork.atelierkanban.event.AbstractEvent;
 import fr.prunetwork.atelierkanban.storage.EventSaver;
 
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class KanbanRemoved extends AbstractEvent {
+public class KanbanRemoved extends AbstractKanbanEvent {
 
 	private int kanbanCount;
 
@@ -44,6 +43,8 @@ public class KanbanRemoved extends AbstractEvent {
 		sb.append(this.getClass().getSimpleName());
 		sb.append("|");
 		sb.append(kanbanCount);
+		sb.append("|");
+		sb.append(getProductName());
 		sb.append("\n");
 
 		return sb;

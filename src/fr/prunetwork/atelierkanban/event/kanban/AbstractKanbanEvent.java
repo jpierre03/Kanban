@@ -16,37 +16,26 @@
  */
 package fr.prunetwork.atelierkanban.event.kanban;
 
-import fr.prunetwork.atelierkanban.storage.EventSaver;
+import fr.prunetwork.atelierkanban.Constants;
+import fr.prunetwork.atelierkanban.event.AbstractEvent;
 
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class KanbanAdded extends AbstractKanbanEvent {
+public abstract class AbstractKanbanEvent extends AbstractEvent {
 
-	private int kanbanCount;
+	private String productName = Constants.DEFAULT;
 
-	public KanbanAdded(int kanbanCount) {
-		this.kanbanCount = kanbanCount;
+	/**
+	 * @return the productName
+	 */ public String getProductName() {
+		return productName;
 	}
 
 	/**
-	 * @return the kanbanCount
-	 */
-	public int getKanbanCount() {
-		return kanbanCount;
-	}
-
-	public StringBuilder toSave() {
-		StringBuilder sb = EventSaver.genericLine();
-
-		sb.append(this.getClass().getSimpleName());
-		sb.append("|");
-		sb.append(kanbanCount);
-		sb.append("|");
-		sb.append(getProductName());
-		sb.append("\n");
-
-		return sb;
+	 * @param productName the productName to set
+	 */ public void setProductName(String productName) {
+		this.productName = productName;
 	}
 }

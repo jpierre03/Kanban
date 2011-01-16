@@ -23,7 +23,7 @@ import org.lsis.haimes.patterns.observer.Observer;
 import fr.prunetwork.atelierkanban.entities.Chronometer;
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
-import fr.prunetwork.atelierkanban.event.Save;
+import fr.prunetwork.atelierkanban.event.control.Save;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;

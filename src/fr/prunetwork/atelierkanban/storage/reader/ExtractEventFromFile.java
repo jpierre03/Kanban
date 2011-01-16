@@ -17,10 +17,6 @@
 package fr.prunetwork.atelierkanban.storage.reader;
 
 import fr.prunetwork.atelierkanban.event.Event;
-import fr.prunetwork.atelierkanban.event.chronometer.ChronometerReset;
-import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
-import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStart;
-import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStop;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdd;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
@@ -39,78 +35,77 @@ import java.util.StringTokenizer;
  *
  * @author jpierre03+teamwar@prunetwork.fr
  * @author garciaf
- * @author NAIT BELKACEM Abdelali
  */
 public class ExtractEventFromFile {
 
-    public static Collection<Event> createEventCollection(String fichier) {
-        Collection<Event> events = new ArrayList<Event>();
+	public static Collection<Event> createEventCollection(String fichier) {
+		Collection<Event> events = new ArrayList<Event>(50);
 
-        //lecture du fichier texte
-        try {
-            InputStream ips = new FileInputStream(fichier);
-            InputStreamReader ipsr = new InputStreamReader(ips);
-            BufferedReader br = new BufferedReader(ipsr);
-            String ligne;
+		//lecture du fichier texte
+		try {
+			InputStream ips = new FileInputStream(fichier);
+			InputStreamReader ipsr = new InputStreamReader(ips);
+			BufferedReader br = new BufferedReader(ipsr);
+			String ligne;
 
 //            // remove the first line
 //            br.readLine();
 
-            while ((ligne = br.readLine()) != null) {
-                ligne = formatString(ligne);
+			while ((ligne = br.readLine()) != null) {
+				ligne = formatString(ligne);
 
-                StringTokenizer stringTokenizer = new StringTokenizer(ligne, "|");
+				StringTokenizer stringTokenizer = new StringTokenizer(ligne, "|");
 
-                Event event = instanciateEventFromTokenizer(stringTokenizer);
-                if (event != null) {
-                    System.out.println(event + "---------" + ligne);
-                    events.add(event);
-                } else {
-                    System.out.println("---------" + ligne);
-                }
-            }
-            br.close();
-        } catch (Exception e) {
-        }
-        return events;
-    }
+				Event event = instanciateEventFromTokenizer(stringTokenizer);
+				if (event != null) {
+					System.out.println(event + "---------" + ligne);
+					events.add(event);
+				} else {
+					System.out.println("---------" + ligne);
+				}
+			}
+			br.close();
+		} catch (Exception e) {
+		}
+		return events;
+	}
 
-    private static Event instanciateEventFromTokenizer(StringTokenizer stringTokenizer) throws Exception {
-        Event event = null;
-        Date date;
-        //token1
-        if (stringTokenizer.hasMoreTokens()) {
-            String dateString = stringTokenizer.nextToken();
-            date = new DateFormatter(dateString);
+	private static Event instanciateEventFromTokenizer(StringTokenizer stringTokenizer) throws Exception {
+		Event event = null;
+		Date date;
+		//token1
+		if (stringTokenizer.hasMoreTokens()) {
+			String dateString = stringTokenizer.nextToken();
+			date = new DateFormatter(dateString);
 
-            //token2
-            if (stringTokenizer.hasMoreTokens()) {
-                String dateHumanString = stringTokenizer.nextToken();
+			//token2
+			if (stringTokenizer.hasMoreTokens()) {
+				String dateHumanString = stringTokenizer.nextToken();
 
-                //token3
-                if (stringTokenizer.hasMoreTokens()) {
-                    String operationString = stringTokenizer.nextToken();
+				//token3
+				if (stringTokenizer.hasMoreTokens()) {
+					String operationString = stringTokenizer.nextToken();
 
-                    if (KanbanAdd.class.getSimpleName().equals(operationString)) {
-                        event = new KanbanAdd();
-                    }
-                    if (KanbanAdded.class.getSimpleName().equals(operationString)) {
-                        //token4
-                        if (stringTokenizer.hasMoreTokens()) {
-                            String count = stringTokenizer.nextToken();
-                            event = new KanbanAdded(Integer.parseInt(count));
-                        }
-                    }
-                    if (KanbanRemove.class.getSimpleName().equals(operationString)) {
-                        event = new KanbanRemove();
-                    }
-                    if (KanbanRemoved.class.getSimpleName().equals(operationString)) {
-                        //token4
-                        if (stringTokenizer.hasMoreTokens()) {
-                            String count = stringTokenizer.nextToken();
-                            event = new KanbanRemoved(Integer.parseInt(count));
-                        }
-                    }
+					if (KanbanAdd.class.getSimpleName().equals(operationString)) {
+						event = new KanbanAdd();
+					}
+					if (KanbanAdded.class.getSimpleName().equals(operationString)) {
+						//token4
+						if (stringTokenizer.hasMoreTokens()) {
+							String count = stringTokenizer.nextToken();
+							event = new KanbanAdded(Integer.parseInt(count));
+						}
+					}
+					if (KanbanRemove.class.getSimpleName().equals(operationString)) {
+						event = new KanbanRemove();
+					}
+					if (KanbanRemoved.class.getSimpleName().equals(operationString)) {
+						//token4
+						if (stringTokenizer.hasMoreTokens()) {
+							String count = stringTokenizer.nextToken();
+							event = new KanbanRemoved(Integer.parseInt(count));
+						}
+					}
 
 //                    if (ChronometerReset.class.getSimpleName().equals(operationString)) {
 //                        event = new ChronometerReset();
@@ -124,14 +119,17 @@ public class ExtractEventFromFile {
 //                    if (ChronometerStop.class.getSimpleName().equals(operationString)) {
 //                        event = new ChronometerStop();
 //                    }
-                }
-            }
-        }
-        return event;
-    }
+				}
+			}
+		}
+		return event;
+	}
 
-    private static String formatString(String ligne) {
+	private static String formatString(String ligne) {
 //        ligne = ligne.replace("_", "");
-        return ligne;
-    }
+		return ligne;
+	}
+
+	private ExtractEventFromFile() {
+	}
 }
