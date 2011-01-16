@@ -83,7 +83,7 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
 
         kanbanEditorPane.setContentType("text/html");
         kanbanEditorPane.setEditable(false);
-        kanbanEditorPane.setText("");
+        kanbanEditorPane.setText("a<br>\nb<br>\nc<br>\nd<br>\ne<br>\nf<br>\ng<br>\nh<br>\ni<br>\nj<br>\nk<br>\nl<br>\nm<br>");
         kanbanScrollPane.setViewportView(kanbanEditorPane);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
@@ -91,7 +91,7 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
         gridBagConstraints.gridy = 1;
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.gridheight = 12;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         add(kanbanScrollPane, gridBagConstraints);
 
         addButton.setText("Add");
@@ -103,6 +103,7 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_START;
         add(addButton, gridBagConstraints);
 
         removeButton.setText("Remove");
@@ -114,6 +115,7 @@ public class KanbanPlanningPanel extends javax.swing.JPanel {
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 2;
         gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.LINE_END;
         add(removeButton, gridBagConstraints);
 
         greenSpinner.setToolTipText("Green Index");
