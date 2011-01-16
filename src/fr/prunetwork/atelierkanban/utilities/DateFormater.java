@@ -22,7 +22,7 @@ import java.util.Locale;
 
 /**
  * 
- * @author Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
+ * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  * @author garciaf
  */
 public class DateFormater {
@@ -31,6 +31,10 @@ public class DateFormater {
 
 	public DateFormater(Date date) {
 		this.date = date;
+	}
+
+	public DateFormater(int timeStamp) {
+		this.date = new Date(timeStamp);
 	}
 
 	@Override
@@ -46,6 +50,7 @@ public class DateFormater {
 				Locale.getDefault());
 		return dateTime.format(date);
 	}
+
 	public String toHHMMSS() {
 		/**
 		 * Formatteur pour que les dates s'affichent au format ISO 8601

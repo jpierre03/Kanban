@@ -30,10 +30,11 @@ import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
+ * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public class ChronometerPanel extends javax.swing.JPanel {
 
+	private static final long serialVersionUID = 201001081652L;
 	protected Chronometer c;
 	private final Timer timer = new Timer();
 
@@ -45,13 +46,8 @@ public class ChronometerPanel extends javax.swing.JPanel {
 		final Runnable doUpdateCursor = new Runnable() {
 
 			public void run() {
-				int elapsedTime = c.read();
 
-				int hour = elapsedTime / 3600;
-				int min = elapsedTime / 60 - hour * 60;
-				int sec = elapsedTime - min * 60 - hour * 60 * 60;
-
-				timeLabel.setText(hour + ":" + min + ":" + sec);
+				timeLabel.setText(c.toString());
 			}
 		};
 
@@ -84,7 +80,8 @@ public class ChronometerPanel extends javax.swing.JPanel {
 					model.insertRow(0, new Object[]{modelSize,
 								new DateFormater((c.getBeginDate())).toHHMMSS(),
 								new DateFormater((c.getEndDate())).toHHMMSS(),
-								c.read()});
+								c.read(),
+								c.toString()});
 					getTimeTable().repaint();
 				}
 

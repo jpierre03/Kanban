@@ -22,7 +22,7 @@ import java.util.logging.Logger;
 
 /**
  *  Gestion d'un chronomètre.
- * @author Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
+ * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public class Chronometer {
 
@@ -95,6 +95,31 @@ public class Chronometer {
 		}
 	}
 
+	/**
+	 * @return the beginDate
+	 */
+	public Date getBeginDate() {
+		return beginDate;
+	}
+
+	/**
+	 * @return the endDate
+	 */
+	public Date getEndDate() {
+		return endDate;
+	}
+
+	@Override
+	public String toString() {
+		int elapsedTime = read();
+
+		int hour = elapsedTime / 3600;
+		int min = elapsedTime / 60 - hour * 60;
+		int sec = elapsedTime - min * 60 - hour * 60 * 60;
+
+		return hour + ":" + min + ":" + sec;
+	}
+
 	public static void main(String args[]) {
 		Chronometer chronometer = new Chronometer();
 		chronometer.start();
@@ -108,19 +133,5 @@ public class Chronometer {
 			}
 			System.out.println(chronometer.read());
 		}
-	}
-
-	/**
-	 * @return the beginDate
-	 */
-	public Date getBeginDate() {
-		return beginDate;
-	}
-
-	/**
-	 * @return the endDate
-	 */
-	public Date getEndDate() {
-		return endDate;
 	}
 }
