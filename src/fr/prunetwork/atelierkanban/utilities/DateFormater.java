@@ -14,17 +14,44 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.prunetwork.atelierkanban;
+package fr.prunetwork.atelierkanban.utilities;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
 
 /**
- *
+ * 
  * @author Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
+ * @author garciaf
  */
-public class Constants {
-	public static final String SPLASH_SCREEN_IMAGE="/images/splash-1024x800.png";
+public class DateFormater {
 
-	private Constants() {
+	private Date date;
+
+	public DateFormater(Date date) {
+		this.date = date;
 	}
 
+	@Override
+	public String toString() {
+		return toISO8601();
+	}
+
+	public String toISO8601() {
+		/**
+		 * Formatteur pour que les dates s'affichent au format ISO 8601
+		 */
+		SimpleDateFormat dateTime = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSS",
+				Locale.getDefault());
+		return dateTime.format(date);
+	}
+	public String toHHMMSS() {
+		/**
+		 * Formatteur pour que les dates s'affichent au format ISO 8601
+		 */
+		SimpleDateFormat dateTime = new SimpleDateFormat("HH:mm:ss",
+				Locale.getDefault());
+		return dateTime.format(date);
+	}
 }

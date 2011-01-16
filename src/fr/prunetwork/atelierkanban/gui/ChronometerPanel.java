@@ -24,10 +24,13 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import fr.prunetwork.atelierkanban.Chronometer;
+import fr.prunetwork.atelierkanban.utilities.DateFormater;
+import java.awt.CardLayout;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
- * @author  Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
+ * @author Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
  */
 public class ChronometerPanel extends javax.swing.JPanel {
 
@@ -66,6 +69,37 @@ public class ChronometerPanel extends javax.swing.JPanel {
 		return c.read();
 	}
 
+	public void addCurrentDateInTable() {
+		synchronized (getTimeTable().getModel()) {
+			int modelSize = getTimeTable().getModel().getRowCount();
+
+			if (c.getBeginDate() != null) {
+
+				c.stop();
+
+				if (getTimeTable().getModel() instanceof DefaultTableModel) {
+					DefaultTableModel model = (DefaultTableModel) getTimeTable().getModel();
+
+					// Add a row in the model
+					model.insertRow(0, new Object[]{modelSize,
+								new DateFormater((c.getBeginDate())).toHHMMSS(),
+								new DateFormater((c.getEndDate())).toHHMMSS(),
+								c.read()});
+					getTimeTable().repaint();
+				}
+
+				c.reset();
+			}
+		}
+	}
+
+	/**
+	 * @return the timeTable
+	 */
+	public javax.swing.JTable getTimeTable() {
+		return timeTable;
+	}
+
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
@@ -90,6 +124,7 @@ public class ChronometerPanel extends javax.swing.JPanel {
         java.awt.GridBagConstraints gridBagConstraints;
 
         timeLabel = new javax.swing.JLabel();
+        saveButton = new javax.swing.JButton();
         startButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
         resetButton = new javax.swing.JButton();
@@ -104,9 +139,21 @@ public class ChronometerPanel extends javax.swing.JPanel {
         timeLabel.setMinimumSize(new java.awt.Dimension(200, 50));
         timeLabel.setPreferredSize(new java.awt.Dimension(200, 50));
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridheight = 3;
+        gridBagConstraints.gridheight = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(timeLabel, gridBagConstraints);
+
+        saveButton.setText("Save");
+        saveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                saveButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        add(saveButton, gridBagConstraints);
 
         startButton.setText("Start");
         startButton.addActionListener(new java.awt.event.ActionListener() {
@@ -115,7 +162,9 @@ public class ChronometerPanel extends javax.swing.JPanel {
             }
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         add(startButton, gridBagConstraints);
 
@@ -127,8 +176,8 @@ public class ChronometerPanel extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
         add(stopButton, gridBagConstraints);
 
@@ -140,27 +189,33 @@ public class ChronometerPanel extends javax.swing.JPanel {
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 2;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(resetButton, gridBagConstraints);
 
         timeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Number", "Start", "End", "Duration"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         timeScrollPane.setViewportView(timeTable);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
-        gridBagConstraints.gridy = 3;
-        gridBagConstraints.gridwidth = 2;
+        gridBagConstraints.gridy = 2;
+        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(timeScrollPane, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -175,12 +230,17 @@ public class ChronometerPanel extends javax.swing.JPanel {
 	private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
 		c.reset();
 	}//GEN-LAST:event_resetButtonActionPerformed
+
+	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
+		addCurrentDateInTable();
+	}//GEN-LAST:event_saveButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton resetButton;
-    private javax.swing.JButton startButton;
-    private javax.swing.JButton stopButton;
-    private javax.swing.JLabel timeLabel;
-    private javax.swing.JScrollPane timeScrollPane;
-    private javax.swing.JTable timeTable;
+    javax.swing.JButton resetButton;
+    javax.swing.JButton saveButton;
+    javax.swing.JButton startButton;
+    javax.swing.JButton stopButton;
+    javax.swing.JLabel timeLabel;
+    javax.swing.JScrollPane timeScrollPane;
+    javax.swing.JTable timeTable;
     // End of variables declaration//GEN-END:variables
 }

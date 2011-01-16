@@ -23,7 +23,7 @@ import javax.swing.UIManager;
 
 /**
  * Start the Application
- * @author  Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
+ * @author Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
  */
 public class Main {
 

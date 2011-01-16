@@ -16,22 +16,18 @@
  */
 package fr.prunetwork.atelierkanban;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
  *  Gestion d'un chronomètre.
- * @author  Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
+ * @author Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
  */
 public class Chronometer {
 
 	private Date beginDate, endDate;
 	private boolean isWaiting;
-	private Collection<Integer> times = new ArrayList<Integer>();
 
 	public Chronometer() {
 		isWaiting = true;
@@ -84,30 +80,19 @@ public class Chronometer {
 	public int read() {
 		long upperLevel;
 
-		if (beginDate == null) {
+		if (getBeginDate() == null) {
 			/* Le chronomètre n'a pas été déclenché depuis son
 			initialisation ou sa réinitialisation. */
 			return 0;
 		} else {
 			if (isWaiting) {
-				upperLevel = endDate.getTime();
+				upperLevel = getEndDate().getTime();
 			} else {
 				upperLevel = new Date().getTime();
 			}
 
-			return (int) (upperLevel - beginDate.getTime()) / 1000;
+			return (int) (upperLevel - getBeginDate().getTime()) / 1000;
 		}
-	}
-
-	/**
-	 * @return the times
-	 */
-	public Collection<Integer> getTimes() {
-		return Collections.unmodifiableCollection(times);
-	}
-
-	public void save(){
-		times.add(read());
 	}
 
 	public static void main(String args[]) {
@@ -123,5 +108,19 @@ public class Chronometer {
 			}
 			System.out.println(chronometer.read());
 		}
+	}
+
+	/**
+	 * @return the beginDate
+	 */
+	public Date getBeginDate() {
+		return beginDate;
+	}
+
+	/**
+	 * @return the endDate
+	 */
+	public Date getEndDate() {
+		return endDate;
 	}
 }
