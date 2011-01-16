@@ -35,6 +35,9 @@ import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanNameWrapper;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
+import fr.prunetwork.atelierkanban.event.kanban.index.KanbanBlueIndexChanged;
+import fr.prunetwork.atelierkanban.event.kanban.index.KanbanGreenIndexChanged;
+import fr.prunetwork.atelierkanban.event.kanban.index.KanbanRedIndexChanged;
 import fr.prunetwork.atelierkanban.utilities.DateFormatter;
 
 /**
@@ -66,9 +69,10 @@ public class ExtractEventFromFile {
 				if (event != null) {
 					System.out.println(event + "---------" + ligne);
 					events.add(event);
-				} else {
-					System.out.println("---------" + ligne);
 				}
+//				else {
+//					System.out.println("---------" + ligne);
+//				}
 			}
 			br.close();
 		} catch (Exception e) {
@@ -90,10 +94,10 @@ public class ExtractEventFromFile {
 
 				//token3 - class name
 				if (stringTokenizer.hasMoreTokens()) {
-					String operationString = stringTokenizer.nextToken();
+					String className = stringTokenizer.nextToken();
 
 					for (Event loadableEvent : loadableEvent()) {
-						if (loadableEvent.getClass().getSimpleName().equals(operationString)) {
+						if (loadableEvent.getClass().getSimpleName().equals(className)) {
 							event = loadableEvent.toLoad(stringTokenizer);
 						}
 					}
@@ -118,6 +122,10 @@ public class ExtractEventFromFile {
 		loadableEvents.add(new KanbanNameWrapper());
 		loadableEvents.add(new KanbanRemove());
 		loadableEvents.add(new KanbanRemoved(10));
+		//kanban - indexes
+		loadableEvents.add(new KanbanBlueIndexChanged(10));
+		loadableEvents.add(new KanbanGreenIndexChanged(10));
+		loadableEvents.add(new KanbanRedIndexChanged(10));
 
 		return loadableEvents;
 	}

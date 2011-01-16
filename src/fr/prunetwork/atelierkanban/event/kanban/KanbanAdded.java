@@ -39,6 +39,7 @@ public class KanbanAdded extends AbstractKanbanEvent {
 		return kanbanCount;
 	}
 
+	@Override
 	public StringBuilder toSave() {
 		StringBuilder sb = EventStore.genericLine();
 
@@ -52,6 +53,7 @@ public class KanbanAdded extends AbstractKanbanEvent {
 		return sb;
 	}
 
+	@Override
 	public Event toLoad(StringTokenizer stringTokenizer) {
 		KanbanAdded event = null;
 

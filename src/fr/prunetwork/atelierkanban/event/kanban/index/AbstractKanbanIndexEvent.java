@@ -14,40 +14,16 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.prunetwork.atelierkanban.event.kanban;
+package fr.prunetwork.atelierkanban.event.kanban.index;
 
-import fr.prunetwork.atelierkanban.event.Event;
-import fr.prunetwork.atelierkanban.storage.EventStore;
-import java.util.StringTokenizer;
+import fr.prunetwork.atelierkanban.event.kanban.AbstractKanbanEvent;
+
 
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class KanbanAdd extends AbstractKanbanEvent {
+public abstract class AbstractKanbanIndexEvent extends AbstractKanbanEvent {
 
-	@Override
-	public StringBuilder toSave() {
-		StringBuilder sb = EventStore.genericLine();
 
-		sb.append(this.getClass().getSimpleName());
-		sb.append("|");
-		sb.append(getProductName());
-		sb.append("\n");
-
-		return sb;
-	}
-
-	@Override
-	public Event toLoad(StringTokenizer stringTokenizer) {
-		KanbanAdd event = null;
-
-		event = new KanbanAdd();
-
-		if (stringTokenizer.hasMoreTokens()) {
-			String productName = stringTokenizer.nextToken();
-			event.setProductName(productName);
-		}
-		return event;
-	}
 }

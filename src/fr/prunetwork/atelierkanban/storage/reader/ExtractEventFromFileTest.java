@@ -48,7 +48,7 @@ public class ExtractEventFromFileTest {
 		frame.setVisible(true);
 
 		for (Event event : createEventCollection) {
-			frame.getKanbanPlanningPanel().notify(event);
+			frame.notifyKanbanPlanningPanels(event);
 			try {
 				Thread.sleep(750);
 			} catch (InterruptedException ex) {

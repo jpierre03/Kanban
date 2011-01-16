@@ -42,6 +42,8 @@ public class MainFrame extends javax.swing.JFrame {
 	/** Creates new form MainFrame */
 	public MainFrame() {
 		initComponents();
+		getKanbanPlanningPanel1().setProductName("AC-DC");
+		getKanbanPlanningPanel2().setProductName("toto");
 	}
 
 	/** This method is called from within the constructor to
@@ -57,6 +59,7 @@ public class MainFrame extends javax.swing.JFrame {
         kanbanPlanningPanel1 = new fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel();
         chronometerPanel1 = new fr.prunetwork.atelierkanban.gui.ChronometerPanel();
         controlPanel = new fr.prunetwork.atelierkanban.gui.ControlPanel();
+        kanbanPlanningPanel2 = new fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         saveAsMenuItem = new javax.swing.JMenuItem();
@@ -82,6 +85,11 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         getContentPane().add(controlPanel, gridBagConstraints);
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 3;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        getContentPane().add(kanbanPlanningPanel2, gridBagConstraints);
 
         fileMenu.setText("File");
 
@@ -152,7 +160,7 @@ public class MainFrame extends javax.swing.JFrame {
 							EventQueue.invokeAndWait(new Runnable() {
 
 								public void run() {
-									getKanbanPlanningPanel().notify(event);
+									getKanbanPlanningPanel1().notify(event);
 								}
 							});
 						} catch (InterruptedException ex) {
@@ -177,12 +185,25 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu editMenu;
     private javax.swing.JMenu fileMenu;
     private fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel kanbanPlanningPanel1;
+    private fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel kanbanPlanningPanel2;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem saveAsMenuItem;
     // End of variables declaration//GEN-END:variables
 
-	public KanbanPlanningPanel getKanbanPlanningPanel() {
+	private KanbanPlanningPanel getKanbanPlanningPanel1() {
 		return kanbanPlanningPanel1;
+	}
+
+	private KanbanPlanningPanel getKanbanPlanningPanel2() {
+		return kanbanPlanningPanel2;
+	}
+
+	public void notifyKanbanPlanningPanels(Event event) {
+		getKanbanPlanningPanel1().notify(event);
+		getKanbanPlanningPanel2().notify(event);
+
+		getKanbanPlanningPanel1().refresh();
+		getKanbanPlanningPanel2().refresh();
 	}
 }

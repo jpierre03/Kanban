@@ -63,7 +63,7 @@ public class Replay {
 
 
 		for (Event event : createEventCollection) {
-			frame.getKanbanPlanningPanel().notify(event);
+			frame.notifyKanbanPlanningPanels(event);
 			try {
 				Thread.sleep(750);
 			} catch (InterruptedException ex) {

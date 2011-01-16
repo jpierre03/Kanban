@@ -14,7 +14,7 @@
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
-package fr.prunetwork.atelierkanban.event.kanban;
+package fr.prunetwork.atelierkanban.event.kanban.index;
 
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.storage.EventStore;
@@ -24,13 +24,28 @@ import java.util.StringTokenizer;
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class KanbanAdd extends AbstractKanbanEvent {
+public class KanbanBlueIndexChanged extends AbstractKanbanIndexEvent {
+
+	private int blueIndexLevel;
+
+	public KanbanBlueIndexChanged(int blueIndexLevel) {
+		this.blueIndexLevel = blueIndexLevel;
+	}
+
+	/**
+	 * @return the kanbanCount
+	 */
+	public int getBlueIndexLevel() {
+		return blueIndexLevel;
+	}
 
 	@Override
 	public StringBuilder toSave() {
 		StringBuilder sb = EventStore.genericLine();
 
 		sb.append(this.getClass().getSimpleName());
+		sb.append("|");
+		sb.append(blueIndexLevel);
 		sb.append("|");
 		sb.append(getProductName());
 		sb.append("\n");
@@ -40,13 +55,16 @@ public class KanbanAdd extends AbstractKanbanEvent {
 
 	@Override
 	public Event toLoad(StringTokenizer stringTokenizer) {
-		KanbanAdd event = null;
-
-		event = new KanbanAdd();
+		KanbanBlueIndexChanged event = null;
 
 		if (stringTokenizer.hasMoreTokens()) {
-			String productName = stringTokenizer.nextToken();
-			event.setProductName(productName);
+			String count = stringTokenizer.nextToken();
+			event = new KanbanBlueIndexChanged(Integer.parseInt(count));
+
+			if (stringTokenizer.hasMoreTokens()) {
+				String productName = stringTokenizer.nextToken();
+				event.setProductName(productName);
+			}
 		}
 		return event;
 	}
