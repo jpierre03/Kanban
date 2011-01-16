@@ -17,19 +17,20 @@
 package fr.prunetwork.atelierkanban.gui;
 
 import fr.prunetwork.atelierkanban.entities.KanbanPlanning;
+import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdd;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
-import fr.prunetwork.atelierkanban.storage.EventSaver;
+import org.lsis.haimes.patterns.observer.Observer;
 
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public final class KanbanPlanningPanel
-        extends javax.swing.JPanel {
+        extends javax.swing.JPanel implements Observer {
 
     private static final long serialVersionUID = 2010091028L;
     private KanbanPlanning kp;
@@ -195,5 +196,21 @@ public final class KanbanPlanningPanel
      */
     public KanbanPlanning getKp() {
         return kp;
+    }
+
+    /**
+     *
+     * @param event
+     */
+    @Override
+    public void notify(Event event) {
+        if (event instanceof KanbanAdded) {
+            KanbanAdded ka = (KanbanAdded) event;
+            addButtonActionPerformed(null);
+        }
+        if (event instanceof KanbanRemoved) {
+            KanbanRemoved kr = (KanbanRemoved) event;
+            removeButtonActionPerformed(null);
+        }
     }
 }

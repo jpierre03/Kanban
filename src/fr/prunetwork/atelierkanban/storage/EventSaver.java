@@ -16,11 +16,12 @@
  */
 package fr.prunetwork.atelierkanban.storage;
 
-import fr.prunetwork.atelierkanban.Constants;
-import fr.prunetwork.atelierkanban.event.Event;
 import java.util.Date;
 
+import org.lsis.haimes.patterns.observer.Observer;
+
 import fr.prunetwork.atelierkanban.entities.Chronometer;
+import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
 import fr.prunetwork.atelierkanban.event.Save;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
@@ -28,7 +29,6 @@ import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
 import fr.prunetwork.atelierkanban.storage.writer.StoreDataToFile;
 import fr.prunetwork.atelierkanban.utilities.DateFormatter;
-import org.lsis.haimes.patterns.observer.Observer;
 
 /**
  *
