@@ -17,8 +17,13 @@
 package fr.prunetwork.atelierkanban.storage.reader;
 
 import fr.prunetwork.atelierkanban.event.Event;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerReset;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStart;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStop;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdd;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
+import fr.prunetwork.atelierkanban.event.kanban.KanbanNameWrapper;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
 import fr.prunetwork.atelierkanban.utilities.DateFormatter;
@@ -70,7 +75,7 @@ public class ExtractEventFromFile {
 		return events;
 	}
 
-	private static Event instanciateEventFromTokenizer(StringTokenizer stringTokenizer) throws Exception {
+	private static Event instanciateEventFromTokenizer2(StringTokenizer stringTokenizer) throws Exception {
 		Event event = null;
 		Date date;
 		//token1
@@ -123,6 +128,52 @@ public class ExtractEventFromFile {
 			}
 		}
 		return event;
+	}
+
+	private static Event instanciateEventFromTokenizer(StringTokenizer stringTokenizer) throws Exception {
+		Event event = null;
+		Date date;
+		//token1 - date (timestamp)
+		if (stringTokenizer.hasMoreTokens()) {
+			String dateString = stringTokenizer.nextToken();
+			date = new DateFormatter(dateString);
+
+			//token2 - date human
+			if (stringTokenizer.hasMoreTokens()) {
+				String dateHumanString = stringTokenizer.nextToken();
+
+				//token3 - class name
+				if (stringTokenizer.hasMoreTokens()) {
+					String operationString = stringTokenizer.nextToken();
+
+					for (Event loadableEvent : loadableEvent()) {
+						if (loadableEvent.getClass().getSimpleName().equals(operationString)) {
+							event = loadableEvent.toLoad(stringTokenizer);
+						}
+					}
+				}
+			}
+		}
+		return event;
+	}
+
+	private static Collection<Event> loadableEvent() {
+		Collection<Event> loadableEvents = new ArrayList<Event>(10);
+
+		//Chronometer
+		loadableEvents.add(new ChronometerReset());
+		loadableEvents.add(new ChronometerSaved());
+		loadableEvents.add(new ChronometerStart());
+		loadableEvents.add(new ChronometerStop());
+
+		//kanban
+		loadableEvents.add(new KanbanAdd());
+		loadableEvents.add(new KanbanAdded(10));
+		loadableEvents.add(new KanbanNameWrapper());
+		loadableEvents.add(new KanbanRemove());
+		loadableEvents.add(new KanbanRemoved(10));
+
+		return loadableEvents;
 	}
 
 	private static String formatString(String ligne) {

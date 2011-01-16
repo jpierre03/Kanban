@@ -16,7 +16,9 @@
  */
 package fr.prunetwork.atelierkanban.event.kanban;
 
+import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.storage.EventSaver;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -48,5 +50,20 @@ public class KanbanRemoved extends AbstractKanbanEvent {
 		sb.append("\n");
 
 		return sb;
+	}
+
+	public Event toLoad(StringTokenizer stringTokenizer) {
+		KanbanRemoved event = null;
+
+		if (stringTokenizer.hasMoreTokens()) {
+			String count = stringTokenizer.nextToken();
+			event = new KanbanRemoved(Integer.parseInt(count));
+
+			if (stringTokenizer.hasMoreTokens()) {
+				String productName = stringTokenizer.nextToken();
+				event.setProductName(productName);
+			}
+		}
+		return event;
 	}
 }

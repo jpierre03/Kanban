@@ -17,7 +17,9 @@
 package fr.prunetwork.atelierkanban.event.chronometer;
 
 import fr.prunetwork.atelierkanban.event.AbstractEvent;
+import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.storage.EventSaver;
+import java.util.StringTokenizer;
 
 /**
  *
@@ -32,5 +34,13 @@ public class ChronometerStop extends AbstractEvent {
 		sb.append("\n");
 
 		return sb;
+	}
+
+	public Event toLoad(StringTokenizer stringTokenizer) {
+		ChronometerStop event = null;
+
+		event = new ChronometerStop();
+
+		return event;
 	}
 }

@@ -16,11 +16,24 @@
  */
 package fr.prunetwork.atelierkanban.event;
 
+import java.util.StringTokenizer;
+
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public interface Event {
 
+	/**
+	 *
+	 * @return
+	 */
 	StringBuilder toSave();
+
+	/**
+	 * 
+	 * @param stringTokenizer
+	 * @return
+	 */
+	Event toLoad(StringTokenizer stringTokenizer);
 }
