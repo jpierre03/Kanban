@@ -28,45 +28,45 @@ import java.io.PrintWriter;
  */
 public final class StoreDataToFile {
 
-    private static final StoreDataToFile SDTF = new StoreDataToFile();
-    private StringBuilder sb = new StringBuilder();
+		private static final StoreDataToFile SDTF = new StoreDataToFile();
+		private StringBuilder sb = new StringBuilder();
 
-    private StoreDataToFile() {
-    }
+		private StoreDataToFile() {
+		}
 
-    public void add(String chaine) {
-        getSb().append(chaine);
-    }
+		public void add(String chaine) {
+				getSb().append(chaine);
+		}
 
-    public String getBuffer() {
-        return getSb().toString();
-    }
+		public String getBuffer() {
+				return getSb().toString();
+		}
 
-    @Override
-    public String toString() {
-        return getSb().toString();
-    }
+		@Override
+		public String toString() {
+				return getSb().toString();
+		}
 
-    public void commit(String file) throws IOException {
-        //création ou ajout dans le file texte
-        FileWriter fw = new FileWriter(file);
-        BufferedWriter bw = new BufferedWriter(fw);
-        PrintWriter outputFilePrintWriter = new PrintWriter(bw);
-        outputFilePrintWriter.println(getSb().toString());
-        outputFilePrintWriter.close();
-    }
+		public void commit(String file) throws IOException {
+				//création ou ajout dans le file texte
+				FileWriter fw = new FileWriter(file);
+				BufferedWriter bw = new BufferedWriter(fw);
+				PrintWriter outputFilePrintWriter = new PrintWriter(bw);
+				outputFilePrintWriter.println(getSb().toString());
+				outputFilePrintWriter.close();
+		}
 
-    /**
-     * @return the sb
-     */
-    protected StringBuilder getSb() {
-        return sb;
-    }
+		/**
+		 * @return the sb
+		 */
+		protected StringBuilder getSb() {
+				return sb;
+		}
 
-    /**
-     * @return the SDTF
-     */
-    public static StoreDataToFile getStoreToFile() {
-        return SDTF;
-    }
+		/**
+		 * @return the SDTF
+		 */
+		public static StoreDataToFile getStoreToFile() {
+				return SDTF;
+		}
 }

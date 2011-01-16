@@ -16,15 +16,15 @@
  */
 package fr.prunetwork.atelierkanban;
 
-
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public class Constants {
-	public static final String SPLASH_SCREEN_IMAGE="/images/splash-1024x800.png";
 
-	private Constants() {
-	}
+		public static final String SPLASH_SCREEN_IMAGE =
+								   "/images/splash-1024x800.png";
 
+		private Constants() {
+		}
 }

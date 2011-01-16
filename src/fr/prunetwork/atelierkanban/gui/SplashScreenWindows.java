@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2010 Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
+ *  Copyright (C) 2010 Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -16,11 +16,11 @@
  */
 package fr.prunetwork.atelierkanban.gui;
 
-import fr.prunetwork.atelierkanban.Constants;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 import javax.swing.JWindow;
-import javax.swing.UIManager;
+
+import fr.prunetwork.atelierkanban.Constants;
 
 /**
  *
@@ -29,64 +29,45 @@ import javax.swing.UIManager;
 public final class SplashScreenWindows
 		extends JWindow {
 
-	/**
-	 *
-	 */
-	private static final long serialVersionUID = 20100312L;
+		/**
+		 *
+		 */
+		private static final long serialVersionUID = 20100312L;
 
-	/**
-	 *
-	 */
-	public SplashScreenWindows() {
-		build();
+		/**
+		 *
+		 */
+		public SplashScreenWindows() {
+				build();
 
-		afficher();
-	}
-
-	/**
-	 *
-	 */
-	public void afficher() {
-		setVisible(true);
-	}
-
-	/**
-	 *
-	 * @param args
-	 */
-	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception ex) {
+				afficher();
 		}
 
-		SplashScreenWindows splashScreen = new SplashScreenWindows();
-
-		try {
-			Thread.sleep(5000);
-		} catch (InterruptedException ex) {
+		/**
+		 *
+		 */
+		public void afficher() {
+				setVisible(true);
 		}
 
-		splashScreen.masquer();
-	}
+		/**
+		 *
+		 */
+		public void masquer() {
+				setVisible(false);
+				dispose();
+		}
 
-	/**
-	 *
-	 */
-	public void masquer() {
-		setVisible(false);
-		dispose();
-	}
+		/**
+		 *
+		 */
+		private void build() {
+				final JLabel component = new javax.swing.JLabel();
 
-	/**
-	 *
-	 */
-	private void build() {
-		final JLabel component = new javax.swing.JLabel();
-
-		component.setIcon(new ImageIcon(getClass().getResource(Constants.SPLASH_SCREEN_IMAGE)));
-		add(component);
-		pack();
-		setLocationRelativeTo(getParent());
-	}
+				component.setIcon(new ImageIcon(getClass().getResource(
+						Constants.SPLASH_SCREEN_IMAGE)));
+				add(component);
+				pack();
+				setLocationRelativeTo(getParent());
+		}
 }
