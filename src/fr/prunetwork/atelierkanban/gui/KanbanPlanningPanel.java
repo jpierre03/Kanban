@@ -18,8 +18,8 @@ package fr.prunetwork.atelierkanban.gui;
 
 import fr.prunetwork.atelierkanban.entities.KanbanPlanning;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
-import fr.prunetwork.atelierkanban.event.KanbanAdd;
-import fr.prunetwork.atelierkanban.event.KanbanRemove;
+import fr.prunetwork.atelierkanban.event.kanban.KanbanAdd;
+import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
 import fr.prunetwork.atelierkanban.storage.EventSaver;
 
 /**

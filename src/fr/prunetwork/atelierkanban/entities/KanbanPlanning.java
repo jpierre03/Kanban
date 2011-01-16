@@ -17,8 +17,8 @@
 package fr.prunetwork.atelierkanban.entities;
 
 import fr.prunetwork.atelierkanban.event.Event;
-import fr.prunetwork.atelierkanban.event.KanbanAdd;
-import fr.prunetwork.atelierkanban.event.KanbanRemove;
+import fr.prunetwork.atelierkanban.event.kanban.KanbanAdd;
+import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
 import org.lsis.haimes.patterns.observer.Observer;
 
 /**

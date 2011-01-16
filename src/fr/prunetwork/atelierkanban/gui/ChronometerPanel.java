@@ -23,9 +23,9 @@ import java.util.TimerTask;
 import javax.swing.table.DefaultTableModel;
 
 import fr.prunetwork.atelierkanban.entities.Chronometer;
-import fr.prunetwork.atelierkanban.event.ChronometerReset;
-import fr.prunetwork.atelierkanban.event.ChronometerStart;
-import fr.prunetwork.atelierkanban.event.ChronometerStop;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerReset;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStart;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStop;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
 import fr.prunetwork.atelierkanban.storage.EventSaver;
 import fr.prunetwork.atelierkanban.utilities.DateFormater;
