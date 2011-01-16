@@ -27,6 +27,7 @@ import fr.prunetwork.atelierkanban.storage.writer.StoreDataToFile;
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
+ * @author garciaf
  */
 public class MainFrame extends javax.swing.JFrame {
 
