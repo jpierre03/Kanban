@@ -16,16 +16,18 @@
  */
 package fr.prunetwork.atelierkanban.storage;
 
+import fr.prunetwork.atelierkanban.Constants;
 import fr.prunetwork.atelierkanban.event.Event;
 import java.util.Date;
 
 import fr.prunetwork.atelierkanban.entities.Chronometer;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
+import fr.prunetwork.atelierkanban.event.Save;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
 import fr.prunetwork.atelierkanban.storage.writer.StoreDataToFile;
-import fr.prunetwork.atelierkanban.utilities.DateFormater;
+import fr.prunetwork.atelierkanban.utilities.DateFormatter;
 import org.lsis.haimes.patterns.observer.Observer;
 
 /**
@@ -44,7 +46,7 @@ public final class EventSaver implements Observer {
         Date d = new Date();
         sb.append(d.getTime());
         sb.append("|");
-        sb.append(new DateFormater(d).toHHMMSS());
+        sb.append(new DateFormatter(d).toHHMMSS());
         sb.append("|");
 
         return sb;
@@ -53,7 +55,7 @@ public final class EventSaver implements Observer {
     private static void kanbanAdded(int currentKanbanCount) {
         StringBuilder sb = genericLine();
 
-        sb.append("addKanban");
+        sb.append(KanbanAdded.class.getSimpleName());
         sb.append("|");
         sb.append(currentKanbanCount);
         sb.append("\n");
@@ -64,7 +66,7 @@ public final class EventSaver implements Observer {
     private static void kanbanRemoved(int currentKanbanCount) {
         StringBuilder sb = genericLine();
 
-        sb.append("removeKanban");
+        sb.append(KanbanRemoved.class.getSimpleName());
         sb.append("|");
         sb.append(currentKanbanCount);
         sb.append("\n");
@@ -75,9 +77,9 @@ public final class EventSaver implements Observer {
     private static void saveTime(Chronometer c) {
         StringBuilder sb = genericLine();
 
-        sb.append("saveTime");
+        sb.append(Save.class.getSimpleName());
         sb.append("|");
-        sb.append(new DateFormater(c.getBeginDate()).toHHMMSS());
+        sb.append(new DateFormatter(c.getBeginDate()).toHHMMSS());
         sb.append("|");
         sb.append(c.read());
         sb.append("|");
@@ -87,6 +89,11 @@ public final class EventSaver implements Observer {
         StoreDataToFile.getStoreToFile().add(sb.toString());
     }
 
+    /**
+     * 
+     * @param event
+     */
+    @Override
     public void notify(Event event) {
         if (event instanceof KanbanAdded) {
             KanbanAdded ka = (KanbanAdded) event;

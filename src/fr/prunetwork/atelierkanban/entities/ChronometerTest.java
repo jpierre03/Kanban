@@ -28,7 +28,7 @@ import java.util.logging.Logger;
 public class ChronometerTest {
 
     public static void main(String args[]) {
-        Chronometer chronometer = new Chronometer();
+        Chronometer chronometer = Chronometer.getChronometer();
         EventDispatcher.getEventDispatcher().notify(new ChronometerStart());
         int i = 0;
         while (i < 10) {

@@ -28,7 +28,7 @@ import fr.prunetwork.atelierkanban.event.chronometer.ChronometerReset;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStart;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStop;
-import fr.prunetwork.atelierkanban.utilities.DateFormater;
+import fr.prunetwork.atelierkanban.utilities.DateFormatter;
 
 /**
  *
@@ -44,7 +44,7 @@ public class ChronometerPanel
     /** Creates new form ChronometerPanel */
     public ChronometerPanel() {
         initComponents();
-        c = new Chronometer();
+        c = Chronometer.getChronometer();
 
         final Runnable doUpdateCursor = new Runnable() {
 
@@ -84,9 +84,9 @@ public class ChronometerPanel
                     // Add a row in the model
                     model.insertRow(0, new Object[]{
                                 modelSize,
-                                new DateFormater(
+                                new DateFormatter(
                                 (c.getBeginDate())).toHHMMSS(),
-                                new DateFormater(
+                                new DateFormatter(
                                 (c.getEndDate())).toHHMMSS(),
                                 c.read(),
                                 c.toString()});

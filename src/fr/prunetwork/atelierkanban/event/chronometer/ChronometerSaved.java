@@ -24,6 +24,7 @@ import fr.prunetwork.atelierkanban.event.Event;
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public class ChronometerSaved implements Event {
+
     private Chronometer chronometer;
 
     public ChronometerSaved(Chronometer c) {
@@ -36,5 +37,4 @@ public class ChronometerSaved implements Event {
     public Chronometer getChronometer() {
         return chronometer;
     }
-
 }

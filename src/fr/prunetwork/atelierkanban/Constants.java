@@ -22,9 +22,10 @@ package fr.prunetwork.atelierkanban;
  */
 public class Constants {
 
-		public static final String SPLASH_SCREEN_IMAGE =
-								   "/images/splash-1024x800.png";
+    public static final String SPLASH_SCREEN_IMAGE =
+            "/images/splash-1024x800.png";
+    public static final String SHORT_FILE = "/home/jpierre03/Bureau/test";
 
-		private Constants() {
-		}
+    private Constants() {
+    }
 }

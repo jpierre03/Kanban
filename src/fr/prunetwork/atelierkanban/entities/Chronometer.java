@@ -25,15 +25,20 @@ import java.util.Date;
 import org.lsis.haimes.patterns.observer.Observer;
 
 /**
- *  Gestion d'un chronomètre.
+ * Gestion d'un chronomètre.
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public class Chronometer implements Observer {
 
     private Date beginDate, endDate;
     private boolean isWaiting;
+    private static Chronometer c = new Chronometer();
 
-    public Chronometer() {
+    public static Chronometer getChronometer() {
+        return c;
+    }
+
+    private Chronometer() {
         isWaiting = true;
         beginDate = null;
         EventDispatcher.getEventDispatcher().registerObserver(this);
