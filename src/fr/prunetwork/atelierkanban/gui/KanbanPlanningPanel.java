@@ -24,6 +24,7 @@ import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
 import org.lsis.haimes.patterns.observer.Observer;
+import fr.prunetwork.atelierkanban.storage.EventSaver;
 
 /**
  *
