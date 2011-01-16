@@ -16,8 +16,6 @@
  */
 package fr.prunetwork.atelierkanban;
 
-import fr.prunetwork.atelierkanban.gui.ChronometerPanel;
-import fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel;
 import fr.prunetwork.atelierkanban.gui.MainFrame;
 import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
 import javax.swing.JFrame;
@@ -46,7 +44,7 @@ public class Main {
         frame.pack();
 
         try {
-            Thread.sleep(1500);
+            Thread.sleep(500);
         } catch (InterruptedException ex) {
         }
 

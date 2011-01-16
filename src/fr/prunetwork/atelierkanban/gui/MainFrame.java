@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2010 Team-W@R (team-war@prunetwork.fr)
+ *  Copyright (C) 2010 Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -17,21 +17,19 @@
 package fr.prunetwork.atelierkanban.gui;
 
 import fr.prunetwork.atelierkanban.storage.writer.StoreDataToFile;
-import java.io.File;
 import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFileChooser;
-import javax.swing.filechooser.FileFilter;
 
 /**
  *
- * @author Jean-Pierre Prunaret (jpierre03+twar@prunetwork.fr)
+ * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  * @author garciaf
  */
 public class MainFrame extends javax.swing.JFrame {
 
-    StoreDataToFile storeDataToFile = new StoreDataToFile();
+    private static final long serialVersionUID = 2010090927L;
 
     /** Creates new form MainFrame */
     public MainFrame() {
@@ -100,14 +98,11 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void saveMenuItemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveMenuItemActionPerformed
         JFileChooser chooser = new JFileChooser();
-        // Note: source for ExampleFileFilter can be found in FileChooserDemo,
-        // under the demo/jfc directory in the Java 2 SDK, Standard Edition.
         int returnVal = chooser.showOpenDialog(this);
+
         if (returnVal == JFileChooser.APPROVE_OPTION) {
-            System.out.println("You chose to open this file: "
-                    + chooser.getSelectedFile().getName());
             try {
-                storeDataToFile.commit(chooser.getSelectedFile().getAbsolutePath());
+                StoreDataToFile.getStoreToFile().commit(chooser.getSelectedFile().getAbsolutePath());
             } catch (IOException ex) {
                 Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
             }
@@ -120,6 +115,7 @@ public class MainFrame extends javax.swing.JFrame {
     public static void main(String args[]) {
         java.awt.EventQueue.invokeLater(new Runnable() {
 
+            @Override
             public void run() {
                 new MainFrame().setVisible(true);
             }

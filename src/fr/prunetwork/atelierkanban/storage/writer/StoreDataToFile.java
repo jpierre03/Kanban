@@ -1,16 +1,16 @@
 /*
- *  Copyright (C) 2010 Team-W@R (team-war@prunetwork.fr)
- * 
+ *  Copyright (C) 2010 Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
+ *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
  *  the Free Software Foundation, either version 3 of the License, or
  *  (at your option) any later version.
- * 
+ *
  *  This program is distributed in the hope that it will be useful,
  *  but WITHOUT ANY WARRANTY; without even the implied warranty of
  *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
  *  GNU General Public License for more details.
- * 
+ *
  *  You should have received a copy of the GNU General Public License
  *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
@@ -23,27 +23,28 @@ import java.io.PrintWriter;
 
 /**
  *
- * @author Jean-Pierre Prunaret (jpierre03+twar@prunetwork.fr)
+ * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  * @author garciaf
  */
-public class StoreDataToFile {
+public final class StoreDataToFile {
 
-    StringBuilder sb = new StringBuilder();
+    private static final StoreDataToFile SDTF = new StoreDataToFile();
+    private StringBuilder sb = new StringBuilder();
 
-    public StoreDataToFile() {
+    private StoreDataToFile() {
     }
 
     public void add(String chaine) {
-        sb.append(chaine);
+        getSb().append(chaine);
     }
 
     public String getBuffer() {
-        return sb.toString();
+        return getSb().toString();
     }
 
     @Override
     public String toString() {
-        return sb.toString();
+        return getSb().toString();
     }
 
     public void commit(String file) throws IOException {
@@ -51,8 +52,21 @@ public class StoreDataToFile {
         FileWriter fw = new FileWriter(file);
         BufferedWriter bw = new BufferedWriter(fw);
         PrintWriter outputFilePrintWriter = new PrintWriter(bw);
-        outputFilePrintWriter.println(sb.toString());
+        outputFilePrintWriter.println(getSb().toString());
         outputFilePrintWriter.close();
-        System.out.println(file + " has been created !");
+    }
+
+    /**
+     * @return the sb
+     */
+    protected StringBuilder getSb() {
+        return sb;
+    }
+
+    /**
+     * @return the SDTF
+     */
+    public static StoreDataToFile getStoreToFile() {
+        return SDTF;
     }
 }

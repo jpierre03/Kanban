@@ -1,5 +1,5 @@
 /*
- *  Copyright (C) 2010 Jean-Pierre Prunaret (jpierre03+kanban@prunetwork.fr)
+ *  Copyright (C) 2010 Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  *
  *  This program is free software: you can redistribute it and/or modify
  *  it under the terms of the GNU General Public License as published by
@@ -24,6 +24,8 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import fr.prunetwork.atelierkanban.Chronometer;
+import fr.prunetwork.atelierkanban.storage.formater.EventSaver;
+import fr.prunetwork.atelierkanban.storage.writer.StoreDataToFile;
 import fr.prunetwork.atelierkanban.utilities.DateFormater;
 import javax.swing.table.DefaultTableModel;
 
@@ -33,92 +35,93 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ChronometerPanel extends javax.swing.JPanel {
 
-	private static final long serialVersionUID = 201001081652L;
-	protected Chronometer c;
-	private final Timer timer = new Timer();
+    private static final long serialVersionUID = 201001081652L;
+    protected Chronometer c;
+    private final Timer timer = new Timer();
 
-	/** Creates new form ChronometerPanel */
-	public ChronometerPanel() {
-		initComponents();
-		c = new Chronometer();
+    /** Creates new form ChronometerPanel */
+    public ChronometerPanel() {
+        initComponents();
+        c = new Chronometer();
 
-		final Runnable doUpdateCursor = new Runnable() {
+        final Runnable doUpdateCursor = new Runnable() {
 
-			public void run() {
+            @Override
+            public void run() {
 
-				timeLabel.setText(c.toString());
-			}
-		};
+                timeLabel.setText(c.toString());
+            }
+        };
 
-		TimerTask updateCursorTask = new TimerTask() {
+        TimerTask updateCursorTask = new TimerTask() {
 
-			public void run() {
-				EventQueue.invokeLater(doUpdateCursor);
-			}
-		};
+            @Override
+            public void run() {
+                EventQueue.invokeLater(doUpdateCursor);
+            }
+        };
+        timer.schedule(updateCursorTask, 0, 500);
+    }
 
-		timer.schedule(updateCursorTask, 0, 500);
-	}
+    public int read() {
+        return c.read();
+    }
 
-	public int read() {
-		return c.read();
-	}
+    public void addCurrentDateInTable() {
+        synchronized (getTimeTable().getModel()) {
+            int modelSize = getTimeTable().getModel().getRowCount();
 
-	public void addCurrentDateInTable() {
-		synchronized (getTimeTable().getModel()) {
-			int modelSize = getTimeTable().getModel().getRowCount();
+            if (c.getBeginDate() != null) {
 
-			if (c.getBeginDate() != null) {
+                c.stop();
 
-				c.stop();
+                if (getTimeTable().getModel() instanceof DefaultTableModel) {
+                    DefaultTableModel model = (DefaultTableModel) getTimeTable().getModel();
 
-				if (getTimeTable().getModel() instanceof DefaultTableModel) {
-					DefaultTableModel model = (DefaultTableModel) getTimeTable().getModel();
+                    // Add a row in the model
+                    model.insertRow(0, new Object[]{modelSize,
+                                new DateFormater((c.getBeginDate())).toHHMMSS(),
+                                new DateFormater((c.getEndDate())).toHHMMSS(),
+                                c.read(),
+                                c.toString()});
+                    getTimeTable().repaint();
+                }
+                EventSaver.saveTime(c);
+                c.reset();
+            }
+        }
+    }
 
-					// Add a row in the model
-					model.insertRow(0, new Object[]{modelSize,
-								new DateFormater((c.getBeginDate())).toHHMMSS(),
-								new DateFormater((c.getEndDate())).toHHMMSS(),
-								c.read(),
-								c.toString()});
-					getTimeTable().repaint();
-				}
+    /**
+     * @return the timeTable
+     */
+    public javax.swing.JTable getTimeTable() {
+        return timeTable;
+    }
 
-				c.reset();
-			}
-		}
-	}
+    public static void main(String[] args) {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex) {
+        }
 
-	/**
-	 * @return the timeTable
-	 */
-	public javax.swing.JTable getTimeTable() {
-		return timeTable;
-	}
+        JFrame frame = new JFrame();
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-	public static void main(String[] args) {
-		try {
-			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-		} catch (Exception ex) {
-		}
+        ChronometerPanel cp = new ChronometerPanel();
+        frame.add(cp);
+        frame.pack();
 
-		JFrame frame = new JFrame();
-		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        frame.setLocationRelativeTo(frame.getParent());
+        frame.setVisible(true);
+    }
 
-		ChronometerPanel cp = new ChronometerPanel();
-		frame.add(cp);
-		frame.pack();
-
-		frame.setLocationRelativeTo(frame.getParent());
-		frame.setVisible(true);
-	}
-
-	/** This method is called from within the constructor to
-	 * initialize the form.
-	 * WARNING: Do NOT modify this code. The content of this method is
-	 * always regenerated by the Form Editor.
-	 */
-	@SuppressWarnings("unchecked")
+    /** This method is called from within the constructor to
+     * initialize the form.
+     * WARNING: Do NOT modify this code. The content of this method is
+     * always regenerated by the Form Editor.
+     */
+    @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
         java.awt.GridBagConstraints gridBagConstraints;
@@ -222,19 +225,19 @@ public class ChronometerPanel extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
 	private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-		c.start();
+            c.start();
 	}//GEN-LAST:event_startButtonActionPerformed
 
 	private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
-		c.stop();
+            c.stop();
 	}//GEN-LAST:event_stopButtonActionPerformed
 
 	private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
-		c.reset();
+            c.reset();
 	}//GEN-LAST:event_resetButtonActionPerformed
 
 	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-		addCurrentDateInTable();
+            addCurrentDateInTable();
 	}//GEN-LAST:event_saveButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     javax.swing.JButton resetButton;
