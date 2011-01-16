@@ -202,18 +202,20 @@ public class ChronometerPanel extends javax.swing.JPanel {
 
             },
             new String [] {
-                "Number", "Start", "End", "Duration"
+                "Number", "Start", "End", "Duration", "(hh:mm:ss)"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, false, false, false
+                false, false, false, false, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
                 return canEdit [columnIndex];
             }
         });
+        timeTable.setColumnSelectionAllowed(true);
         timeScrollPane.setViewportView(timeTable);
+        timeTable.getColumnModel().getSelectionModel().setSelectionMode(javax.swing.ListSelectionModel.MULTIPLE_INTERVAL_SELECTION);
 
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
