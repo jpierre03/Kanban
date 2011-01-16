@@ -22,7 +22,7 @@ import java.util.TimerTask;
 
 import javax.swing.table.DefaultTableModel;
 
-import fr.prunetwork.atelierkanban.Chronometer;
+import fr.prunetwork.atelierkanban.entities.Chronometer;
 import fr.prunetwork.atelierkanban.storage.EventSaver;
 import fr.prunetwork.atelierkanban.utilities.DateFormater;
 

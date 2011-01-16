@@ -16,7 +16,7 @@
  */
 package fr.prunetwork.atelierkanban.gui;
 
-import fr.prunetwork.atelierkanban.KanbanPlanning;
+import fr.prunetwork.atelierkanban.entities.KanbanPlanning;
 import fr.prunetwork.atelierkanban.storage.EventSaver;
 
 /**
