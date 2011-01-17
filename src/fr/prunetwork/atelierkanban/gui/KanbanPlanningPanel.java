@@ -87,6 +87,7 @@ public final class KanbanPlanningPanel
         totalKanbanSpinner = new javax.swing.JSpinner();
         productNameTextField = new javax.swing.JTextField();
         productNameLabel = new javax.swing.JLabel();
+        productNameButton = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -179,7 +180,7 @@ public final class KanbanPlanningPanel
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 0;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.gridwidth = 3;
+        gridBagConstraints.gridwidth = 2;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         add(productNameTextField, gridBagConstraints);
 
@@ -192,6 +193,18 @@ public final class KanbanPlanningPanel
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.HORIZONTAL;
         add(productNameLabel, gridBagConstraints);
+
+        productNameButton.setText("Validate");
+        productNameButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                productNameButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 2;
+        gridBagConstraints.gridy = 1;
+        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
+        add(productNameButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
     private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
@@ -253,11 +266,16 @@ public final class KanbanPlanningPanel
 	private void productNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameTextFieldActionPerformed
 		setProductName(productNameTextField.getText());
 	}//GEN-LAST:event_productNameTextFieldActionPerformed
+
+	private void productNameButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameButtonActionPerformed
+		productNameTextFieldActionPerformed(evt);
+	}//GEN-LAST:event_productNameButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
     private javax.swing.JSpinner greenSpinner;
     private javax.swing.JEditorPane kanbanEditorPane;
     private javax.swing.JScrollPane kanbanScrollPane;
+    private javax.swing.JButton productNameButton;
     private javax.swing.JLabel productNameLabel;
     private javax.swing.JTextField productNameTextField;
     private javax.swing.JSpinner redSpinner;
@@ -268,7 +286,7 @@ public final class KanbanPlanningPanel
 	/**
 	 * @return the kp
 	 */
-	private KanbanPlanning getKp() {
+	public KanbanPlanning getKp() {
 		return kp;
 	}
 
