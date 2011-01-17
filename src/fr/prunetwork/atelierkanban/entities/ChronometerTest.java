@@ -27,19 +27,22 @@ import java.util.logging.Logger;
  */
 public class ChronometerTest {
 
-    public static void main(String args[]) {
-        Chronometer chronometer = Chronometer.getChronometer();
-        EventDispatcher.getEventDispatcher().notify(new ChronometerStart());
-        int i = 0;
-        while (i < 10) {
+	public static void main(String args[]) {
+		Chronometer chronometer = Chronometer.getChronometer();
+		EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerStart());
+		int i = 0;
+		while (i < 10) {
 
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException ex) {
-                Logger.getLogger(Chronometer.class.getName()).
-                        log(Level.SEVERE, null, ex);
-            }
-            System.out.println(chronometer.read());
-        }
-    }
+			try {
+				Thread.sleep(1000);
+			} catch (InterruptedException ex) {
+				Logger.getLogger(Chronometer.class.getName()).
+						log(Level.SEVERE, null, ex);
+			}
+			System.out.println(chronometer.read());
+		}
+	}
+
+	private ChronometerTest() {
+	}
 }
