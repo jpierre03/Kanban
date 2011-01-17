@@ -61,11 +61,8 @@ public class ExtractEventFromFile {
 //            br.readLine();
 
 			while ((ligne = br.readLine()) != null) {
-				ligne = formatString(ligne);
 
-				StringTokenizer stringTokenizer = new StringTokenizer(ligne, "|");
-
-				Event event = instanciateEventFromTokenizer(stringTokenizer);
+				Event event = eventFromLine(ligne);
 				if (event != null) {
 //					System.out.println(event + "---------" + ligne);
 					events.add(event);
@@ -75,6 +72,16 @@ public class ExtractEventFromFile {
 		} catch (Exception e) {
 		}
 		return events;
+	}
+
+	public static Event eventFromLine(String line) throws Exception {
+		Event event = null;
+		if (line != null) {
+			line = formatString(line);
+			StringTokenizer stringTokenizer = new StringTokenizer(line, "|");
+			event = instanciateEventFromTokenizer(stringTokenizer);
+		}
+		return event;
 	}
 
 	private static Event instanciateEventFromTokenizer(StringTokenizer stringTokenizer) throws Exception {
