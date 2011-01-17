@@ -1,3 +1,19 @@
+/*
+ *  Copyright (C) 2010 Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
+ *
+ *  This program is free software: you can redistribute it and/or modify
+ *  it under the terms of the GNU General Public License as published by
+ *  the Free Software Foundation, either version 3 of the License, or
+ *  (at your option) any later version.
+ *
+ *  This program is distributed in the hope that it will be useful,
+ *  but WITHOUT ANY WARRANTY; without even the implied warranty of
+ *  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ *  GNU General Public License for more details.
+ *
+ *  You should have received a copy of the GNU General Public License
+ *  along with this program.  If not, see <http://www.gnu.org/licenses/>.
+ */
 package fr.prunetwork.network.server;
 
 import java.io.BufferedReader;
@@ -8,34 +24,28 @@ import java.net.Socket;
 
 /**
  * C'est dans cette classe que les protocoles d'échange sont définis (cycle de lecture/ecriture)
- * @author jpierre03
+ * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class CommunicationClientServeur implements Runnable{
+public class CommunicationClientServeur implements Runnable {
 
 	/**
-	 *
 	 */
 	private boolean DEBUG = true;
 	/**
-	 *
 	 */
-	Socket client = null;
+	private Socket client = null;
 	/**
-	 *
 	 */
 	private BufferedReader entree;
 	/**
-	 *
 	 */
 	private PrintWriter sortie;
 	/**
-	 *
 	 */
 	private boolean onContinue = true;
 	/**
-	 *
 	 */
-	MonServeurMultiClient msMC = null;
+	private MonServeurMultiClient msMC = null;
 
 	/**
 	 * permet de définir quel est l'objet qui a instancié cet objet
@@ -44,7 +54,7 @@ public class CommunicationClientServeur implements Runnable{
 	 * @param msMC
 	 * @return
 	 */
-	public CommunicationClientServeur setMonServeurMulticlient(MonServeurMultiClient msMC){
+	public CommunicationClientServeur setMonServeurMulticlient(MonServeurMultiClient msMC) {
 		this.msMC = msMC;
 		return this;
 	}
@@ -52,23 +62,23 @@ public class CommunicationClientServeur implements Runnable{
 	/**
 	 * @param socket Est un socket pour communiquer avec le client
 	 */
-	public CommunicationClientServeur(Socket socket){
+	public CommunicationClientServeur(Socket socket) {
 		System.err.println("CommunicationClientServeur");
 		client = socket;
 
-		try{
+		try {
 			// on recupère les canaux de communication
 			// avec des filtres de lecture ecriture de donnees texte
 			entree = new BufferedReader(new InputStreamReader(client.getInputStream()));
 			sortie = new PrintWriter(client.getOutputStream());
-		} catch(IOException e){
+		} catch (IOException e) {
 			System.err.println("PB création des streams");
 			System.exit(1);
 		}
-		if(entree == null){
+		if (entree == null) {
 			System.out.println("pas d'entrée !!!");
 		}
-		if(sortie == null){
+		if (sortie == null) {
 			System.out.println("pas de sortie !!!");
 		}
 	}
@@ -77,12 +87,12 @@ public class CommunicationClientServeur implements Runnable{
 	 * Lecture d'un message envoyé par le serveur
 	 * @return le message envoyé par le serveur
 	 */
-	public String lireClient(){
+	public String lireClient() {
 		String ligne = null;
-		try{
+		try {
 			//if(entree.ready())
 			ligne = entree.readLine();
-		} catch(IOException e){
+		} catch (IOException e) {
 			System.err.println("rien a lire");
 		}
 		return ligne;
@@ -91,10 +101,10 @@ public class CommunicationClientServeur implements Runnable{
 	/** Envoie des données au client.
 	 * @param ligne les caractères à envoyer
 	 */
-	public void ecrireClient(String ligne){
-		if(sortie == null){
+	public void ecrireClient(String ligne) {
+		if (sortie == null) {
 			System.out.println("pas de sortie !!! : écrire ?");
-		} else{
+		} else {
 			//if(ligne!=null){
 			sortie.println(ligne);
 			sortie.flush();
@@ -107,16 +117,16 @@ public class CommunicationClientServeur implements Runnable{
 	 * Pour afficher un message avec tous les personnes connectées
 	 * @param ligne un message
 	 */
-	public void ecrireTousClient(String ligne){
+	public void ecrireTousClient(String ligne) {
 		System.err.println("ecrireTousClient");
-		if(msMC != null){
-			if(ligne != null){
+		if (msMC != null) {
+			if (ligne != null) {
 				msMC.ecrireTousClient(ligne);
 				System.err.println("ecrireTousClient - ok");
 			}
 
-		} else{
-			if(ligne != null){
+		} else {
+			if (ligne != null) {
 				ecrireClient(ligne);
 			}
 			System.err.println("ecrireTousClient - msMC ==null");
@@ -126,24 +136,24 @@ public class CommunicationClientServeur implements Runnable{
 	/** teste la connexion.
 	 *@return un booléen notifiant l'état de la connexion
 	 */
-	public boolean clientOK(){
+	public boolean clientOK() {
 		return client.isConnected();
 	}
 
 	/** Fermeture du socket.
 	 * @return
 	 */
-	public CommunicationClientServeur fermer(){
+	public CommunicationClientServeur fermer() {
 		// il faut fermer "proprement" les stream avant les Sockets
 		onContinue = false;
-		try{
+		try {
 			entree.close();
 			sortie.close();
-			if(client != null){
+			if (client != null) {
 				client.close();
 			}
 			System.out.println("Fermeture ok");
-		} catch(IOException e){
+		} catch (IOException e) {
 			System.err.println("Erreur à la fermeture des flux!");
 		}
 		return this;
@@ -153,7 +163,7 @@ public class CommunicationClientServeur implements Runnable{
 	 *
 	 */
 	@Override
-	protected void finalize(){
+	protected void finalize() {
 		// méthode executee par le ramasse miettes avant de libérer la mémoire
 		// pb : on ne sait jamais trop quand !!!
 		fermer();
@@ -163,10 +173,10 @@ public class CommunicationClientServeur implements Runnable{
 	 *
 	 */
 	@Override
-	public void run(){
-		while(onContinue){
+	public void run() {
+		while (onContinue) {
 			String message = lireClient();
-			if(message != null){
+			if (message != null) {
 				ecrireTousClient(message);
 				System.out.println("ecrireClient(" + message + ")");
 			}
