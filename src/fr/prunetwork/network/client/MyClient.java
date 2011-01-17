@@ -29,107 +29,106 @@ import java.net.UnknownHostException;
  * @author Marc-Emmanuel Bellemare Jan. 2005
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class MonClient{
+public class MyClient {
 
 	/**
 	 *
 	 */
-	private Socket client = null;
+	private Socket clientSocket = null;
 	/**
 	 *
 	 */
-	private BufferedReader entree;
+	private BufferedReader reader;
 	/**
 	 *
 	 */
-	private PrintWriter sortie;
+	private PrintWriter writer;
 
 	/** Le constructeur qui indique sur quel serveur se connecter et quel port solliciter
 	 * @param hostName
-	 * @param port le numero de port
+	 * @param portNumber le numero de port
 	 * @throws IOException si erreur de connexion
 	 */
-	public MonClient(String hostName, int port) throws IOException{
-		try{
+	public MyClient(String hostName, int portNumber) throws IOException {
+		try {
 			// Convertir la chaine de caractères "hostName" en une adresse IP valide du serveur
-			InetAddress adresseIP = InetAddress.getByName(hostName);            //récupère l'adresse IP à partir du nom de machine
+			InetAddress adresseIP = InetAddress.getByName(hostName);			//récupère l'adresse IP à partir du nom de machine
 			//creer le Socket vers le serveur
-			client = new Socket(adresseIP, port);                               // création d'un socket avec la config en param
+			clientSocket = new Socket(adresseIP, portNumber);					// création d'un socket avec la config en param
 			//on fixe un timeOut
-			client.setSoTimeout(1000);                                          // on définit une durée au dela de laquelle on abandonne
-		} catch(UnknownHostException e){
-			System.err.println("Je ne connais pas le serveur: " + hostName);
+			clientSocket.setSoTimeout(1000);									// on définit une durée au dela de laquelle on abandonne
+		} catch (UnknownHostException e) {
+			System.err.println("Server is unknown: " + hostName);
 			throw e;
-		} catch(SocketException e){
-			System.err.println("erreur de connexion ou timeout");
+		} catch (SocketException e) {
+			System.err.println("Connexion error or timeout");
 			throw e;
-		} catch(IOException e){
-			System.err.println("Probleme de connexion sur:" + hostName);
+		} catch (IOException e) {
+			System.err.println("Connexion probleme with: " + hostName);
 			throw e;
 		}
-		System.out.println("Connexion OK sur " + hostName);
+		System.out.println("Connexion OK with: " + hostName);
 
-		try{
-			entree = new BufferedReader(
-					new InputStreamReader(client.getInputStream()));    //crée un flux à partir du socket client
-			sortie = new PrintWriter(client.getOutputStream());                 //crée un flux à partir du socket client
-		} catch(IOException e){
+		try {
+			reader = new BufferedReader(
+					new InputStreamReader(clientSocket.getInputStream()));		//crée un flux à partir du socket client
+			writer = new PrintWriter(clientSocket.getOutputStream());			//crée un flux à partir du socket client
+		} catch (IOException e) {
 			System.err.println("PB creation des streams");
 			System.exit(1);
 		}
-
 	}
 
 	/** lit les caracteres envoyés par le serveur.
 	 * @return un objet String qui contient l'ensemble des caractères lus
 	 */
-	public String lireServeur(){
-		String ligne = null;
-		try{
-			ligne = entree.readLine();
-		} catch(IOException e){
+	public String readFromServer() {
+		String line = null;
+		try {
+			line = reader.readLine();
+		} catch (IOException e) {
 			//System.err.println("rien a lire");
 		}
-		return ligne;
+		return line;
 	}
 
 	/**
 	 * Renvoie un identifiant de Socket
 	 * @return un identifiant de Socket
 	 */
-	Socket getClient(){
-		return client;
+	Socket getClientSocket() {
+		return clientSocket;
 	}
 
 	/**
 	 * Envoie des données au serveur.
 	 * @param ligne les caractères à envoyer
 	 */
-	public void ecrireServeur(String ligne){
-		sortie.println(ligne);
-		sortie.flush();
+	public void writeToServer(String ligne) {
+		writer.println(ligne);
+		writer.flush();
 	}
 
 	/**
 	 * Teste la connexion.
 	 *@return un booleen notifiant l'état de la connexion
 	 */
-	public boolean estConnect(){
-		return client.isConnected();
+	public boolean isConnected() {
+		return clientSocket.isConnected();
 	}
 
 	/**
 	 * Fermeture du socket & du lclient en général.
 	 */
-	public void fermer(){
-		try{
-			entree.close();
-			sortie.close();
-			if(client != null){
-				client.close();
+	public void fermer() {
+		try {
+			reader.close();
+			writer.close();
+			if (clientSocket != null) {
+				clientSocket.close();
 			}
 			System.out.println("Fermeture ok");
-		} catch(IOException e){
+		} catch (IOException e) {
 			System.err.println("Erreur à la fermeture des flux!");
 		}
 	}
@@ -138,7 +137,7 @@ public class MonClient{
 	 * Méthode invoquée lors du passage du ramasse miette
 	 */
 	@Override
-	protected void finalize(){
+	protected void finalize() {
 		fermer();
 	}
 }
