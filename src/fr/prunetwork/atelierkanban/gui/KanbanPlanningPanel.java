@@ -49,11 +49,12 @@ public final class KanbanPlanningPanel
 		greenSpinner.setValue(kp.getLowerLevel_greenIndex());
 		totalKanbanSpinner.setValue(kp.getMaxKanban_blueIndex());
 
+		kanbanEditorPane.setContentType("text/html");
+
 		refresh();
 	}
 
 	public void refresh() {
-		kanbanEditorPane.setContentType("text/html");
 		kanbanEditorPane.setText(getKp().toHtml());
 	}
 
