@@ -16,7 +16,6 @@
  */
 package fr.prunetwork.network.server;
 
-import fr.prunetwork.atelierkanban.Constants;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -29,6 +28,8 @@ import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
+import fr.prunetwork.atelierkanban.Constants;
 
 /**
  *
@@ -45,7 +46,7 @@ public class MyServerMultiClient {
 	/** Pour savoir si la communication est terminée*/
 	private boolean isEnded = false;
 	/** pour savor combien de temps on doit attendre le client*/
-	private int dureeTimeout = 100;
+	private int dureeTimeout = 1000000;
 	/**
 	 */
 	private Collection<CommunicationClientServeur> listComm = new ArrayList<CommunicationClientServeur>();
@@ -145,7 +146,7 @@ public class MyServerMultiClient {
 			while (iterator.hasNext()) {
 				//iterator.next().ecrireClient(ligne);
 				CommunicationClientServeur ccs = iterator.next();
-				System.out.println("ecrireTousClient - next " + ccs);
+//				System.out.println("ecrireTousClient - next " + ccs);
 				ccs.ecrireClient(ligne);
 			}
 		}

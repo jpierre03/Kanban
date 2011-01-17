@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * C'est dans cette classe que les protocoles d'échange sont définis (cycle de lecture/ecriture)
@@ -160,6 +162,11 @@ public class CommunicationClientServeur implements Runnable {
 	 */
 	@Override
 	protected void finalize() {
+		try {
+			super.finalize();
+		} catch (Throwable ex) {
+			Logger.getLogger(CommunicationClientServeur.class.getName()).log(Level.SEVERE, null, ex);
+		}
 		// méthode executee par le ramasse miettes avant de libérer la mémoire
 		// pb : on ne sait jamais trop quand !!!
 		fermer();
@@ -174,7 +181,7 @@ public class CommunicationClientServeur implements Runnable {
 			String message = lireClient();
 			if (message != null) {
 				ecrireTousClient(message);
-				System.out.println("ecrireClient(" + message + ")");
+				System.out.println(message);
 			} else {
 				onContinue = false;
 			}
