@@ -98,7 +98,7 @@ public class KanbanPlanning implements Observer {
 	}
 
 	public String toHtml() {
-		StringBuilder sb = new StringBuilder();
+		StringBuilder sb = new StringBuilder(300);
 		String blueColor = " background-color: blue;";
 		String grayColor = " background-color: gray;";
 		String greenColor = " background-color: rgb(51, 204, 0);";
@@ -174,12 +174,9 @@ public class KanbanPlanning implements Observer {
 		if (event instanceof AbstractKanbanEvent) {
 			AbstractKanbanEvent ake = (AbstractKanbanEvent) event;
 
-
 			//Check if this component is interested
 			// By default this componnent focus on it's product name (productNameTextField)
 			if (ake.getProductName().equalsIgnoreCase(getProductName())) {
-				System.out.println(ake.getProductName() + "------" + getProductName());
-
 
 				if (event instanceof KanbanAdd) {
 					this.addKanban();
