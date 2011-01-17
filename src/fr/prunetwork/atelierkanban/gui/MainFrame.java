@@ -16,6 +16,7 @@
  */
 package fr.prunetwork.atelierkanban.gui;
 
+import fr.prunetwork.atelierkanban.Constants;
 import java.awt.EventQueue;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
@@ -159,8 +160,9 @@ public class MainFrame extends javax.swing.JFrame {
 						try {
 							EventQueue.invokeAndWait(new Runnable() {
 
+								@Override
 								public void run() {
-									getKanbanPlanningPanel1().notify(event);
+									notifyKanbanPlanningPanels(event);
 								}
 							});
 						} catch (InterruptedException ex) {
@@ -168,10 +170,12 @@ public class MainFrame extends javax.swing.JFrame {
 						} catch (InvocationTargetException ex) {
 							Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
 						}
-						try {
-							Thread.sleep(150);
-						} catch (InterruptedException ex) {
-							Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+						if (Constants.MILISECONDS_BETWEEN_LOADED_EVENTS > 0) {
+							try {
+								Thread.sleep(Constants.MILISECONDS_BETWEEN_LOADED_EVENTS);
+							} catch (InterruptedException ex) {
+								Logger.getLogger(MainFrame.class.getName()).log(Level.SEVERE, null, ex);
+							}
 						}
 					}
 				}
@@ -202,8 +206,5 @@ public class MainFrame extends javax.swing.JFrame {
 	public void notifyKanbanPlanningPanels(Event event) {
 		getKanbanPlanningPanel1().notify(event);
 		getKanbanPlanningPanel2().notify(event);
-
-		getKanbanPlanningPanel1().refresh();
-		getKanbanPlanningPanel2().refresh();
 	}
 }

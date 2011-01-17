@@ -74,7 +74,7 @@ public class ChronometerPanel
 
 			if (c.getBeginDate() != null) {
 
-				EventDispatcher.getEventDispatcher().notify(new ChronometerStop());
+				EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerStop());
 
 				if (getTimeTable().getModel() instanceof DefaultTableModel) {
 					DefaultTableModel model = (DefaultTableModel) getTimeTable().
@@ -91,8 +91,8 @@ public class ChronometerPanel
 								c.toString()});
 					getTimeTable().repaint();
 				}
-				EventDispatcher.getEventDispatcher().notify(new ChronometerSaved());
-				EventDispatcher.getEventDispatcher().notify(new ChronometerReset());
+				EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerSaved());
+				EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerReset());
 
 			}
 		}
@@ -218,15 +218,15 @@ public class ChronometerPanel
     }// </editor-fold>//GEN-END:initComponents
 
 	private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
-		EventDispatcher.getEventDispatcher().notify(new ChronometerStart());
+		EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerStart());
 	}//GEN-LAST:event_startButtonActionPerformed
 
 	private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
-		EventDispatcher.getEventDispatcher().notify(new ChronometerStop());
+		EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerStop());
 	}//GEN-LAST:event_stopButtonActionPerformed
 
 	private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
-		EventDispatcher.getEventDispatcher().notify(new ChronometerReset());
+		EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerReset());
 	}//GEN-LAST:event_resetButtonActionPerformed
 
 	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
