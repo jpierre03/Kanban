@@ -38,17 +38,31 @@ public class KanbanPlanning implements Observer {
 	private int maxKanban_blueIndex;
 	private int currentKanbanCount;
 	private String productName = Constants.DEFAULT;
+	private final int INIT_KANBAN_LEVEL;
+	private final int INIT_RED_LEVEL;
+	private final int INIT_GREEN_LEVEL;
+	private final int INIT_BLUE_LEVEL;
 
 	public KanbanPlanning(int upperLevel_red,
 			int lowerLevel_green,
 			int maxKanban,
 			int initialKanbanCount) {
-		this.upperLevel_redIndex = upperLevel_red;
-		this.lowerLevel_greenIndex = lowerLevel_green;
-		this.maxKanban_blueIndex = maxKanban;
-		this.currentKanbanCount = initialKanbanCount;
+
+		INIT_RED_LEVEL = upperLevel_red;
+		INIT_GREEN_LEVEL = lowerLevel_green;
+		INIT_BLUE_LEVEL = maxKanban;
+		INIT_KANBAN_LEVEL = initialKanbanCount;
+
+		initValues();
 
 		EventDispatcher.getEventDispatcher().registerObserver(this);
+	}
+
+	public final void initValues() {
+		this.upperLevel_redIndex = INIT_RED_LEVEL;
+		this.lowerLevel_greenIndex = INIT_GREEN_LEVEL;
+		this.maxKanban_blueIndex = INIT_BLUE_LEVEL;
+		this.currentKanbanCount = INIT_KANBAN_LEVEL;
 	}
 
 	private void addKanban() {
