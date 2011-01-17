@@ -16,56 +16,47 @@
  */
 package fr.prunetwork.network.server;
 
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class MonServeurMultiClientTest{
+public class MyServerMultiClientTest {
 
 	/**
 	 * Constructeur par défaut
 	 */
-	public MonServeurMultiClientTest(){
+	public MyServerMultiClientTest() {
 	}
 
 	/**
 	 * 
 	 * @param args
 	 */
-	public static void main(String[] args){
+	public static void main(String args[]) {
 //	Pour tester un protocole simple de communication
 //	Bien entendu il faut que serveur et client soient compatibles
 
-		/** Affiche ou non les messages échangés sur la console*/
-		boolean afficheConsole = false;
 		/**initialisation du serveur*/
-		MonServeurMultiClient ms;
-		if(args.length > 0){
+		MyServerMultiClient ms;
+		if (args.length > 0) {
 			/** Récupère le n° de port depsui la console*/
-			ms = new MonServeurMultiClient(Integer.parseInt(args[0]));
-		} else{
-			ms = new MonServeurMultiClient(0);
+			ms = new MyServerMultiClient(Integer.parseInt(args[0]));
+		} else {
+			ms = new MyServerMultiClient(0);
 		}
 		System.out.println("On communique");
 
-		/** Envoie un message d'accueil*/
-		ms.ecrireTousClient("Bienvenue sur MonServeur");
-
-		/** Ecoute du client*/
-		boolean continuer = true;
 		/** Contient la ligne a échanger*/
 		String ligne;
-		while(continuer && ms != null && ms.getOnContinue()){
-//			ligne = ms.lireClient();
-//			if(ligne.equalsIgnoreCase("fin")){//peu importe la casse
-//				continuer = false;
-//				ms.ecrireTousClient("Au revoir");
-//			}
-//			if(afficheConsole){
-//				System.out.println("Client : " + ligne);
-//			}
-//			ms.ecrireTousClient("recu :" + ligne);
-			
+		while (ms != null && ms.getOnContinue()) {
+			try {
+				Thread.sleep(500);
+			} catch (InterruptedException ex) {
+				Logger.getLogger(MyServerMultiClientTest.class.getName()).log(Level.SEVERE, null, ex);
+			}
 		}
 		System.out.println("On termine");
 		ms.end();

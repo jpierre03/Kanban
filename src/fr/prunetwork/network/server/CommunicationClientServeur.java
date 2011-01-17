@@ -45,7 +45,7 @@ public class CommunicationClientServeur implements Runnable {
 	private boolean onContinue = true;
 	/**
 	 */
-	private MonServeurMultiClient msMC = null;
+	private MyServerMultiClient msMC = null;
 
 	/**
 	 * permet de définir quel est l'objet qui a instancié cet objet
@@ -54,7 +54,7 @@ public class CommunicationClientServeur implements Runnable {
 	 * @param msMC
 	 * @return
 	 */
-	public CommunicationClientServeur setMonServeurMulticlient(MonServeurMultiClient msMC) {
+	public CommunicationClientServeur setMonServeurMulticlient(MyServerMultiClient msMC) {
 		this.msMC = msMC;
 		return this;
 	}
@@ -63,7 +63,6 @@ public class CommunicationClientServeur implements Runnable {
 	 * @param socket Est un socket pour communiquer avec le client
 	 */
 	public CommunicationClientServeur(Socket socket) {
-		System.err.println("CommunicationClientServeur");
 		client = socket;
 
 		try {
@@ -76,10 +75,10 @@ public class CommunicationClientServeur implements Runnable {
 			System.exit(1);
 		}
 		if (entree == null) {
-			System.out.println("pas d'entrée !!!");
+			System.err.println("pas d'entrée !!!");
 		}
 		if (sortie == null) {
-			System.out.println("pas de sortie !!!");
+			System.err.println("pas de sortie !!!");
 		}
 	}
 
@@ -90,7 +89,6 @@ public class CommunicationClientServeur implements Runnable {
 	public String lireClient() {
 		String ligne = null;
 		try {
-			//if(entree.ready())
 			ligne = entree.readLine();
 		} catch (IOException e) {
 			System.err.println("rien a lire");
@@ -105,11 +103,9 @@ public class CommunicationClientServeur implements Runnable {
 		if (sortie == null) {
 			System.out.println("pas de sortie !!! : écrire ?");
 		} else {
-			//if(ligne!=null){
 			sortie.println(ligne);
 			sortie.flush();
-			System.out.println("CommunicationClientServeur " + this + "message : " + ligne);
-			//}
+//			System.out.println("CommunicationClientServeur " + this + "message : " + ligne);
 		}
 	}
 
@@ -118,18 +114,18 @@ public class CommunicationClientServeur implements Runnable {
 	 * @param ligne un message
 	 */
 	public void ecrireTousClient(String ligne) {
-		System.err.println("ecrireTousClient");
+//		System.err.println("ecrireTousClient");
 		if (msMC != null) {
 			if (ligne != null) {
 				msMC.ecrireTousClient(ligne);
-				System.err.println("ecrireTousClient - ok");
+//				System.err.println("ecrireTousClient - ok");
 			}
 
 		} else {
 			if (ligne != null) {
 				ecrireClient(ligne);
 			}
-			System.err.println("ecrireTousClient - msMC ==null");
+//			System.err.println("ecrireTousClient - msMC ==null");
 		}
 	}
 
@@ -152,9 +148,9 @@ public class CommunicationClientServeur implements Runnable {
 			if (client != null) {
 				client.close();
 			}
-			System.out.println("Fermeture ok");
+//			System.out.println("Fermeture ok");
 		} catch (IOException e) {
-			System.err.println("Erreur à la fermeture des flux!");
+//			System.err.println("Erreur à la fermeture des flux!");
 		}
 		return this;
 	}
@@ -174,11 +170,13 @@ public class CommunicationClientServeur implements Runnable {
 	 */
 	@Override
 	public void run() {
-		while (onContinue) {
+		while (onContinue && clientOK()) {
 			String message = lireClient();
 			if (message != null) {
 				ecrireTousClient(message);
 				System.out.println("ecrireClient(" + message + ")");
+			} else {
+				onContinue = false;
 			}
 		}
 	}

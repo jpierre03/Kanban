@@ -16,13 +16,15 @@
  */
 package fr.prunetwork.network.server;
 
+import fr.prunetwork.atelierkanban.Constants;
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.net.SocketException;
 import java.net.SocketTimeoutException;
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Iterator;
-import java.util.Vector;
 import java.util.concurrent.Executor;
 import java.util.concurrent.Executors;
 import java.util.logging.Level;
@@ -32,12 +34,12 @@ import java.util.logging.Logger;
  *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class MonServeurMultiClient{
+public class MyServerMultiClient {
 
 	/** Détermine le nombre de threads qui sont exécutés en même temps*/
-	private static Executor exec = Executors.newFixedThreadPool(10);
+	private static Executor executor = Executors.newFixedThreadPool(100);
 	/** Contient la référence de la socket*/
-	private ServerSocket serveur = null;
+	private ServerSocket serverSocket = null;
 	/** Pour savoir si on continue ou non l'execution */
 	private boolean onContinue = true;
 	/** Pour savoir si la communication est terminée*/
@@ -45,74 +47,72 @@ public class MonServeurMultiClient{
 	/** pour savor combien de temps on doit attendre le client*/
 	private int dureeTimeout = 100;
 	/**
-	 *
 	 */
-	private Vector<CommunicationClientServeur> listComm = new Vector<CommunicationClientServeur>();
+	private Collection<CommunicationClientServeur> listComm = new ArrayList<CommunicationClientServeur>();
 
 	/**
 	 *
 	 * @param port
 	 */
-	public MonServeurMultiClient(int port){// création d'un serveur
+	public MyServerMultiClient(int port) {// création d'un serveur
 		CommunicationClientServeur comm = null;
-		if(port < 1023){// ports reserves
+		if (port < 1023) {// ports reserves
 			System.err.println("erreur de choix du port ! 2222 par defaut");
-			port = 2222;
+			port = Constants.DEFAULT_PORT_NUMBER;
 		}
-		try{
+		try {
 			// on cree un serveur sur le port specifie & sur touttes les @IP de la machine
-			serveur = new ServerSocket(port);
+			serverSocket = new ServerSocket(port);
 			System.out.println("J'ecoute le port: " + port + "...");
-		} catch(IOException e){
+		} catch (IOException e) {
 			System.err.println("Impossible d'écouter le port " + port);
 			System.exit(1);
 		}
 
-		while(onContinue == true){
+		while (onContinue == true) {
 			/** s'il y a une requete sur le portServeur
 			 * on cree un Socket pour communiquer avec le client
 			 * On attend jusqu'a ce qu'il y ait une requete
 			 */
-			try{
+			try {
 				/** attend au max x Secondes*/
-				serveur.setSoTimeout(dureeTimeout * 1000);
-			} catch(SocketException ex){
+				serverSocket.setSoTimeout(dureeTimeout * 1000);
+			} catch (SocketException ex) {
 				System.err.println("On quitte : setSoTimeOut");
 				System.exit(1);
 			}
-			try{
+			try {
 				//client = serveur.accept(); //"client" est le Socket
-				final Socket connexion = serveur.accept();
+				final Socket connexion = serverSocket.accept();
 				comm = new CommunicationClientServeur(connexion);
 				comm.setMonServeurMulticlient(this);
 				listComm.add(comm);
-				comm.ecrireClient("Bonjour nouveau client !");
+//				comm.ecrireClient("Bonjour nouveau client !");
 				System.out.println("Connexion Acceptée");
-			} catch(SocketTimeoutException e){
+			} catch (SocketTimeoutException e) {
 				System.err.println("On quitte : TimeOut");
 				System.exit(1);
-			} catch(IOException e){
+			} catch (IOException e) {
 				System.err.println("Client refusé !.");
 				System.exit(1);
 			}
-			exec.execute(comm);
-
+			executor.execute(comm);
 		}
 	}
 
 	/**
 	 * Pout finir proprement le serveur
 	 */
-	public void end(){
-		Iterator<CommunicationClientServeur> it = listComm.iterator();
+	public void end() {
+		Iterator<CommunicationClientServeur> it = getListComm().iterator();
 		/** On parcours la liste de tous les client connectés et on ferme la connexion*/
-		while(it.hasNext()){
-			listComm.remove(it.next().fermer());
+		while (it.hasNext()) {
+			getListComm().remove(it.next().fermer());
 		}
-		try{
-			serveur.close();
-		} catch(IOException ex){
-			Logger.getLogger(MonServeurMultiClient.class.getName()).log(Level.SEVERE, null, ex);
+		try {
+			serverSocket.close();
+		} catch (IOException ex) {
+			Logger.getLogger(MyServerMultiClient.class.getName()).log(Level.SEVERE, null, ex);
 		}
 		/** A ce stade, toutes les communications doivent être terminées*/
 		isEnded = true;
@@ -122,7 +122,7 @@ public class MonServeurMultiClient{
 	 * Pour savoir si on laisse le serveur lancé
 	 * @return on continue ou on arrete le serveur (True/false)
 	 */
-	public synchronized boolean getOnContinue(){
+	public synchronized boolean getOnContinue() {
 		return onContinue;
 	}
 
@@ -130,7 +130,7 @@ public class MonServeurMultiClient{
 	 * Le serveur est il arrêté ? (True/False)
 	 * @return
 	 */
-	public synchronized boolean isEnded(){
+	public synchronized boolean isEnded() {
 		return isEnded;
 	}
 
@@ -138,16 +138,31 @@ public class MonServeurMultiClient{
 	 * Pour écrire à toui
 	 * @param ligne
 	 */
-	public void ecrireTousClient(String ligne){
-		if(ligne != null){
-			Iterator<CommunicationClientServeur> iterator = listComm.iterator();
+	public void ecrireTousClient(String ligne) {
+		if (ligne != null) {
+			Iterator<CommunicationClientServeur> iterator = getListComm().iterator();
 			/** on envoie le message à tous les membres de la liste*/
-			while(iterator.hasNext()){
+			while (iterator.hasNext()) {
 				//iterator.next().ecrireClient(ligne);
 				CommunicationClientServeur ccs = iterator.next();
 				System.out.println("ecrireTousClient - next " + ccs);
 				ccs.ecrireClient(ligne);
 			}
 		}
+	}
+
+	/**
+	 * @return the listComm
+	 */
+	private synchronized Collection<CommunicationClientServeur> getListComm() {
+		return listComm;
+	}
+
+	/**
+	 * @param listComm the listComm to set
+	 */
+	private synchronized void setListComm(Collection<CommunicationClientServeur> listComm) {
+		this.listComm.clear();
+		this.listComm.addAll(listComm);
 	}
 }
