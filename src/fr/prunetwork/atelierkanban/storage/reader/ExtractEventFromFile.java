@@ -67,12 +67,9 @@ public class ExtractEventFromFile {
 
 				Event event = instanciateEventFromTokenizer(stringTokenizer);
 				if (event != null) {
-					System.out.println(event + "---------" + ligne);
+//					System.out.println(event + "---------" + ligne);
 					events.add(event);
 				}
-//				else {
-//					System.out.println("---------" + ligne);
-//				}
 			}
 			br.close();
 		} catch (Exception e) {
