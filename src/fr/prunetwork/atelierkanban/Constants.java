@@ -26,7 +26,9 @@ public class Constants {
 			"/images/splash-1024x800.png";
 	public static final String SHORT_FILE = "/home/jpierre03/Bureau/test";
 	public static final String DEFAULT = "default";
-	public static final int MILISECONDS_BETWEEN_LOADED_EVENTS=0;
+	public static final int MILISECONDS_BETWEEN_LOADED_EVENTS = 0;
+	public static final int DEFAULT_PORT_NUMBER = 2222;
+	public static final String DEFAULT_HOSTNAME = "localhost";
 
 	private Constants() {
 	}
