@@ -27,34 +27,38 @@ import org.lsis.haimes.patterns.observer.Observer;
  */
 public class EventDispatcher implements Observable, Observer {
 
-    private static EventDispatcher eventDispatcher = new EventDispatcher();
+	private static EventDispatcher eventDispatcher = new EventDispatcher();
 
-    private EventDispatcher() {
-    }
-    private Collection<Observer> observers = new ArrayList<Observer>();
+	private EventDispatcher() {
+	}
+	private Collection<Observer> observers = new ArrayList<Observer>(10);
 
-    public void registerObserver(Observer observer) {
-        this.observers.add(observer);
-    }
+	@Override
+	public void registerObserver(Observer observer) {
+		this.observers.add(observer);
+	}
 
-    public void unregisterObserver(Observer observer) {
-        this.observers.remove(observer);
-    }
+	@Override
+	public void unregisterObserver(Observer observer) {
+		this.observers.remove(observer);
+	}
 
-    public void notifyObservers(Event object) {
-        for (Observer observer : observers) {
-            observer.notify(object);
-        }
-    }
+	@Override
+	public void notifyObservers(Event object) {
+		for (Observer observer : observers) {
+			observer.notify(object);
+		}
+	}
 
-    public void notify(Event event) {
-        notifyObservers(event);
-    }
+	@Override
+	public void notify(Event event) {
+		notifyObservers(event);
+	}
 
-    /**
-     * @return the eventDispatcher
-     */
-    public static EventDispatcher getEventDispatcher() {
-        return eventDispatcher;
-    }
+	/**
+	 * @return the eventDispatcher
+	 */
+	public static EventDispatcher getEventDispatcher() {
+		return eventDispatcher;
+	}
 }
