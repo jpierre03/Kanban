@@ -197,25 +197,25 @@ public final class KanbanPlanningPanel
 
 		AbstractKanbanEvent event = new KanbanAdd();
 		event.setProductName(getProductName());
-		EventDispatcher.getEventDispatcher().notify(event);
+		EventDispatcher.getEventDispatcher().notifyObservers(event);
 
 		refresh();
 
 		event = new KanbanAdded(getKp().getCurrentKanbanCount());
 		event.setProductName(getProductName());
-		EventDispatcher.getEventDispatcher().notify(event);
+		EventDispatcher.getEventDispatcher().notifyObservers(event);
     }//GEN-LAST:event_addButtonActionPerformed
 
     private void removeButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_removeButtonActionPerformed
 		AbstractKanbanEvent event = new KanbanRemove();
 		event.setProductName(getProductName());
-		EventDispatcher.getEventDispatcher().notify(event);
+		EventDispatcher.getEventDispatcher().notifyObservers(event);
 
 		refresh();
 
 		event = new KanbanRemoved(getKp().getCurrentKanbanCount());
 		event.setProductName(getProductName());
-		EventDispatcher.getEventDispatcher().notify(event);
+		EventDispatcher.getEventDispatcher().notifyObservers(event);
     }//GEN-LAST:event_removeButtonActionPerformed
 
     private void greenSpinnerPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_greenSpinnerPropertyChange
@@ -228,7 +228,7 @@ public final class KanbanPlanningPanel
 
 		AbstractKanbanIndexEvent event = new KanbanGreenIndexChanged(getKp().getLowerLevel_greenIndex());
 		event.setProductName(getProductName());
-		EventDispatcher.getEventDispatcher().notify(event);
+		EventDispatcher.getEventDispatcher().notifyObservers(event);
     }//GEN-LAST:event_greenSpinnerStateChanged
 
     private void redSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_redSpinnerStateChanged
@@ -237,7 +237,7 @@ public final class KanbanPlanningPanel
 
 		AbstractKanbanIndexEvent event = new KanbanRedIndexChanged(getKp().getUpperLevel_redIndex());
 		event.setProductName(getProductName());
-		EventDispatcher.getEventDispatcher().notify(event);
+		EventDispatcher.getEventDispatcher().notifyObservers(event);
     }//GEN-LAST:event_redSpinnerStateChanged
 
     private void totalKanbanSpinnerStateChanged(javax.swing.event.ChangeEvent evt) {//GEN-FIRST:event_totalKanbanSpinnerStateChanged
@@ -246,11 +246,11 @@ public final class KanbanPlanningPanel
 
 		AbstractKanbanIndexEvent event = new KanbanBlueIndexChanged(getKp().getMaxKanban_blueIndex());
 		event.setProductName(getProductName());
-		EventDispatcher.getEventDispatcher().notify(event);
+		EventDispatcher.getEventDispatcher().notifyObservers(event);
     }//GEN-LAST:event_totalKanbanSpinnerStateChanged
 
 	private void productNameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_productNameTextFieldActionPerformed
-		//
+		setProductName(productNameTextField.getText());
 	}//GEN-LAST:event_productNameTextFieldActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton addButton;
@@ -288,28 +288,31 @@ public final class KanbanPlanningPanel
 					KanbanAdded ka = (KanbanAdded) event;
 					kp.setCurrentKanbanCount(ka.getKanbanCount());
 					addButtonActionPerformed(null);
-				}
-				if (event instanceof KanbanRemoved) {
-					KanbanRemoved kr = (KanbanRemoved) event;
-					kp.setCurrentKanbanCount(kr.getKanbanCount());
-					removeButtonActionPerformed(null);
-				}
-				/*****************************/
-				if (event instanceof KanbanBlueIndexChanged) {
-					KanbanBlueIndexChanged kbic = (KanbanBlueIndexChanged) event;
-					this.totalKanbanSpinner.setValue(kbic.getBlueIndexLevel());
-					refresh();
-				}
-				if (event instanceof KanbanRedIndexChanged) {
-					KanbanRedIndexChanged kric = (KanbanRedIndexChanged) event;
-					this.redSpinner.setValue(kric.getRedIndexLevel());
-					refresh();
+				} else {
+					if (event instanceof KanbanRemoved) {
+						KanbanRemoved kr = (KanbanRemoved) event;
+						kp.setCurrentKanbanCount(kr.getKanbanCount());
+						removeButtonActionPerformed(null);
+					} else {
+						if (event instanceof KanbanBlueIndexChanged) {
+							KanbanBlueIndexChanged kbic = (KanbanBlueIndexChanged) event;
+							this.totalKanbanSpinner.setValue(kbic.getBlueIndexLevel());
+							refresh();
+						} else {
+							if (event instanceof KanbanRedIndexChanged) {
+								KanbanRedIndexChanged kric = (KanbanRedIndexChanged) event;
+								this.redSpinner.setValue(kric.getRedIndexLevel());
+								refresh();
 
-				}
-				if (event instanceof KanbanGreenIndexChanged) {
-					KanbanGreenIndexChanged kgic = (KanbanGreenIndexChanged) event;
-					this.greenSpinner.setValue(kgic.getGreenIndexLevel());
-					refresh();
+							} else {
+								if (event instanceof KanbanGreenIndexChanged) {
+									KanbanGreenIndexChanged kgic = (KanbanGreenIndexChanged) event;
+									this.greenSpinner.setValue(kgic.getGreenIndexLevel());
+									refresh();
+								}
+							}
+						}
+					}
 				}
 			}
 		}
