@@ -39,6 +39,10 @@ public class KanbanAdded extends AbstractKanbanEvent {
 		return kanbanCount;
 	}
 
+	public void setKanbanCount(int kanbanCount) {
+		this.kanbanCount = kanbanCount;
+	}
+
 	@Override
 	public StringBuilder toSave() {
 		StringBuilder sb = EventStore.genericLine();

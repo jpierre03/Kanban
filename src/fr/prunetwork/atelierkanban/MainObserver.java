@@ -18,6 +18,9 @@ package fr.prunetwork.atelierkanban;
 
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
+import fr.prunetwork.atelierkanban.event.kanban.KanbanAdd;
+import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
+import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -25,6 +28,7 @@ import javax.swing.JFrame;
 import javax.swing.UIManager;
 
 import fr.prunetwork.atelierkanban.gui.MainFrame;
+import fr.prunetwork.atelierkanban.gui.ObservatorFrame;
 import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
 import fr.prunetwork.atelierkanban.storage.EventStore;
 import fr.prunetwork.network.NetworkEventLoader;
@@ -49,7 +53,7 @@ public class MainObserver {
 
 		SplashScreenWindows splashScreen = new SplashScreenWindows();
 
-		final MainFrame frame = new MainFrame();
+		final ObservatorFrame frame = new ObservatorFrame();
 		EventStore es = new EventStore();
 		NetworkEventLoader nel = new NetworkEventLoader(Constants.DEFAULT_HOSTNAME, Constants.DEFAULT_PORT_NUMBER);
 //		nel.registerObserver(EventDispatcher.getEventDispatcher());
@@ -63,7 +67,14 @@ public class MainObserver {
 
 						@Override
 						public void run() {
-							frame.notifyKanbanPlanningPanels(event);
+//							frame.notifyKanbanPlanningPanels(event);
+							if (event instanceof KanbanAdded) {
+								KanbanAdded ka = (KanbanAdded) event;
+								ka.setKanbanCount(ka.getKanbanCount() - 1);
+								frame.notifyKanbanPlanningPanels(ka);
+							} else {
+								frame.notifyKanbanPlanningPanels(event);
+							}
 						}
 					};
 					try {

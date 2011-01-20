@@ -43,10 +43,14 @@ public class MainFrame extends javax.swing.JFrame {
 	/** Creates new form MainFrame */
 	public MainFrame() {
 		initComponents();
-		kanbanPlanningPanel1.setProductName("AC-DC");
-		kanbanPlanningPanel2.setProductName("toto");
-		kanbanPlanningPanel3.setProductName("tata");
-		kanbanPlanningPanel4.setProductName("titi");
+
+		kanbanPlanningPanel1.setProductName("1B-E2");
+		kanbanPlanningPanel2.setProductName("1C-D2");
+	}
+
+	public void setProductNames(String product1, String product2) {
+		kanbanPlanningPanel1.setProductName(product1);
+		kanbanPlanningPanel2.setProductName(product2);
 	}
 
 	/** This method is called from within the constructor to
@@ -62,8 +66,6 @@ public class MainFrame extends javax.swing.JFrame {
         kanbanPlanningPanel1 = new fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel();
         chronometerPanel1 = new fr.prunetwork.atelierkanban.gui.ChronometerPanel();
         kanbanPlanningPanel2 = new fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel();
-        kanbanPlanningPanel3 = new fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel();
-        kanbanPlanningPanel4 = new fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel();
         menuBar = new javax.swing.JMenuBar();
         fileMenu = new javax.swing.JMenu();
         saveAsMenuItem = new javax.swing.JMenuItem();
@@ -90,18 +92,6 @@ public class MainFrame extends javax.swing.JFrame {
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
         getContentPane().add(kanbanPlanningPanel2, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 4;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
-        getContentPane().add(kanbanPlanningPanel3, gridBagConstraints);
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 5;
-        gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.SOUTH;
-        getContentPane().add(kanbanPlanningPanel4, gridBagConstraints);
 
         fileMenu.setText("File");
 
@@ -201,8 +191,6 @@ public class MainFrame extends javax.swing.JFrame {
     private javax.swing.JMenu fileMenu;
     private fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel kanbanPlanningPanel1;
     private fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel kanbanPlanningPanel2;
-    private fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel kanbanPlanningPanel3;
-    private fr.prunetwork.atelierkanban.gui.KanbanPlanningPanel kanbanPlanningPanel4;
     private javax.swing.JMenuBar menuBar;
     private javax.swing.JMenuItem openMenuItem;
     private javax.swing.JMenuItem saveAsMenuItem;
@@ -211,14 +199,10 @@ public class MainFrame extends javax.swing.JFrame {
 	public void notifyKanbanPlanningPanels(Event event) {
 		kanbanPlanningPanel1.notify(event);
 		kanbanPlanningPanel2.notify(event);
-		kanbanPlanningPanel3.notify(event);
-		kanbanPlanningPanel4.notify(event);
 	}
 
 	public void initKanbanPlannings() {
 		kanbanPlanningPanel1.getKp().initValues();
 		kanbanPlanningPanel2.getKp().initValues();
-		kanbanPlanningPanel3.getKp().initValues();
-		kanbanPlanningPanel4.getKp().initValues();
 	}
 }
