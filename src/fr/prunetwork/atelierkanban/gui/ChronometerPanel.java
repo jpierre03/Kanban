@@ -74,7 +74,7 @@ public class ChronometerPanel
 
 			if (c.getBeginDate() != null) {
 
-				EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerStop());
+//				EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerStop());
 
 				if (getTimeTable().getModel() instanceof DefaultTableModel) {
 					DefaultTableModel model = (DefaultTableModel) getTimeTable().
@@ -92,8 +92,7 @@ public class ChronometerPanel
 					getTimeTable().repaint();
 				}
 				EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerSaved());
-				EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerReset());
-
+//				EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerReset());
 			}
 		}
 	}
@@ -119,9 +118,9 @@ public class ChronometerPanel
         saveButton = new javax.swing.JButton();
         startButton = new javax.swing.JButton();
         stopButton = new javax.swing.JButton();
-        resetButton = new javax.swing.JButton();
         timeScrollPane = new javax.swing.JScrollPane();
         timeTable = new javax.swing.JTable();
+        clearButton = new javax.swing.JButton();
 
         setLayout(new java.awt.GridBagLayout());
 
@@ -168,22 +167,9 @@ public class ChronometerPanel
         });
         gridBagConstraints = new java.awt.GridBagConstraints();
         gridBagConstraints.gridx = 1;
-        gridBagConstraints.gridy = 0;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        gridBagConstraints.anchor = java.awt.GridBagConstraints.WEST;
-        add(stopButton, gridBagConstraints);
-
-        resetButton.setText("Reset");
-        resetButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                resetButtonActionPerformed(evt);
-            }
-        });
-        gridBagConstraints = new java.awt.GridBagConstraints();
-        gridBagConstraints.gridx = 1;
         gridBagConstraints.gridy = 1;
-        gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
-        add(resetButton, gridBagConstraints);
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        add(stopButton, gridBagConstraints);
 
         timeTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -193,11 +179,7 @@ public class ChronometerPanel
                 "Number", "Start", "End", "Duration", "(hh:mm:ss)"
             }
         ) {
-            /**
-			 * 
-			 */
-			private static final long serialVersionUID = -3112302369139891665L;
-			boolean[] canEdit = new boolean [] {
+            boolean[] canEdit = new boolean [] {
                 false, false, false, false, false
             };
 
@@ -215,6 +197,18 @@ public class ChronometerPanel
         gridBagConstraints.gridwidth = 3;
         gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
         add(timeScrollPane, gridBagConstraints);
+
+        clearButton.setText("Clear");
+        clearButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                clearButtonActionPerformed(evt);
+            }
+        });
+        gridBagConstraints = new java.awt.GridBagConstraints();
+        gridBagConstraints.gridx = 1;
+        gridBagConstraints.gridy = 0;
+        gridBagConstraints.anchor = java.awt.GridBagConstraints.EAST;
+        add(clearButton, gridBagConstraints);
     }// </editor-fold>//GEN-END:initComponents
 
 	private void startButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startButtonActionPerformed
@@ -222,18 +216,29 @@ public class ChronometerPanel
 	}//GEN-LAST:event_startButtonActionPerformed
 
 	private void stopButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_stopButtonActionPerformed
+		addCurrentDateInTable();
 		EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerStop());
-	}//GEN-LAST:event_stopButtonActionPerformed
-
-	private void resetButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_resetButtonActionPerformed
 		EventDispatcher.getEventDispatcher().notifyObservers(new ChronometerReset());
-	}//GEN-LAST:event_resetButtonActionPerformed
+	}//GEN-LAST:event_stopButtonActionPerformed
 
 	private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
 		addCurrentDateInTable();
 	}//GEN-LAST:event_saveButtonActionPerformed
+
+	private void clearButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_clearButtonActionPerformed
+		if (getTimeTable().getModel() instanceof DefaultTableModel) {
+			DefaultTableModel model = (DefaultTableModel) getTimeTable().
+					getModel();
+
+			while (model.getRowCount() > 0) {
+				model.removeRow(0);
+			}
+			// Add a row in the model
+			getTimeTable().repaint();
+		}
+	}//GEN-LAST:event_clearButtonActionPerformed
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    javax.swing.JButton resetButton;
+    javax.swing.JButton clearButton;
     javax.swing.JButton saveButton;
     javax.swing.JButton startButton;
     javax.swing.JButton stopButton;

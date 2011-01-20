@@ -25,20 +25,23 @@ import javax.swing.UIManager;
  */
 public class ChronometerPanelTest {
 
-    public static void main(String[] args) {
-        try {
-            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ex) {
-        }
+	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+		} catch (Exception ex) {
+		}
 
-        JFrame frame = new JFrame();
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 
-        ChronometerPanel cp = new ChronometerPanel();
-        frame.add(cp);
-        frame.pack();
+		ChronometerPanel cp = new ChronometerPanel();
+		frame.add(cp);
+		frame.pack();
 
-        frame.setLocationRelativeTo(frame.getParent());
-        frame.setVisible(true);
-    }
+		frame.setLocationRelativeTo(frame.getParent());
+		frame.setVisible(true);
+	}
+
+	private ChronometerPanelTest() {
+	}
 }
