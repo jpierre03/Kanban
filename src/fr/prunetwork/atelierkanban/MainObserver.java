@@ -16,25 +16,22 @@
  */
 package fr.prunetwork.atelierkanban;
 
-import fr.prunetwork.atelierkanban.event.Event;
-import fr.prunetwork.atelierkanban.event.EventDispatcher;
-import fr.prunetwork.atelierkanban.event.kanban.KanbanAdd;
-import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
-import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
+import java.awt.EventQueue;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import fr.prunetwork.atelierkanban.gui.MainFrame;
+import org.lsis.haimes.patterns.observer.Observer;
+
+import fr.prunetwork.atelierkanban.event.Event;
+import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.gui.ObservatorFrame;
 import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
 import fr.prunetwork.atelierkanban.storage.EventStore;
 import fr.prunetwork.network.NetworkEventLoader;
-import fr.prunetwork.network.NetworkEventStore;
-import java.awt.EventQueue;
-import org.lsis.haimes.patterns.observer.Observer;
 
 /**
  * Start the Application
