@@ -1,3 +1,1 @@
-start java -cp AtelierKanban.jar fr.prunetwork.atelierkanban.WorkStation4
-
-pause
+java -cp AtelierKanban.jar fr.prunetwork.atelierkanban.WorkStation4
