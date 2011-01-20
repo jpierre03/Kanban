@@ -28,8 +28,8 @@ public class Constants {
 	public static final String DEFAULT = "default";
 	public static final int MILISECONDS_BETWEEN_LOADED_EVENTS = 0;
 	public static final int DEFAULT_PORT_NUMBER = 2222;
-	public static final String DEFAULT_HOSTNAME = "localhost";
-
+//	public static final String DEFAULT_HOSTNAME = "localhost";
+	public static final String DEFAULT_HOSTNAME = "10.0.0.161";
 	private Constants() {
 	}
 }

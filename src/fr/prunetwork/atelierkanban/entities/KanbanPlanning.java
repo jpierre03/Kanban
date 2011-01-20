@@ -140,7 +140,7 @@ public class KanbanPlanning implements Observer {
 			sb.append(row);
 			sb.append("<br></td>");
 			//col 2
-			sb.append("<td style=\"width: 100px;");
+			sb.append("<td style=\"width: 80px;");
 			if (row <= getCurrentKanbanCount()) {
 				sb.append(grayColor);
 			}
