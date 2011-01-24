@@ -54,7 +54,8 @@ public class ObservatorFrame extends javax.swing.JFrame {
 		kanbanPlanningPanel3.setProductName("2G-H3");
 		kanbanPlanningPanel4.setProductName("3H-I4");
 		kanbanPlanningPanel5.setProductName("4K-L3");
-		kanbanPlanningPanel6.setProductName("3L-4M");
+//		kanbanPlanningPanel6.setProductName("3L-M4");
+		kanbanPlanningPanel6.setProductName("NONE");
 	}
 
 	/** This method is called from within the constructor to

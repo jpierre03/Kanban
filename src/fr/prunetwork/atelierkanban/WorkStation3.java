@@ -42,7 +42,7 @@ public class WorkStation3 {
 		SplashScreenWindows splashScreen = new SplashScreenWindows();
 
 		MainFrame frame = new MainFrame();
-		frame.setProductNames("3H-I4", "3L-4M");
+		frame.setProductNames("3H-I4", "3L-M4");
 		EventStore es = new EventStore();
 		NetworkEventStore nes = new NetworkEventStore(Constants.DEFAULT_HOSTNAME, Constants.DEFAULT_PORT_NUMBER);
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
