@@ -26,32 +26,34 @@ import java.util.logging.Logger;
 
 /**
  * C'est dans cette classe que les protocoles d'échange sont définis (cycle de lecture/ecriture)
+ *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class CommunicationClientServeur implements Runnable {
+public class CommunicationClientServeur
+		implements Runnable {
 
 	/**
 	 */
-	private boolean DEBUG = true;
+	private boolean DEBUG  = true;
 	/**
 	 */
-	private Socket client = null;
+	private Socket  client = null;
 	/**
 	 */
 	private BufferedReader entree;
 	/**
 	 */
-	private PrintWriter sortie;
+	private PrintWriter    sortie;
 	/**
 	 */
-	private boolean onContinue = true;
+	private boolean             onContinue = true;
 	/**
 	 */
-	private MyServerMultiClient msMC = null;
+	private MyServerMultiClient msMC       = null;
 
 	/**
-	 * permet de définir quel est l'objet qui a instancié cet objet
-	 * Est utilisé pour avoir un accès aux méthodes publiques
+	 * permet de définir quel est l'objet qui a instancié cet objet Est utilisé pour avoir un accès aux méthodes
+	 * publiques
 	 *
 	 * @param msMC
 	 * @return
@@ -61,9 +63,7 @@ public class CommunicationClientServeur implements Runnable {
 		return this;
 	}
 
-	/**
-	 * @param socket Est un socket pour communiquer avec le client
-	 */
+	/** @param socket Est un socket pour communiquer avec le client */
 	public CommunicationClientServeur(Socket socket) {
 		client = socket;
 
@@ -86,6 +86,7 @@ public class CommunicationClientServeur implements Runnable {
 
 	/**
 	 * Lecture d'un message envoyé par le serveur
+	 *
 	 * @return le message envoyé par le serveur
 	 */
 	public String lireClient() {
@@ -98,7 +99,9 @@ public class CommunicationClientServeur implements Runnable {
 		return ligne;
 	}
 
-	/** Envoie des données au client.
+	/**
+	 * Envoie des données au client.
+	 *
 	 * @param ligne les caractères à envoyer
 	 */
 	public void ecrireClient(String ligne) {
@@ -113,6 +116,7 @@ public class CommunicationClientServeur implements Runnable {
 
 	/**
 	 * Pour afficher un message avec tous les personnes connectées
+	 *
 	 * @param ligne un message
 	 */
 	public void ecrireTousClient(String ligne) {
@@ -131,14 +135,18 @@ public class CommunicationClientServeur implements Runnable {
 		}
 	}
 
-	/** teste la connexion.
-	 *@return un booléen notifiant l'état de la connexion
+	/**
+	 * teste la connexion.
+	 *
+	 * @return un booléen notifiant l'état de la connexion
 	 */
 	public boolean clientOK() {
 		return client.isConnected();
 	}
 
-	/** Fermeture du socket.
+	/**
+	 * Fermeture du socket.
+	 *
 	 * @return
 	 */
 	public CommunicationClientServeur fermer() {

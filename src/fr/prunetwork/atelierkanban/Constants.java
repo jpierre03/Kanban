@@ -16,20 +16,18 @@
  */
 package fr.prunetwork.atelierkanban;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
 public class Constants {
 
-	public static final String SPLASH_SCREEN_IMAGE =
+	public static final String SPLASH_SCREEN_IMAGE               =
 			"/images/splash-1024x800.png";
-	public static final String SHORT_FILE = "/home/jpierre03/Bureau/test";
-	public static final String DEFAULT = "default";
-	public static final int MILISECONDS_BETWEEN_LOADED_EVENTS = 100;
-	public static final int DEFAULT_PORT_NUMBER = 2222;
-	public static final String DEFAULT_HOSTNAME = "localhost";
-//	public static final String DEFAULT_HOSTNAME = "10.0.0.161";
+	public static final String SHORT_FILE                        = "/home/jpierre03/Bureau/test";
+	public static final String DEFAULT                           = "default";
+	public static final int    MILISECONDS_BETWEEN_LOADED_EVENTS = 100;
+	public static final int    DEFAULT_PORT_NUMBER               = 2222;
+	public static final String DEFAULT_HOSTNAME                  = "localhost";
+
+	//	public static final String DEFAULT_HOSTNAME = "10.0.0.161";
 	private Constants() {
 	}
 }

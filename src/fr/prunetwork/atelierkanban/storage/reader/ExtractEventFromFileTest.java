@@ -16,19 +16,17 @@
  */
 package fr.prunetwork.atelierkanban.storage.reader;
 
-import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.swing.JFrame;
-
 import fr.prunetwork.atelierkanban.Constants;
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.gui.MainFrame;
 import fr.prunetwork.atelierkanban.storage.EventStore;
 
+import javax.swing.JFrame;
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
- *
  * @author jpierre03+teamwar@prunetwork.fr
  * @author garciaf
  */

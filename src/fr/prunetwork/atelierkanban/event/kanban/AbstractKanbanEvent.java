@@ -19,23 +19,19 @@ package fr.prunetwork.atelierkanban.event.kanban;
 import fr.prunetwork.atelierkanban.Constants;
 import fr.prunetwork.atelierkanban.event.AbstractEvent;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public abstract class AbstractKanbanEvent extends AbstractEvent {
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public abstract class AbstractKanbanEvent
+		extends AbstractEvent {
 
 	private String productName = Constants.DEFAULT;
 
-	/**
-	 * @return the productName
-	 */ public String getProductName() {
+	/** @return the productName */
+	public String getProductName() {
 		return productName;
 	}
 
-	/**
-	 * @param productName the productName to set
-	 */ public void setProductName(String productName) {
+	/** @param productName the productName to set */
+	public void setProductName(String productName) {
 		this.productName = productName;
 	}
 }

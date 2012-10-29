@@ -18,13 +18,12 @@ package fr.prunetwork.atelierkanban.event.kanban.index;
 
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.storage.EventStore;
+
 import java.util.StringTokenizer;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public class KanbanRedIndexChanged extends AbstractKanbanIndexEvent {
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public class KanbanRedIndexChanged
+		extends AbstractKanbanIndexEvent {
 
 	private int redIndexLevel;
 
@@ -32,9 +31,7 @@ public class KanbanRedIndexChanged extends AbstractKanbanIndexEvent {
 		this.redIndexLevel = redIndexLevel;
 	}
 
-	/**
-	 * @return the kanbanCount
-	 */
+	/** @return the kanbanCount */
 	public int getRedIndexLevel() {
 		return redIndexLevel;
 	}

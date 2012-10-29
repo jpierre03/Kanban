@@ -16,11 +16,9 @@
  */
 package fr.prunetwork.atelierkanban.event;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public abstract class AbstractEvent implements Event {
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public abstract class AbstractEvent
+		implements Event {
 
 	@Override
 	public String toString() {

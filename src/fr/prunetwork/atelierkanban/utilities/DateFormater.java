@@ -21,45 +21,44 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * 
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  * @author garciaf
  */
 public class DateFormater {
 
-		private Date date;
+	private Date date;
 
-		public DateFormater(Date date) {
-				this.date = date;
-		}
+	public DateFormater(Date date) {
+		this.date = date;
+	}
 
-		public DateFormater(int timeStamp) {
-				this.date = new Date(timeStamp);
-		}
+	public DateFormater(int timeStamp) {
+		this.date = new Date(timeStamp);
+	}
 
-		@Override
-		public String toString() {
-				return toISO8601();
-		}
+	@Override
+	public String toString() {
+		return toISO8601();
+	}
 
-		public String toISO8601() {
-				/**
-				 * Formatteur pour que les dates s'affichent au format ISO 8601
-				 */
-				SimpleDateFormat dateTime = new SimpleDateFormat(
-						"yyyy-MM-dd'T'HH:mm:ss.SSS",
-																 Locale.
-						getDefault());
-				return dateTime.format(date);
-		}
+	public String toISO8601() {
+		/**
+		 * Formatteur pour que les dates s'affichent au format ISO 8601
+		 */
+		SimpleDateFormat dateTime = new SimpleDateFormat(
+				"yyyy-MM-dd'T'HH:mm:ss.SSS",
+				Locale.
+							  getDefault());
+		return dateTime.format(date);
+	}
 
-		public String toHHMMSS() {
-				/**
-				 * Formatteur pour que les dates s'affichent au format ISO 8601
-				 */
-				SimpleDateFormat dateTime = new SimpleDateFormat("HH:mm:ss",
-																 Locale.
-						getDefault());
-				return dateTime.format(date);
-		}
+	public String toHHMMSS() {
+		/**
+		 * Formatteur pour que les dates s'affichent au format ISO 8601
+		 */
+		SimpleDateFormat dateTime = new SimpleDateFormat("HH:mm:ss",
+														 Locale.
+																	   getDefault());
+		return dateTime.format(date);
+	}
 }

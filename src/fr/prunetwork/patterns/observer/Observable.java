@@ -18,15 +18,12 @@ package fr.prunetwork.patterns.observer;
 
 import fr.prunetwork.atelierkanban.event.Event;
 
-/**
- *
- * @author jpierre03
- */
+/** @author jpierre03 */
 public interface Observable {
 
-    void registerObserver(Observer observer);
+	void registerObserver(Observer observer);
 
-    void unregisterObserver(Observer observer);
+	void unregisterObserver(Observer observer);
 
-    void notifyObservers(Event object);
+	void notifyObservers(Event object);
 }

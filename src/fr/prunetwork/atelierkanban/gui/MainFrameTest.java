@@ -16,22 +16,17 @@
  */
 package fr.prunetwork.atelierkanban.gui;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
 public class MainFrameTest {
 
-		/**
-		 * @param args the command line arguments
-		 */
-		public static void main(String args[]) {
-				java.awt.EventQueue.invokeLater(new Runnable() {
+	/** @param args the command line arguments */
+	public static void main(String args[]) {
+		java.awt.EventQueue.invokeLater(new Runnable() {
 
-						@Override
-						public void run() {
-								new MainFrame().setVisible(true);
-						}
-				});
-		}
+			@Override
+			public void run() {
+				new MainFrame().setVisible(true);
+			}
+		});
+	}
 }

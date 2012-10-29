@@ -21,47 +21,47 @@ import java.util.Date;
 import java.util.Locale;
 
 /**
- * 
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  * @author garciaf
  */
-public class DateFormatter extends Date {
+public class DateFormatter
+		extends Date {
 
-    private static final long serialVersionUID = 201001111551L;
+	private static final long serialVersionUID = 201001111551L;
 
-    public DateFormatter(Date date) {
-        super(date.getTime());
-    }
+	public DateFormatter(Date date) {
+		super(date.getTime());
+	}
 
-    public DateFormatter(int timeStamp) {
-        super(timeStamp);
-    }
+	public DateFormatter(int timeStamp) {
+		super(timeStamp);
+	}
 
-    public DateFormatter(String timeStamp) {
-        super(Long.parseLong(timeStamp));
-    }
+	public DateFormatter(String timeStamp) {
+		super(Long.parseLong(timeStamp));
+	}
 
-    @Override
-    public String toString() {
-        return toISO8601();
-    }
+	@Override
+	public String toString() {
+		return toISO8601();
+	}
 
-    public String toISO8601() {
-        /**
-         * Formatteur pour que les dates s'affichent au format ISO 8601
-         */
-        SimpleDateFormat dateTime = new SimpleDateFormat(
-                "yyyy-MM-dd'T'HH:mm:ss.SSS",
-                Locale.getDefault());
-        return dateTime.format(this);
-    }
+	public String toISO8601() {
+		/**
+		 * Formatteur pour que les dates s'affichent au format ISO 8601
+		 */
+		SimpleDateFormat dateTime = new SimpleDateFormat(
+				"yyyy-MM-dd'T'HH:mm:ss.SSS",
+				Locale.getDefault());
+		return dateTime.format(this);
+	}
 
-    public String toHHMMSS() {
-        /**
-         * Formatteur pour que les dates s'affichent au format ISO 8601
-         */
-        SimpleDateFormat dateTime = new SimpleDateFormat("HH:mm:ss",
-                Locale.getDefault());
-        return dateTime.format(this);
-    }
+	public String toHHMMSS() {
+		/**
+		 * Formatteur pour que les dates s'affichent au format ISO 8601
+		 */
+		SimpleDateFormat dateTime = new SimpleDateFormat("HH:mm:ss",
+														 Locale.getDefault());
+		return dateTime.format(this);
+	}
 }

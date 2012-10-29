@@ -19,19 +19,18 @@ package fr.prunetwork.network;
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.storage.reader.ExtractEventFromFile;
 import fr.prunetwork.network.client.MyClient;
+import fr.prunetwork.patterns.observer.Observable;
+import fr.prunetwork.patterns.observer.Observer;
+
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import fr.prunetwork.patterns.observer.Observable;
-import fr.prunetwork.patterns.observer.Observer;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public class NetworkEventLoader implements Observable {
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public class NetworkEventLoader
+		implements Observable {
 
 	private MyClient mc = null; //initialisation de la variable locale
 
@@ -64,6 +63,7 @@ public class NetworkEventLoader implements Observable {
 
 		new Thread(read).start();
 	}
+
 	private Collection<Observer> observers = new ArrayList<Observer>(10);
 
 	@Override

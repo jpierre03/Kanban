@@ -19,7 +19,6 @@ package fr.prunetwork.patterns.observer;
 import fr.prunetwork.atelierkanban.event.Event;
 
 /**
- *
  * @param <T>
  * @author jpierre03
  */

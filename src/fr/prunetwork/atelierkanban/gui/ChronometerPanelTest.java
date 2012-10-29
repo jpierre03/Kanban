@@ -19,10 +19,7 @@ package fr.prunetwork.atelierkanban.gui;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
 public class ChronometerPanelTest {
 
 	public static void main(String[] args) {

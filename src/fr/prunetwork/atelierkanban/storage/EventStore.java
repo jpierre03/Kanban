@@ -16,20 +16,17 @@
  */
 package fr.prunetwork.atelierkanban.storage;
 
-import java.util.Date;
-
-import fr.prunetwork.patterns.observer.Observer;
-
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
 import fr.prunetwork.atelierkanban.storage.writer.StoreDataToFile;
 import fr.prunetwork.atelierkanban.utilities.DateFormatter;
+import fr.prunetwork.patterns.observer.Observer;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public class EventStore implements Observer {
+import java.util.Date;
+
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public class EventStore
+		implements Observer {
 
 	public EventStore() {
 		EventDispatcher.getEventDispatcher().registerObserver(this);
@@ -47,10 +44,7 @@ public class EventStore implements Observer {
 		return sb;
 	}
 
-	/**
-	 *
-	 * @param event
-	 */
+	/** @param event  */
 	@Override
 	public void notify(Event event) {
 		saveNotification(event);

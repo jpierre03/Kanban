@@ -19,22 +19,14 @@ package fr.prunetwork.network.server;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
 public class MyServerMultiClientTest {
 
-	/**
-	 * Constructeur par défaut
-	 */
+	/** Constructeur par défaut */
 	public MyServerMultiClientTest() {
 	}
 
-	/**
-	 * 
-	 * @param args
-	 */
+	/** @param args  */
 	public static void main(String args[]) {
 //	Pour tester un protocole simple de communication
 //	Bien entendu il faut que serveur et client soient compatibles

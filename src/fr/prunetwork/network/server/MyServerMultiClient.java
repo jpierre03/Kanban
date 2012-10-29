@@ -16,6 +16,8 @@
  */
 package fr.prunetwork.network.server;
 
+import fr.prunetwork.atelierkanban.Constants;
+
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -29,32 +31,24 @@ import java.util.concurrent.Executors;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-import fr.prunetwork.atelierkanban.Constants;
-
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
 public class MyServerMultiClient {
 
-	/** Détermine le nombre de threads qui sont exécutés en même temps*/
-	private static Executor executor = Executors.newFixedThreadPool(100);
-	/** Contient la référence de la socket*/
-	private ServerSocket serverSocket = null;
+	/** Détermine le nombre de threads qui sont exécutés en même temps */
+	private static Executor                               executor     = Executors.newFixedThreadPool(100);
+	/** Contient la référence de la socket */
+	private        ServerSocket                           serverSocket = null;
 	/** Pour savoir si on continue ou non l'execution */
-	private boolean onContinue = true;
-	/** Pour savoir si la communication est terminée*/
-	private boolean isEnded = false;
-	/** pour savor combien de temps on doit attendre le client*/
-	private int dureeTimeout = 1000000;
+	private        boolean                                onContinue   = true;
+	/** Pour savoir si la communication est terminée */
+	private        boolean                                isEnded      = false;
+	/** pour savor combien de temps on doit attendre le client */
+	private        int                                    dureeTimeout = 1000000;
 	/**
 	 */
-	private Collection<CommunicationClientServeur> listComm = new ArrayList<CommunicationClientServeur>();
+	private        Collection<CommunicationClientServeur> listComm     = new ArrayList<CommunicationClientServeur>();
 
-	/**
-	 *
-	 * @param port
-	 */
+	/** @param port  */
 	public MyServerMultiClient(int port) {// création d'un serveur
 		CommunicationClientServeur comm = null;
 		if (port < 1023) {// ports reserves
@@ -101,9 +95,7 @@ public class MyServerMultiClient {
 		}
 	}
 
-	/**
-	 * Pout finir proprement le serveur
-	 */
+	/** Pout finir proprement le serveur */
 	public void end() {
 		Iterator<CommunicationClientServeur> it = getListComm().iterator();
 		/** On parcours la liste de tous les client connectés et on ferme la connexion*/
@@ -121,6 +113,7 @@ public class MyServerMultiClient {
 
 	/**
 	 * Pour savoir si on laisse le serveur lancé
+	 *
 	 * @return on continue ou on arrete le serveur (True/false)
 	 */
 	public synchronized boolean getOnContinue() {
@@ -129,6 +122,7 @@ public class MyServerMultiClient {
 
 	/**
 	 * Le serveur est il arrêté ? (True/False)
+	 *
 	 * @return
 	 */
 	public synchronized boolean isEnded() {
@@ -137,6 +131,7 @@ public class MyServerMultiClient {
 
 	/**
 	 * Pour écrire à toui
+	 *
 	 * @param ligne
 	 */
 	public void ecrireTousClient(String ligne) {
@@ -152,16 +147,12 @@ public class MyServerMultiClient {
 		}
 	}
 
-	/**
-	 * @return the listComm
-	 */
+	/** @return the listComm */
 	private synchronized Collection<CommunicationClientServeur> getListComm() {
 		return listComm;
 	}
 
-	/**
-	 * @param listComm the listComm to set
-	 */
+	/** @param listComm the listComm to set */
 	private synchronized void setListComm(Collection<CommunicationClientServeur> listComm) {
 		this.listComm.clear();
 		this.listComm.addAll(listComm);

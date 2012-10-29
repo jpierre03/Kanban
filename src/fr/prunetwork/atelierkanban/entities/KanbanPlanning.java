@@ -27,11 +27,9 @@ import fr.prunetwork.atelierkanban.event.kanban.index.KanbanGreenIndexChanged;
 import fr.prunetwork.atelierkanban.event.kanban.index.KanbanRedIndexChanged;
 import fr.prunetwork.patterns.observer.Observer;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public class KanbanPlanning implements Observer {
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public class KanbanPlanning
+		implements Observer {
 
 	private int upperLevel_redIndex;
 	private int lowerLevel_greenIndex;
@@ -44,9 +42,9 @@ public class KanbanPlanning implements Observer {
 	private final int INIT_BLUE_LEVEL;
 
 	public KanbanPlanning(int upperLevel_red,
-			int lowerLevel_green,
-			int maxKanban,
-			int initialKanbanCount) {
+						  int lowerLevel_green,
+						  int maxKanban,
+						  int initialKanbanCount) {
 
 		INIT_RED_LEVEL = upperLevel_red;
 		INIT_GREEN_LEVEL = lowerLevel_green;
@@ -83,30 +81,22 @@ public class KanbanPlanning implements Observer {
 		}
 	}
 
-	/**
-	 * @return the maxKanban
-	 */
+	/** @return the maxKanban */
 	public int getMaxKanban_blueIndex() {
 		return maxKanban_blueIndex;
 	}
 
-	/**
-	 * @return the upperLevel_red
-	 */
+	/** @return the upperLevel_red */
 	public int getUpperLevel_redIndex() {
 		return upperLevel_redIndex;
 	}
 
-	/**
-	 * @return the lowerLevel_green
-	 */
+	/** @return the lowerLevel_green */
 	public int getLowerLevel_greenIndex() {
 		return lowerLevel_greenIndex;
 	}
 
-	/**
-	 * @return the currentKanbanCount
-	 */
+	/** @return the currentKanbanCount */
 	public int getCurrentKanbanCount() {
 		return currentKanbanCount;
 	}
@@ -155,30 +145,22 @@ public class KanbanPlanning implements Observer {
 		return sb.toString();
 	}
 
-	/**
-	 * @param upperLevel_red the upperLevel_red to set
-	 */
+	/** @param upperLevel_red the upperLevel_red to set */
 	public void setUpperLevel_red(int upperLevel_red) {
 		this.upperLevel_redIndex = upperLevel_red;
 	}
 
-	/**
-	 * @param lowerLevel_green the lowerLevel_green to set
-	 */
+	/** @param lowerLevel_green the lowerLevel_green to set */
 	public void setLowerLevel_green(int lowerLevel_green) {
 		this.lowerLevel_greenIndex = lowerLevel_green;
 	}
 
-	/**
-	 * @param maxKanban the maxKanban to set
-	 */
+	/** @param maxKanban the maxKanban to set */
 	public void setMaxKanban(int maxKanban) {
 		this.maxKanban_blueIndex = maxKanban;
 	}
 
-	/**
-	 * @param currentKanbanCount the currentKanbanCount to set
-	 */
+	/** @param currentKanbanCount the currentKanbanCount to set */
 	public void setCurrentKanbanCount(int currentKanbanCount) {
 		this.currentKanbanCount = currentKanbanCount;
 	}
@@ -214,16 +196,12 @@ public class KanbanPlanning implements Observer {
 		}
 	}
 
-	/**
-	 * @return the productName
-	 */
+	/** @return the productName */
 	public String getProductName() {
 		return productName;
 	}
 
-	/**
-	 * @param productName the productName to set
-	 */
+	/** @param productName the productName to set */
 	public void setProductName(String productName) {
 		this.productName = productName;
 	}

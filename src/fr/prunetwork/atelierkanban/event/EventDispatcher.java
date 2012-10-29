@@ -16,21 +16,21 @@
  */
 package fr.prunetwork.atelierkanban.event;
 
-import java.util.ArrayList;
-import java.util.Collection;
 import fr.prunetwork.patterns.observer.Observable;
 import fr.prunetwork.patterns.observer.Observer;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public class EventDispatcher implements Observable, Observer {
+import java.util.ArrayList;
+import java.util.Collection;
+
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public class EventDispatcher
+		implements Observable, Observer {
 
 	private static EventDispatcher eventDispatcher = new EventDispatcher();
 
 	private EventDispatcher() {
 	}
+
 	private Collection<Observer> observers = new ArrayList<Observer>(10);
 
 	@Override
@@ -55,9 +55,7 @@ public class EventDispatcher implements Observable, Observer {
 		notifyObservers(event);
 	}
 
-	/**
-	 * @return the eventDispatcher
-	 */
+	/** @return the eventDispatcher */
 	public static EventDispatcher getEventDispatcher() {
 		return eventDispatcher;
 	}

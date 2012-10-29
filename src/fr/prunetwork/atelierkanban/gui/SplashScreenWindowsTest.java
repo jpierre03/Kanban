@@ -18,30 +18,24 @@ package fr.prunetwork.atelierkanban.gui;
 
 import javax.swing.UIManager;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
 public class SplashScreenWindowsTest {
 
-		/**
-		 *
-		 * @param args
-		 */
-		public static void main(String[] args) {
-				try {
-						UIManager.setLookAndFeel(UIManager.
-								getSystemLookAndFeelClassName());
-				} catch (Exception ex) {
-				}
-
-				SplashScreenWindows splashScreen = new SplashScreenWindows();
-
-				try {
-						Thread.sleep(5000);
-				} catch (InterruptedException ex) {
-				}
-
-				splashScreen.masquer();
+	/** @param args  */
+	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.
+													  getSystemLookAndFeelClassName());
+		} catch (Exception ex) {
 		}
+
+		SplashScreenWindows splashScreen = new SplashScreenWindows();
+
+		try {
+			Thread.sleep(5000);
+		} catch (InterruptedException ex) {
+		}
+
+		splashScreen.masquer();
+	}
 }

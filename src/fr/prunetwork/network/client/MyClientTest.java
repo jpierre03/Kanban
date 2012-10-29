@@ -20,21 +20,16 @@ import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
 public class MyClientTest {
 
-	/**
-	 * Constructeur de la classe de test
-	 */
+	/** Constructeur de la classe de test */
 	public MyClientTest() {
 	}
 
 	/**
-	 * Le programme commence ici.
-	 * Le test se fait en réalisant un connexion du client sur un serveur en console
+	 * Le programme commence ici. Le test se fait en réalisant un connexion du client sur un serveur en console
+	 *
 	 * @param args Ce sont les paramètres de la ligne de commande
 	 */
 	public static void main(String[] args) {

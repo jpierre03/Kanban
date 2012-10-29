@@ -17,21 +17,18 @@
 package fr.prunetwork.network;
 
 import fr.prunetwork.atelierkanban.Constants;
-import fr.prunetwork.network.NetworkEventLoader;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
 public class NetworkEventLoaderTest {
 
 	public static void main(String args[]) {
 		try {
-		NetworkEventLoader nel = new NetworkEventLoader(Constants.DEFAULT_HOSTNAME, Constants.DEFAULT_PORT_NUMBER);
+			NetworkEventLoader nel = new NetworkEventLoader(Constants.DEFAULT_HOSTNAME, Constants.DEFAULT_PORT_NUMBER);
 
-		} catch (Exception ex){
+		} catch (Exception ex) {
 
 		}
 		try {

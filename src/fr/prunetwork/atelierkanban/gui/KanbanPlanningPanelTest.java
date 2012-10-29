@@ -19,27 +19,24 @@ package fr.prunetwork.atelierkanban.gui;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
 public class KanbanPlanningPanelTest {
 
-		public static void main(String[] args) {
-				try {
-						UIManager.setLookAndFeel(UIManager.
-								getSystemLookAndFeelClassName());
-				} catch (Exception ex) {
-				}
-
-				JFrame frame = new JFrame();
-				frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-
-				KanbanPlanningPanel kpp = new KanbanPlanningPanel();
-				frame.add(kpp);
-				frame.pack();
-
-				frame.setLocationRelativeTo(frame.getParent());
-				frame.setVisible(true);
+	public static void main(String[] args) {
+		try {
+			UIManager.setLookAndFeel(UIManager.
+													  getSystemLookAndFeelClassName());
+		} catch (Exception ex) {
 		}
+
+		JFrame frame = new JFrame();
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+		KanbanPlanningPanel kpp = new KanbanPlanningPanel();
+		frame.add(kpp);
+		frame.pack();
+
+		frame.setLocationRelativeTo(frame.getParent());
+		frame.setVisible(true);
+	}
 }

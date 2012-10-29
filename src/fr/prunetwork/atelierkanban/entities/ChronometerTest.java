@@ -16,15 +16,13 @@
  */
 package fr.prunetwork.atelierkanban.entities;
 
-import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStart;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStart;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
 public class ChronometerTest {
 
 	public static void main(String args[]) {

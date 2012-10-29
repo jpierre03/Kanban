@@ -21,35 +21,34 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 
 /**
- *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  * @author garciaf
  */
 public class StoreDataToFileTest {
 
-		public static void main(String arg[]) {
-				StoreDataToFile storeDataToFile =
-								StoreDataToFile.getStoreToFile();
+	public static void main(String arg[]) {
+		StoreDataToFile storeDataToFile =
+				StoreDataToFile.getStoreToFile();
 
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
-				try {
-						storeDataToFile.commit("FileXXXXXXXXXXXX");
-				} catch (IOException ex) {
-						Logger.getLogger(StoreDataToFileTest.class.getName()).
-								log(Level.SEVERE, null, ex);
-				}
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		storeDataToFile.add("vncdnbcvlnbvj,n!vb,n:;,v!\n");
+		try {
+			storeDataToFile.commit("FileXXXXXXXXXXXX");
+		} catch (IOException ex) {
+			Logger.getLogger(StoreDataToFileTest.class.getName()).
+					log(Level.SEVERE, null, ex);
 		}
+	}
 }

@@ -16,32 +16,29 @@
  */
 package fr.prunetwork.atelierkanban;
 
-import java.awt.EventQueue;
-import java.lang.reflect.InvocationTargetException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-
-import fr.prunetwork.patterns.observer.Observer;
-
-import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.gui.ObservatorFrame;
 import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
 import fr.prunetwork.atelierkanban.storage.EventStore;
 import fr.prunetwork.network.NetworkEventLoader;
+import fr.prunetwork.patterns.observer.Observer;
+
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import java.awt.Event;
+import java.awt.EventQueue;
+import java.lang.reflect.InvocationTargetException;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 /**
  * Start the Application
+ *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public class MainObserver {
 
-	/**
-	 * @param args the command line arguments
-	 */
+	/** @param args the command line arguments */
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

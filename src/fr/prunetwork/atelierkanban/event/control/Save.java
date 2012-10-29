@@ -19,13 +19,12 @@ package fr.prunetwork.atelierkanban.event.control;
 import fr.prunetwork.atelierkanban.event.AbstractEvent;
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.storage.EventStore;
+
 import java.util.StringTokenizer;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public class Save extends AbstractEvent {
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public class Save
+		extends AbstractEvent {
 
 	public StringBuilder toSave() {
 		StringBuilder sb = EventStore.genericLine();

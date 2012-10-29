@@ -19,10 +19,7 @@ package fr.prunetwork.network;
 import fr.prunetwork.atelierkanban.Constants;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdd;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
 public class NetworkEventStoreTest {
 
 	public static void main(String args[]) {

@@ -16,6 +16,16 @@
  */
 package fr.prunetwork.atelierkanban.storage.reader;
 
+import fr.prunetwork.atelierkanban.event.Event;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerReset;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStart;
+import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStop;
+import fr.prunetwork.atelierkanban.event.kanban.index.KanbanBlueIndexChanged;
+import fr.prunetwork.atelierkanban.event.kanban.index.KanbanGreenIndexChanged;
+import fr.prunetwork.atelierkanban.event.kanban.index.KanbanRedIndexChanged;
+import fr.prunetwork.atelierkanban.utilities.DateFormatter;
+
 import java.io.BufferedReader;
 import java.io.FileInputStream;
 import java.io.InputStream;
@@ -25,23 +35,7 @@ import java.util.Collection;
 import java.util.Date;
 import java.util.StringTokenizer;
 
-import fr.prunetwork.atelierkanban.event.Event;
-import fr.prunetwork.atelierkanban.event.chronometer.ChronometerReset;
-import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
-import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStart;
-import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStop;
-import fr.prunetwork.atelierkanban.event.kanban.KanbanAdd;
-import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
-import fr.prunetwork.atelierkanban.event.kanban.KanbanNameWrapper;
-import fr.prunetwork.atelierkanban.event.kanban.KanbanRemove;
-import fr.prunetwork.atelierkanban.event.kanban.KanbanRemoved;
-import fr.prunetwork.atelierkanban.event.kanban.index.KanbanBlueIndexChanged;
-import fr.prunetwork.atelierkanban.event.kanban.index.KanbanGreenIndexChanged;
-import fr.prunetwork.atelierkanban.event.kanban.index.KanbanRedIndexChanged;
-import fr.prunetwork.atelierkanban.utilities.DateFormatter;
-
 /**
- *
  * @author jpierre03+teamwar@prunetwork.fr
  * @author garciaf
  */
@@ -74,7 +68,9 @@ public class ExtractEventFromFile {
 		return events;
 	}
 
-	public static Event eventFromLine(String line) throws Exception {
+	public static Event eventFromLine(String line)
+			throws
+			Exception {
 		Event event = null;
 		if (line != null) {
 			line = formatString(line);
@@ -84,7 +80,9 @@ public class ExtractEventFromFile {
 		return event;
 	}
 
-	private static Event instanciateEventFromTokenizer(StringTokenizer stringTokenizer) throws Exception {
+	private static Event instanciateEventFromTokenizer(StringTokenizer stringTokenizer)
+			throws
+			Exception {
 		Event event = null;
 		Date date;
 		//token1 - date (timestamp)

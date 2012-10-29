@@ -19,11 +19,9 @@ package fr.prunetwork.atelierkanban.event.kanban.index;
 import fr.prunetwork.atelierkanban.event.kanban.AbstractKanbanEvent;
 
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public abstract class AbstractKanbanIndexEvent extends AbstractKanbanEvent {
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public abstract class AbstractKanbanIndexEvent
+		extends AbstractKanbanEvent {
 
 
 }

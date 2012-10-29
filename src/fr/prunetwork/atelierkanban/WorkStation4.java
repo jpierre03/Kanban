@@ -16,23 +16,22 @@
  */
 package fr.prunetwork.atelierkanban;
 
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-
 import fr.prunetwork.atelierkanban.gui.MainFrame;
 import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
 import fr.prunetwork.atelierkanban.storage.EventStore;
 import fr.prunetwork.network.NetworkEventStore;
 
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+
 /**
  * Start the Application
+ *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public class WorkStation4 {
 
-	/**
-	 * @param args the command line arguments
-	 */
+	/** @param args the command line arguments */
 	public static void main(String[] args) {
 		try {
 			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());

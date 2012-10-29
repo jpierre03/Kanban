@@ -19,14 +19,13 @@ package fr.prunetwork.network;
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
 import fr.prunetwork.network.client.MyClient;
-import java.io.IOException;
 import fr.prunetwork.patterns.observer.Observer;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public class NetworkEventStore implements Observer {
+import java.io.IOException;
+
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public class NetworkEventStore
+		implements Observer {
 
 	private MyClient mc = null; //initialisation de la variable locale
 
@@ -43,10 +42,7 @@ public class NetworkEventStore implements Observer {
 		EventDispatcher.getEventDispatcher().registerObserver(this);
 	}
 
-	/**
-	 *
-	 * @param event
-	 */
+	/** @param event  */
 	@Override
 	public void notify(Event event) {
 		sendNotification(event);
@@ -54,8 +50,8 @@ public class NetworkEventStore implements Observer {
 
 	private void sendNotification(Event event) {
 		if (event != null
-				&& mc != null
-				&& mc.isConnected()) {
+			&& mc != null
+			&& mc.isConnected()) {
 			mc.writeToServer(event.toSave().toString());
 		}
 	}

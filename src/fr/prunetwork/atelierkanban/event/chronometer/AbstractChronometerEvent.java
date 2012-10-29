@@ -18,9 +18,7 @@ package fr.prunetwork.atelierkanban.event.chronometer;
 
 import fr.prunetwork.atelierkanban.event.AbstractEvent;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public abstract class AbstractChronometerEvent extends AbstractEvent {
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public abstract class AbstractChronometerEvent
+		extends AbstractEvent {
 }

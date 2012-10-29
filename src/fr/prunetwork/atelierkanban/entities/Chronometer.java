@@ -16,19 +16,22 @@
  */
 package fr.prunetwork.atelierkanban.entities;
 
+import fr.prunetwork.atelierkanban.event.Event;
+import fr.prunetwork.atelierkanban.event.EventDispatcher;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerReset;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStart;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStop;
-import fr.prunetwork.atelierkanban.event.Event;
-import fr.prunetwork.atelierkanban.event.EventDispatcher;
-import java.util.Date;
 import fr.prunetwork.patterns.observer.Observer;
+
+import java.util.Date;
 
 /**
  * Gestion d'un chronomètre.
+ *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
-public class Chronometer implements Observer {
+public class Chronometer
+		implements Observer {
 
 	private Date beginDate, endDate;
 	private boolean isWaiting;
@@ -44,10 +47,7 @@ public class Chronometer implements Observer {
 		EventDispatcher.getEventDispatcher().registerObserver(this);
 	}
 
-	/**
-	 * Change d'état courant pour se placer en mode d'attente si et seulement
-	 * si enAttente est true.
-	 */
+	/** Change d'état courant pour se placer en mode d'attente si et seulement si enAttente est true. */
 	private void setWaitingState(boolean waitingState) {
 		if (isWaiting != waitingState) {
 			if (isWaiting) {
@@ -59,39 +59,32 @@ public class Chronometer implements Observer {
 		}
 	}
 
-	/**
-	 * Déclenche le chronométrage
-	 */
+	/** Déclenche le chronométrage */
 	private void start() {
 		setWaitingState(false);
 	}
 
-	/**
-	 * Arrête le chronométrage
-	 */
+	/** Arrête le chronométrage */
 	private void stop() {
 		setWaitingState(true);
 	}
 
-	/**
-	 * Remet à zéro le chronomètre
-	 */
+	/** Remet à zéro le chronomètre */
 	private void reset() {
 		beginDate = null;
 		isWaiting = true;
 	}
 
 	/**
-	 * Retourne le nombre de secondes qui se sont écoulées entre l'appel à
-	 * "start" et l'instant courant (si le chronométrage n'a pas encore
-	 * été arrêté) ou l'instant d'arrêt du chronométrage.
+	 * Retourne le nombre de secondes qui se sont écoulées entre l'appel à "start" et l'instant courant (si le
+	 * chronométrage n'a pas encore été arrêté) ou l'instant d'arrêt du chronométrage.
+	 *
 	 * @return time in second since start
 	 */
 	public int read() {
 		long upperLevel;
 
-		if (getBeginDate() == null) {
-			/* Le chronomètre n'a pas été déclenché depuis son
+		if (getBeginDate() == null) {            /* Le chronomètre n'a pas été déclenché depuis son
 			initialisation ou sa réinitialisation. */
 			return 0;
 		} else {
@@ -102,20 +95,16 @@ public class Chronometer implements Observer {
 			}
 
 			return (int) (upperLevel - getBeginDate().getTime())
-					/ 1000;
+				   / 1000;
 		}
 	}
 
-	/**
-	 * @return the beginDate
-	 */
+	/** @return the beginDate */
 	public Date getBeginDate() {
 		return beginDate;
 	}
 
-	/**
-	 * @return the endDate
-	 */
+	/** @return the endDate */
 	public Date getEndDate() {
 		Date aDate = null;
 		if (endDate != null) {

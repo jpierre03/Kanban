@@ -19,20 +19,14 @@ package fr.prunetwork.atelierkanban.event;
 import java.io.Serializable;
 import java.util.StringTokenizer;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public interface Event extends Serializable {
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public interface Event
+		extends Serializable {
 
-	/**
-	 *
-	 * @return
-	 */
+	/** @return  */
 	StringBuilder toSave();
 
 	/**
-	 * 
 	 * @param stringTokenizer
 	 * @return
 	 */

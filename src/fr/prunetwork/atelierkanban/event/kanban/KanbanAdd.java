@@ -18,13 +18,12 @@ package fr.prunetwork.atelierkanban.event.kanban;
 
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.storage.EventStore;
+
 import java.util.StringTokenizer;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public class KanbanAdd extends AbstractKanbanEvent {
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public class KanbanAdd
+		extends AbstractKanbanEvent {
 
 	@Override
 	public StringBuilder toSave() {

@@ -18,13 +18,12 @@ package fr.prunetwork.atelierkanban.event.kanban.index;
 
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.storage.EventStore;
+
 import java.util.StringTokenizer;
 
-/**
- *
- * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
- */
-public class KanbanBlueIndexChanged extends AbstractKanbanIndexEvent {
+/** @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr) */
+public class KanbanBlueIndexChanged
+		extends AbstractKanbanIndexEvent {
 
 	private int blueIndexLevel;
 
@@ -32,9 +31,7 @@ public class KanbanBlueIndexChanged extends AbstractKanbanIndexEvent {
 		this.blueIndexLevel = blueIndexLevel;
 	}
 
-	/**
-	 * @return the kanbanCount
-	 */
+	/** @return the kanbanCount */
 	public int getBlueIndexLevel() {
 		return blueIndexLevel;
 	}

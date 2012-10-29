@@ -22,14 +22,13 @@ import java.io.IOException;
 import java.io.PrintWriter;
 
 /**
- *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  * @author garciaf
  */
 public final class StoreDataToFile {
 
 	private static final StoreDataToFile SDTF = new StoreDataToFile();
-	private StringBuilder sb = new StringBuilder(50);
+	private              StringBuilder   sb   = new StringBuilder(50);
 
 	private StoreDataToFile() {
 	}
@@ -47,7 +46,9 @@ public final class StoreDataToFile {
 		return getSb().toString();
 	}
 
-	public void commit(String file) throws IOException {
+	public void commit(String file)
+			throws
+			IOException {
 		//création ou ajout dans le file texte
 		FileWriter fw = new FileWriter(file);
 		BufferedWriter bw = new BufferedWriter(fw);
@@ -56,16 +57,12 @@ public final class StoreDataToFile {
 		outputFilePrintWriter.close();
 	}
 
-	/**
-	 * @return the sb
-	 */
+	/** @return the sb */
 	private StringBuilder getSb() {
 		return sb;
 	}
 
-	/**
-	 * @return the SDTF
-	 */
+	/** @return the SDTF */
 	public static StoreDataToFile getStoreToFile() {
 		return SDTF;
 	}

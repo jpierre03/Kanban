@@ -16,21 +16,21 @@
  */
 package fr.prunetwork.atelierkanban;
 
-import java.util.Collection;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
-import javax.swing.JFrame;
-import javax.swing.UIManager;
-
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.gui.MainFrame;
 import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
 import fr.prunetwork.atelierkanban.storage.EventStore;
 import fr.prunetwork.atelierkanban.storage.reader.ExtractEventFromFile;
 
+import javax.swing.JFrame;
+import javax.swing.UIManager;
+import java.util.Collection;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
 /**
  * Start the Replay-Application
+ *
  * @author Jean-Pierre Prunaret (jpierre03+AtelierKanban@prunetwork.fr)
  */
 public class Replay {

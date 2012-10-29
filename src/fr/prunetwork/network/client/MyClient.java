@@ -42,21 +42,26 @@ public class MyClient {
 	/**
 	 *
 	 */
-	private PrintWriter writer;
+	private PrintWriter    writer;
 
-	/** Le constructeur qui indique sur quel serveur se connecter et quel port solliciter
+	/**
+	 * Le constructeur qui indique sur quel serveur se connecter et quel port solliciter
+	 *
 	 * @param hostName
 	 * @param portNumber le numero de port
 	 * @throws IOException si erreur de connexion
 	 */
-	public MyClient(String hostName, int portNumber) throws IOException {
+	public MyClient(String hostName, int portNumber)
+			throws
+			IOException {
 		try {
 			// Convertir la chaine de caractères "hostName" en une adresse IP valide du serveur
-			InetAddress adresseIP = InetAddress.getByName(hostName);			//récupère l'adresse IP à partir du nom de machine
+			InetAddress adresseIP = InetAddress.getByName(hostName);            //récupère l'adresse IP à partir du nom de machine
 			//creer le Socket vers le serveur
-			clientSocket = new Socket(adresseIP, portNumber);					// création d'un socket avec la config en param
+			clientSocket = new Socket(adresseIP,
+									  portNumber);                    // création d'un socket avec la config en param
 			//on fixe un timeOut
-			clientSocket.setSoTimeout(1000);									// on définit une durée au dela de laquelle on abandonne
+			clientSocket.setSoTimeout(1000);                                    // on définit une durée au dela de laquelle on abandonne
 		} catch (UnknownHostException e) {
 			System.err.println("Server is unknown: " + hostName);
 			throw e;
@@ -71,15 +76,17 @@ public class MyClient {
 
 		try {
 			reader = new BufferedReader(
-					new InputStreamReader(clientSocket.getInputStream()));		//crée un flux à partir du socket client
-			writer = new PrintWriter(clientSocket.getOutputStream());			//crée un flux à partir du socket client
+					new InputStreamReader(clientSocket.getInputStream()));        //crée un flux à partir du socket client
+			writer = new PrintWriter(clientSocket.getOutputStream());            //crée un flux à partir du socket client
 		} catch (IOException e) {
 			System.err.println("PB creation des streams");
 			System.exit(1);
 		}
 	}
 
-	/** lit les caracteres envoyés par le serveur.
+	/**
+	 * lit les caracteres envoyés par le serveur.
+	 *
 	 * @return un objet String qui contient l'ensemble des caractères lus
 	 */
 	public String readFromServer() {
@@ -94,6 +101,7 @@ public class MyClient {
 
 	/**
 	 * Renvoie un identifiant de Socket
+	 *
 	 * @return un identifiant de Socket
 	 */
 	Socket getClientSocket() {
@@ -102,6 +110,7 @@ public class MyClient {
 
 	/**
 	 * Envoie des données au serveur.
+	 *
 	 * @param ligne les caractères à envoyer
 	 */
 	public void writeToServer(String ligne) {
@@ -111,15 +120,14 @@ public class MyClient {
 
 	/**
 	 * Teste la connexion.
-	 *@return un booleen notifiant l'état de la connexion
+	 *
+	 * @return un booleen notifiant l'état de la connexion
 	 */
 	public boolean isConnected() {
 		return clientSocket.isConnected();
 	}
 
-	/**
-	 * Fermeture du socket & du lclient en général.
-	 */
+	/** Fermeture du socket & du lclient en général. */
 	public void fermer() {
 		try {
 			reader.close();
@@ -133,9 +141,7 @@ public class MyClient {
 		}
 	}
 
-	/**
-	 * Méthode invoquée lors du passage du ramasse miette
-	 */
+	/** Méthode invoquée lors du passage du ramasse miette */
 	@Override
 	protected void finalize() {
 		fermer();
