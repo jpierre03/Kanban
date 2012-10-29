@@ -24,7 +24,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.UIManager;
 
-import org.lsis.haimes.patterns.observer.Observer;
+import fr.prunetwork.patterns.observer.Observer;
 
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;

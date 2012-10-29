@@ -20,7 +20,7 @@ import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
 import fr.prunetwork.network.client.MyClient;
 import java.io.IOException;
-import org.lsis.haimes.patterns.observer.Observer;
+import fr.prunetwork.patterns.observer.Observer;
 
 /**
  *

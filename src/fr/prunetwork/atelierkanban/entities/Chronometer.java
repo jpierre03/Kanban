@@ -22,7 +22,7 @@ import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStop;
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;
 import java.util.Date;
-import org.lsis.haimes.patterns.observer.Observer;
+import fr.prunetwork.patterns.observer.Observer;
 
 /**
  * Gestion d'un chronomètre.

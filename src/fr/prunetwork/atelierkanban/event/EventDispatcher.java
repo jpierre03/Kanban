@@ -18,8 +18,8 @@ package fr.prunetwork.atelierkanban.event;
 
 import java.util.ArrayList;
 import java.util.Collection;
-import org.lsis.haimes.patterns.observer.Observable;
-import org.lsis.haimes.patterns.observer.Observer;
+import fr.prunetwork.patterns.observer.Observable;
+import fr.prunetwork.patterns.observer.Observer;
 
 /**
  *

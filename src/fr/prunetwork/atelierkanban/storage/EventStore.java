@@ -18,7 +18,7 @@ package fr.prunetwork.atelierkanban.storage;
 
 import java.util.Date;
 
-import org.lsis.haimes.patterns.observer.Observer;
+import fr.prunetwork.patterns.observer.Observer;
 
 import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.EventDispatcher;

@@ -28,7 +28,7 @@ import fr.prunetwork.atelierkanban.event.kanban.index.AbstractKanbanIndexEvent;
 import fr.prunetwork.atelierkanban.event.kanban.index.KanbanBlueIndexChanged;
 import fr.prunetwork.atelierkanban.event.kanban.index.KanbanGreenIndexChanged;
 import fr.prunetwork.atelierkanban.event.kanban.index.KanbanRedIndexChanged;
-import org.lsis.haimes.patterns.observer.Observer;
+import fr.prunetwork.patterns.observer.Observer;
 
 /**
  *

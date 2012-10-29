@@ -24,8 +24,8 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import org.lsis.haimes.patterns.observer.Observable;
-import org.lsis.haimes.patterns.observer.Observer;
+import fr.prunetwork.patterns.observer.Observable;
+import fr.prunetwork.patterns.observer.Observer;
 
 /**
  *
