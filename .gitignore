@@ -4,8 +4,4 @@ build
 dist
 nbproject/private
 Kanban-r*
-*.iml
-*.ipr
-*.iws
-.idea/
 out/
