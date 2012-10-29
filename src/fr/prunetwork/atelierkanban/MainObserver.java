@@ -16,6 +16,7 @@
  */
 package fr.prunetwork.atelierkanban;
 
+import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.event.kanban.KanbanAdded;
 import fr.prunetwork.atelierkanban.gui.ObservatorFrame;
 import fr.prunetwork.atelierkanban.gui.SplashScreenWindows;
@@ -25,7 +26,6 @@ import fr.prunetwork.patterns.observer.Observer;
 
 import javax.swing.JFrame;
 import javax.swing.UIManager;
-import java.awt.Event;
 import java.awt.EventQueue;
 import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;

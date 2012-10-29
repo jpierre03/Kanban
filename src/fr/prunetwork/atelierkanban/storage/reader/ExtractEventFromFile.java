@@ -21,6 +21,7 @@ import fr.prunetwork.atelierkanban.event.chronometer.ChronometerReset;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerSaved;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStart;
 import fr.prunetwork.atelierkanban.event.chronometer.ChronometerStop;
+import fr.prunetwork.atelierkanban.event.kanban.*;
 import fr.prunetwork.atelierkanban.event.kanban.index.KanbanBlueIndexChanged;
 import fr.prunetwork.atelierkanban.event.kanban.index.KanbanGreenIndexChanged;
 import fr.prunetwork.atelierkanban.event.kanban.index.KanbanRedIndexChanged;

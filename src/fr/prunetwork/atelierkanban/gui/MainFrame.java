@@ -17,11 +17,11 @@
 package fr.prunetwork.atelierkanban.gui;
 
 import fr.prunetwork.atelierkanban.Constants;
+import fr.prunetwork.atelierkanban.event.Event;
 import fr.prunetwork.atelierkanban.storage.reader.ExtractEventFromFile;
 import fr.prunetwork.atelierkanban.storage.writer.StoreDataToFile;
 
 import javax.swing.JFileChooser;
-import java.awt.Event;
 import java.awt.EventQueue;
 import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
