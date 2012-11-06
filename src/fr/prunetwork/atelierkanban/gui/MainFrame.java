@@ -42,6 +42,7 @@ public class MainFrame
 
 	/** Creates new form MainFrame */
 	public MainFrame() {
+		this.setTitle("Kankan-MainFrame");
 		initComponents();
 
 		kanbanPlanningPanel1.setProductName("1B-E2");
